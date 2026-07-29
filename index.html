@@ -145,6 +145,7 @@ section{padding:104px 0}
 
 /* Network */
 .chant{font-family:var(--serif);font-size:clamp(22px,2.8vw,32px);line-height:1.5;color:var(--ink);margin:44px 0 64px}
+.chant mark{background:var(--olive);color:var(--ink);padding:.06em .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .subblock{margin-top:64px}
 .subblock h3{font-family:var(--serif);font-size:26px;font-weight:600;margin-bottom:8px;color:var(--ink)}
 .subblock .note{font-size:15px;color:var(--ink-soft);font-style:italic;margin-bottom:26px}
@@ -174,6 +175,7 @@ footer{padding:64px 0 48px;border-top:1px solid var(--line)}
 .foot-links{display:flex;gap:28px;font-size:14px;color:var(--ink-soft)}
 .foot-links a:hover{color:var(--wine)}
 footer .tagline{font-size:14px;color:var(--ink-soft);margin-top:8px;font-style:italic}
+footer .addr{font-size:13px;color:var(--ink-soft);margin-top:14px;line-height:1.6}
 footer .fine{margin-top:36px;font-size:12.5px;color:#94907F}
 
 /* Reveal */
@@ -206,7 +208,7 @@ footer .fine{margin-top:36px;font-size:12.5px;color:#94907F}
 <nav id="nav">
   <div class="wrap nav-in">
     <a class="wordmark" href="#top">FIG Studio</a>
-    <a class="btn" href="mailto:contact@figstudio.vc">Work With Us</a>
+    <a class="btn" href="mailto:hello@figstudio.vc">Work With Us</a>
   </div>
 </nav>
 
@@ -251,39 +253,22 @@ footer .fine{margin-top:36px;font-size:12.5px;color:#94907F}
           </clipPath>
         </defs>
 
-
         <!-- olive torn block with grain -->
         <g filter="url(#rough)">
           <path filter="url(#riso)" fill="#B5CE3B" d="M300 60 C360 44 452 66 486 132 C516 190 500 268 508 344 C516 424 486 512 420 548 C356 582 268 574 206 552 C150 532 108 470 92 402 C74 326 92 236 118 168 C144 104 232 78 300 60 Z"/>
         </g>
 
-        <!-- figure: 3/4-view portrait bust, single-color riso silhouette -->
-        <g clip-path="url(#tornclip)">
-          <g filter="url(#risoDark)" fill="#241F1A">
-            <!-- shoulders / bust, weighted to one side like the reference -->
-            <path d="M232 620 C232 512 268 452 330 440 C356 435 372 430 386 416 C398 404 404 388 408 370 L452 372 C470 380 486 402 496 440 C508 486 510 548 508 620 Z"/>
-            <!-- neck -->
-            <path d="M356 372 C356 400 364 418 388 424 C372 432 356 436 336 438 L336 372 Z"/>
-            <!-- head, turned 3/4 (jaw + cheek on viewer's left, back of head right) -->
-            <path d="M330 236
-                     C382 232 424 268 428 322
-                     C430 352 424 380 404 398
-                     C388 412 366 420 344 420
-                     C314 420 292 408 282 382
-                     C274 360 274 336 280 312
-                     C288 272 300 240 330 236 Z"/>
-            <!-- hair mass over crown + back -->
-            <path d="M300 300
-                     C296 258 316 230 356 228
-                     C398 226 428 256 432 302
-                     C432 288 424 274 408 268
-                     C420 280 424 300 418 318
-                     C410 300 396 290 378 288
-                     C356 285 336 292 322 308
-                     C312 300 304 300 300 300 Z"/>
-          </g>
-          <!-- brow / glasses: a single thin bar, reads as spectacles in profile, no goggle-eyes -->
-          <path filter="url(#riso)" d="M300 330 C320 322 348 322 372 330 L372 338 C348 331 320 331 300 338 Z" fill="#241F1A" opacity=".7"/>
+        <!-- node network: rust dots + connecting lines, echoing the fig logo mark -->
+        <g filter="url(#riso)" stroke="#A9482C" stroke-width="16" stroke-linecap="round" fill="#A9482C">
+          <line x1="310" y1="330" x2="300" y2="180"/>
+          <line x1="310" y1="330" x2="184" y2="290"/>
+          <line x1="310" y1="330" x2="450" y2="370"/>
+          <line x1="310" y1="330" x2="234" y2="432"/>
+          <circle cx="310" cy="330" r="38" stroke="none"/>
+          <circle cx="300" cy="180" r="34" stroke="none"/>
+          <circle cx="184" cy="290" r="31" stroke="none"/>
+          <circle cx="450" cy="370" r="31" stroke="none"/>
+          <circle cx="234" cy="432" r="29" stroke="none"/>
         </g>
 
         <!-- big fig leaf, wine, grainy -->
