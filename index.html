@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIG Studio | Where Frontier AI Lands</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF;
+  --bg-alt:#F6F6F3;
+  --ink:#241F1A;
+  --ink-soft:#5A5248;
+  --rust:#A9482C;
+  --rust-deep:#8C3A22;
+  --green:#B5CE3B;
+  --line:rgba(36,31,26,.14);
+  --serif:'Bitter',Georgia,serif;
+  --sans:'Inter',-apple-system,sans-serif;
+  --script:'Caveat',cursive;
+  --maxw:1180px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;position:relative}
+::selection{background:var(--green);color:var(--ink)}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+h1,h2,h3{font-family:var(--serif);letter-spacing:-0.02em;line-height:1.08}
+.eyebrow{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--rust)}
+.btn{display:inline-block;font-family:var(--sans);font-weight:600;font-size:15px;padding:15px 30px;background:var(--rust);color:#fff;border-radius:4px;transition:background .18s ease}
+.btn:hover{background:var(--rust-deep)}
+.btn:focus-visible,a:focus-visible{outline:2px solid var(--rust);outline-offset:3px}
+.btn-ghost{background:transparent;color:var(--rust);border:1.5px solid var(--rust)}
+.btn-ghost:hover{background:rgba(169,72,44,.07)}
+
+/* ========== SIGNATURE: the root spine ========== */
+#spine{position:absolute;top:0;left:26px;bottom:0;width:44px;z-index:5;pointer-events:none}
+#spine svg{width:100%;height:100%;display:block}
+#spine path{stroke:var(--green);stroke-width:2.5;fill:none}
+.node{position:absolute;left:50%;width:13px;height:13px;border-radius:50%;background:var(--bg);border:2.5px solid var(--green);transform:translateX(-50%);transition:background .4s,transform .4s}
+.node.lit{background:var(--rust);border-color:var(--rust);transform:translateX(-50%) scale(1.15)}
+.node .nlabel{position:absolute;left:22px;top:50%;transform:translateY(-50%);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap;opacity:0;transition:opacity .4s}
+.node.lit .nlabel{opacity:.85}
+@media(max-width:1240px){#spine{display:none}}
+
+/* ---------- Nav ---------- */
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+nav.scrolled{border-bottom-color:var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:76px}
+.wordmark{font-family:var(--serif);font-weight:700;font-size:22px;color:var(--rust)}
+.wordmark i{font-style:normal;color:var(--green)}
+nav .btn{padding:11px 22px;font-size:14px}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;overflow:hidden}
+.hero-in{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:64px 0 88px;min-height:80vh}
+.hero h1{font-size:clamp(52px,7.2vw,96px);font-weight:700;color:var(--rust);margin:20px 0 26px}
+.hero h1 .land{display:inline-block;animation:drop .8s cubic-bezier(.2,.85,.3,1.18) .2s both}
+@keyframes drop{from{transform:translateY(-.8em);opacity:0}to{transform:none;opacity:1}}
+.seed-stop{display:inline-block;width:.16em;height:.16em;border-radius:50%;background:var(--green);margin-left:.07em;transform:translateY(-.02em);animation:pop .35s ease 1s both}
+@keyframes pop{from{transform:scale(0) translateY(-.02em)}to{transform:scale(1) translateY(-.02em)}}
+.hero .sub{font-size:19px;color:var(--ink-soft);max-width:34em;margin-bottom:36px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.hero-art{position:relative;min-height:480px}
+.hero-art>svg{width:100%;height:auto;display:block}
+.fall{position:absolute;width:7px;height:7px;border-radius:50%;opacity:0;animation:fall linear infinite}
+@keyframes fall{0%{transform:translateY(-20px);opacity:0}12%{opacity:.85}80%{opacity:.85}100%{transform:translateY(320px);opacity:0}}
+.annot{position:absolute;left:-6%;bottom:10%;display:flex;align-items:center;color:var(--rust)}
+.annot .script{font-family:var(--script);font-size:26px;white-space:nowrap;transform:rotate(-3deg)}
+.annot:hover .script{text-decoration:underline}
+.annot svg{width:140px;height:56px;flex:none}
+
+/* ---------- Logo marquee ---------- */
+.logos{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:32px 0;overflow:hidden}
+.logos .label{text-align:center;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:22px}
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.track{display:flex;gap:56px;width:max-content;animation:marq 32s linear infinite}
+.logos:hover .track{animation-play-state:paused}
+@keyframes marq{to{transform:translateX(-50%)}}
+.track span{font-weight:600;font-size:14px;letter-spacing:.06em;color:#9A928A;text-transform:uppercase;white-space:nowrap;transition:color .18s}
+.track span:hover{color:var(--ink)}
+
+/* ---------- Sections ---------- */
+section{padding:104px 0;position:relative}
+.sec-head{max-width:660px;margin-bottom:56px}
+.sec-head h2{font-size:clamp(34px,4vw,48px);font-weight:600;margin-top:14px}
+.sec-head h2 em{font-style:italic;font-weight:400;color:var(--rust)}
+.sec-head .lede{margin-top:18px;color:var(--ink-soft);font-size:18px}
+
+/* Portfolio */
+.grid-port{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:28px 26px;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;display:block;position:relative}
+.card::before{content:"";position:absolute;top:20px;right:20px;width:8px;height:8px;border-radius:50%;background:var(--green);opacity:0;transition:opacity .18s}
+.card:hover{transform:translateY(-3px);border-color:var(--rust);box-shadow:0 10px 24px -14px rgba(36,31,26,.25)}
+.card:hover::before{opacity:1}
+.card .name{font-family:var(--serif);font-weight:600;font-size:21px}
+.card .desc{margin-top:8px;font-size:14.5px;color:var(--ink-soft)}
+.card .link{margin-top:14px;font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--rust)}
+.card.stealth{background:var(--ink);border-color:var(--ink)}
+.card.stealth .name{color:#fff}
+.card.stealth .desc{color:rgba(255,255,255,.68)}
+.card.stealth .link{color:var(--green)}
+
+/* Bridge */
+.bridge{background:var(--ink);color:#fff;text-align:center}
+.bridge .in{max-width:820px;margin:0 auto;padding:0 32px}
+.bridge p.big{font-family:var(--serif);font-size:clamp(26px,3.4vw,38px);line-height:1.35;font-weight:400}
+.bridge p.punch{font-family:var(--serif);font-weight:700;font-size:clamp(28px,3.6vw,42px);color:var(--green);margin-top:34px}
+
+/* Why FIG */
+.fig-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.fig-card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:38px 30px;position:relative;overflow:hidden}
+.fig-card .letter{font-family:var(--serif);font-weight:700;font-size:130px;line-height:1;color:var(--rust);opacity:.08;position:absolute;top:-14px;right:4px;transition:opacity .25s,color .25s}
+.fig-card:hover .letter{opacity:.16}
+.fig-card h3{font-size:26px;font-weight:600;color:var(--rust)}
+.fig-card p{margin-top:12px;color:var(--ink-soft);font-size:15.5px}
+.brand-note{margin-top:56px;max-width:680px;color:var(--ink-soft);font-size:16px;border-left:3px solid var(--green);padding-left:24px}
+.brand-note .tag{font-family:var(--script);font-size:28px;color:var(--rust);display:block;margin-top:12px}
+.pull{margin-top:88px;text-align:center}
+.pull p{font-family:var(--serif);font-size:clamp(24px,3vw,34px);line-height:1.4;max-width:820px;margin:0 auto;font-weight:400}
+.pull em{font-style:italic;color:var(--rust)}
+
+/* Who */
+.who{background:var(--bg-alt)}
+.arrow-line{font-family:var(--serif);font-weight:700;font-size:clamp(26px,3.6vw,42px);color:var(--rust);margin-bottom:36px}
+.who .body{max-width:700px;color:var(--ink-soft);margin-bottom:48px}
+.who .body p+p{margin-top:16px}
+.adv{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.adv div{border-top:3px solid var(--rust);padding-top:20px}
+.adv b{font-weight:600;font-size:16px;display:block;margin-bottom:8px}
+.adv span{font-size:15px;color:var(--ink-soft)}
+
+/* Know-how */
+.know-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.know ul{list-style:none;margin-top:8px}
+.know li{padding:16px 0;border-bottom:1px solid var(--line);font-size:17px;display:flex;gap:16px;align-items:baseline}
+.know li::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--green);flex:none;transform:translateY(-1px)}
+.chain{margin-top:72px;text-align:center;font-family:var(--serif);font-weight:600;font-size:clamp(20px,2.6vw,30px);color:var(--rust)}
+.chain .sep{color:var(--green);padding:0 10px}
+.know .close{margin-top:28px;text-align:center;color:var(--ink-soft);max-width:640px;margin-left:auto;margin-right:auto}
+
+/* Provide */
+.provide{background:var(--bg-alt)}
+.grid-svc{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc{background:#fff;border:1px solid var(--line);border-radius:6px;padding:30px 26px}
+.svc h3{font-size:20px;font-weight:600;margin-bottom:10px}
+.svc p{font-size:14.5px;color:var(--ink-soft)}
+.svc .ic{width:26px;height:26px;margin-bottom:16px;color:var(--rust)}
+
+/* Network */
+.chant{font-family:var(--serif);font-size:clamp(22px,2.8vw,32px);line-height:1.5;color:var(--rust);margin:44px 0 64px}
+.subblock{margin-top:64px}
+.subblock h3{font-family:var(--serif);font-size:26px;font-weight:600;margin-bottom:8px}
+.subblock .note{font-size:15px;color:var(--ink-soft);font-style:italic;margin-bottom:26px}
+.invest-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.badge{display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--rust);background:rgba(169,72,44,.1);border-radius:3px;padding:4px 8px;margin-bottom:12px}
+.ev-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px}
+.ev{border-radius:6px;background:var(--bg-alt);border:1px solid var(--line);aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.ev svg{width:44%;height:auto;opacity:.35}
+.ev .cap{position:absolute;bottom:10px;left:14px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* Belief */
+.belief{background:var(--ink);color:#fff;position:relative;overflow:hidden}
+.belief .eyebrow{color:var(--green)}
+.belief .body{max-width:720px;color:rgba(255,255,255,.78);margin-top:22px}
+.litany{margin:72px 0 56px}
+.litany p{font-family:var(--serif);font-size:clamp(26px,3.6vw,44px);font-weight:600;line-height:1.3;color:#fff}
+.litany p em{font-style:italic;font-weight:400;color:var(--green)}
+.belief .final{color:rgba(255,255,255,.78);margin-bottom:26px;font-size:18px}
+.belief .leafbg{position:absolute;right:-90px;bottom:-70px;width:420px;opacity:.08;pointer-events:none}
+
+/* Footer */
+footer{padding:64px 0 48px;border-top:1px solid var(--line)}
+.foot-in{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;align-items:flex-start}
+.foot-links{display:flex;gap:28px;font-size:14px;color:var(--ink-soft)}
+.foot-links a:hover{color:var(--rust)}
+footer .tagline{font-size:14px;color:var(--ink-soft);margin-top:8px;font-style:italic}
+footer .fine{margin-top:36px;font-size:12.5px;color:#9A928A}
+
+/* Reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.rv.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none;transition:none}
+  .card,.btn{transition:none}
+  .hero h1 .land,.seed-stop{animation:none}
+  .fall{display:none}
+  .track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}
+  .track .dup{display:none}
+}
+
+/* Responsive */
+@media(max-width:960px){
+  .hero-in{grid-template-columns:1fr;min-height:0;padding:48px 0 64px}
+  .hero-art{min-height:340px;max-width:480px;margin:0 auto}
+  .annot{left:0;bottom:2%}
+  .fig-cards,.adv,.grid-svc,.invest-row{grid-template-columns:1fr 1fr}
+  .know-grid{grid-template-columns:1fr;gap:36px}
+  .ev-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  section{padding:72px 0}
+  .wrap{padding:0 22px}
+  .fig-cards,.adv,.grid-svc,.invest-row,.ev-grid{grid-template-columns:1fr}
+  .hero h1{font-size:48px}
+  .annot .script{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<!-- SIGNATURE: root spine — grows down the page as you scroll -->
+<div id="spine" aria-hidden="true">
+  <svg viewBox="0 0 44 1000" preserveAspectRatio="none">
+    <path id="spinepath" d="M22 0 C36 90 8 180 22 280 C36 380 8 470 22 570 C34 660 10 750 22 850 C32 920 16 960 22 1000"/>
+  </svg>
+</div>
+
+<nav id="nav">
+  <div class="wrap nav-in">
+    <a class="wordmark" href="#top">FIG Studio<i>.</i></a>
+    <a class="btn" href="mailto:hello@figstudio.vc">Work With Us</a>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="wrap hero-in">
+    <div>
+      <div class="eyebrow">FIG Studio — AI Venture Studio</div>
+      <h1>Where Frontier<br>AI <span class="land">Lands<span class="seed-stop"></span></span></h1>
+      <p class="sub">We partner with experienced industry leaders, technical founders, and repeat entrepreneurs to transform breakthrough AI into products that solve meaningful, real-world problems.</p>
+      <div class="hero-ctas">
+        <a class="btn" href="mailto:hello@figstudio.vc">Work With Us</a>
+        <a class="btn btn-ghost" href="#portfolio">See Our Portfolio</a>
+      </div>
+    </div>
+
+    <div class="hero-art" aria-hidden="true">
+      <!-- ambient landing seeds -->
+      <span class="fall" style="left:12%;top:2%;background:#A9482C;animation-duration:7s;animation-delay:0s"></span>
+      <span class="fall" style="left:30%;top:0;background:#B5CE3B;animation-duration:9s;animation-delay:2.2s"></span>
+      <span class="fall" style="left:55%;top:4%;background:#A9482C;animation-duration:8s;animation-delay:4s;width:5px;height:5px"></span>
+      <span class="fall" style="left:78%;top:0;background:#B5CE3B;animation-duration:10s;animation-delay:1s;width:5px;height:5px"></span>
+      <span class="fall" style="left:90%;top:6%;background:#A9482C;animation-duration:7.5s;animation-delay:5.5s"></span>
+
+      <svg viewBox="0 0 560 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#B5CE3B" d="M300 38c62-14 128 4 170 48 38 40 44 98 40 156-4 62 6 132-36 178-44 48-118 56-186 50-64-6-130-24-166-74-34-48-28-114-16-174 12-58 30-118 78-152 42-30 76-22 116-32Z"/>
+        <path fill="#C4DA55" opacity=".55" d="M330 78c44-10 96 6 124 40 26 32 28 76 24 120-4 48 6 102-26 136-32 36-88 42-138 38-48-4-98-18-124-56-26-36-20-86-10-132 8-44 22-90 58-116 32-22 62-22 92-30Z"/>
+        <g fill="#A9482C" transform="translate(348 180) rotate(8)">
+          <ellipse cx="0" cy="-96" rx="34" ry="92"/>
+          <ellipse cx="-62" cy="-64" rx="30" ry="80" transform="rotate(-32 -62 -64)"/>
+          <ellipse cx="62" cy="-64" rx="30" ry="80" transform="rotate(32 62 -64)"/>
+          <ellipse cx="-96" cy="6" rx="26" ry="62" transform="rotate(-64 -96 6)"/>
+          <ellipse cx="96" cy="6" rx="26" ry="62" transform="rotate(64 96 6)"/>
+          <circle cx="0" cy="-24" r="52"/>
+          <rect x="-5" y="10" width="10" height="86" rx="5"/>
+        </g>
+        <g fill="#8C3A22" transform="translate(150 370) rotate(-18) scale(.62)">
+          <ellipse cx="0" cy="-96" rx="34" ry="92"/>
+          <ellipse cx="-62" cy="-64" rx="30" ry="80" transform="rotate(-32 -62 -64)"/>
+          <ellipse cx="62" cy="-64" rx="30" ry="80" transform="rotate(32 62 -64)"/>
+          <ellipse cx="-96" cy="6" rx="26" ry="62" transform="rotate(-64 -96 6)"/>
+          <ellipse cx="96" cy="6" rx="26" ry="62" transform="rotate(64 96 6)"/>
+          <circle cx="0" cy="-24" r="52"/>
+          <rect x="-5" y="10" width="10" height="86" rx="5"/>
+        </g>
+        <g transform="translate(240 430)">
+          <path fill="#8C3A22" d="M0-74C34-74 62-38 62 6 62 46 34 74 0 74-34 74-62 46-62 6-62-38-34-74 0-74Z"/>
+          <path fill="#FFFFFF" d="M0-58C27-58 49-28 49 6 49 39 27 60 0 60-27 60-49 39-49 6-49-28-27-58 0-58Z"/>
+          <path fill="#C86A50" d="M0-44C21-44 38-21 38 6 38 32 21 48 0 48-21 48-38 32-38 6-38-21-21-44 0-44Z"/>
+          <circle fill="#A9482C" cx="0" cy="4" r="16"/>
+          <rect fill="#8C3A22" x="-4" y="-88" width="8" height="18" rx="4"/>
+        </g>
+        <g fill="#A9482C">
+          <circle cx="118" cy="150" r="5"/><circle cx="96" cy="186" r="4"/><circle cx="140" cy="196" r="3.5"/>
+          <circle cx="452" cy="404" r="5"/><circle cx="478" cy="372" r="4"/><circle cx="432" cy="440" r="3.5"/>
+        </g>
+      </svg>
+      <a class="annot" href="#portfolio">
+        <span class="script">every seed, a company</span>
+        <svg viewBox="0 0 140 56" fill="none"><path d="M4 8 L40 40 H98" stroke="#A9482C" stroke-width="1.5"/><circle cx="116" cy="40" r="15" stroke="#A9482C" stroke-width="1.5"/><path d="M110 40h12M118 35l5 5-5 5" stroke="#A9482C" stroke-width="1.5"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="logos">
+    <div class="label">Backed by &amp; building with</div>
+    <div class="marquee">
+      <div class="track">
+        <span>AWS</span><span>Stripe</span><span>500 Global</span><span>Plug and Play</span><span>Nebius</span><span>Pixverse</span><span>Sixty Degree Capital</span><span>Acorn Pacific Venture</span><span>Hat-Trick Capital</span><span>Embedding VC</span>
+        <span class="dup">AWS</span><span class="dup">Stripe</span><span class="dup">500 Global</span><span class="dup">Plug and Play</span><span class="dup">Nebius</span><span class="dup">Pixverse</span><span class="dup">Sixty Degree Capital</span><span class="dup">Acorn Pacific Venture</span><span class="dup">Hat-Trick Capital</span><span class="dup">Embedding VC</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= PORTFOLIO ================= -->
+<section id="portfolio" data-node="Portfolio">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">Portfolio</div>
+      <h2>Companies built by leaders who know their industries <em>from the inside.</em></h2>
+    </div>
+    <div class="grid-port rv">
+      <a class="card" href="https://alchedata.ai" target="_blank" rel="noopener"><div class="name">Alchedata.AI</div><div class="desc">Data infrastructure for physical AI.</div><div class="link">alchedata.ai →</div></a>
+      <a class="card stealth" href="#"><div class="name">Stealth</div><div class="desc">Led by a veteran AI executive.</div><div class="link">Founder on LinkedIn →</div></a>
+      <a class="card" href="https://storyverseai.art" target="_blank" rel="noopener"><div class="name">StoryVerse</div><div class="desc">Description forthcoming.</div><div class="link">storyverseai.art →</div></a>
+      <a class="card" href="https://www.agentx.so" target="_blank" rel="noopener"><div class="name">AgentX</div><div class="desc">Description forthcoming.</div><div class="link">agentx.so →</div></a>
+      <a class="card" href="https://www.numix.co" target="_blank" rel="noopener"><div class="name">Numix</div><div class="desc">Description forthcoming.</div><div class="link">numix.co →</div></a>
+      <a class="card" href="https://www.nohi.ai" target="_blank" rel="noopener"><div class="name">NILE</div><div class="desc">Description forthcoming.</div><div class="link">nohi.ai →</div></a>
+      <a class="card" href="https://www.bitownx.com" target="_blank" rel="noopener"><div class="name">Bitown</div><div class="desc">Description forthcoming.</div><div class="link">bitownx.com →</div></a>
+      <a class="card" href="https://www.puppygraph.com" target="_blank" rel="noopener"><div class="name">Puppygraph</div><div class="desc">Description forthcoming.</div><div class="link">puppygraph.com →</div></a>
+      <a class="card" href="https://inference.ai" target="_blank" rel="noopener"><div class="name">Inference.ai</div><div class="desc">Description forthcoming.</div><div class="link">inference.ai →</div></a>
+      <a class="card" href="https://laminarhealth.ai" target="_blank" rel="noopener"><div class="name">Laminar Health</div><div class="desc">Description forthcoming.</div><div class="link">laminarhealth.ai →</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BRIDGE ================= -->
+<section class="bridge">
+  <div class="in rv">
+    <p class="big">Breakthrough research alone doesn't change industries. It takes deep market understanding, customer access, strategic execution, and the right support system to turn new technology into enduring businesses.</p>
+    <p class="punch">That's where FIG comes in.</p>
+  </div>
+</section>
+
+<!-- ================= WHY FIG ================= -->
+<section id="why" data-node="Why FIG">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">FIG = Frontier · Industry · Growth</div>
+      <h2>Why FIG</h2>
+    </div>
+    <div class="fig-cards rv">
+      <div class="fig-card"><div class="letter">F</div><h3>Frontier</h3><p>Breakthrough AI capabilities at the technological edge, searching for real-world impact.</p></div>
+      <div class="fig-card"><div class="letter">I</div><h3>Industry</h3><p>Deep expertise, trusted relationships, and customer access earned over decades inside real markets.</p></div>
+      <div class="fig-card"><div class="letter">G</div><h3>Growth</h3><p>The venture platform that combines both into enduring, compounding companies.</p></div>
+    </div>
+    <div class="brand-note rv">
+      The name also carries our model: like a fig tree — deep roots, mature fruit, countless seeds — FIG is not about starting from nothing. It is new growth built upon years of accumulated strength.
+      <span class="tag">Deep Roots. New Ventures.</span>
+    </div>
+    <div class="pull rv">
+      <p>We do not send inexperienced founders into the market to search for problems. <em>We help the people who understand the problems best build the companies that solve them.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHO ================= -->
+<section class="who" data-node="Founders">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">Who We Work With</div>
+      <div class="arrow-line" style="margin-top:14px">Industry Leader → AI-Native Founder</div>
+    </div>
+    <div class="body rv">
+      <p>We work with senior executives, proven operators, technical founders bringing frontier AI to market, and repeat entrepreneurs with strong commercial networks. These founders are not learning business for the first time. They have built teams, managed complex operations, served customers, and earned trust within their markets.</p>
+      <p>Our founders don't start by searching for problems. They start with decades of industry expertise, trusted relationships, and firsthand knowledge of what customers actually need.</p>
+    </div>
+    <div class="adv rv">
+      <div><b>Deep Expertise</b><span>Judgment earned inside the industry, not read about it.</span></div>
+      <div><b>Trusted Relationships</b><span>Decision-makers who already take their calls.</span></div>
+      <div><b>Built-In Distribution</b><span>Customer access from day one, not month twelve.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KNOW-HOW ================= -->
+<section class="know" data-node="Know-How">
+  <div class="wrap">
+    <div class="know-grid">
+      <div class="sec-head rv" style="margin-bottom:0">
+        <div class="eyebrow">From Know-How to Company</div>
+        <h2>The most valuable industry knowledge cannot be found in <em>public reports.</em></h2>
+        <p class="lede">It comes from years of experience and judgment:</p>
+      </div>
+      <ul class="rv">
+        <li>Why customers actually buy</li>
+        <li>Which workflows consume the most time and capital</li>
+        <li>Which decisions still depend on a small number of experts</li>
+        <li>Which data remains fragmented or underutilized</li>
+        <li>Which parts of an industry are ready to be rebuilt with AI</li>
+      </ul>
+    </div>
+    <div class="chain rv">Repeatable workflows<span class="sep">→</span>Scalable products<span class="sep">→</span>Defensible companies</div>
+    <p class="close rv">Our goal is not to add superficial AI features to existing businesses. It is to redesign products, workflows, and business models from the ground up, using AI as a new operating layer.</p>
+  </div>
+</section>
+
+<!-- ================= PROVIDE ================= -->
+<section class="provide" data-node="Platform">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">What We Provide</div>
+      <h2>Support through the critical stages of company creation.</h2>
+    </div>
+    <div class="grid-svc rv">
+      <div class="svc"><svg class="ic" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="4"/><path d="M12 2v6M12 16v6M2 12h6M16 12h6" stroke="currentColor" stroke-width="2"/></svg><h3>Venture Formation</h3><p>Identify high-value opportunities based on real industry pain points, founder-market fit, and the potential for AI-driven transformation.</p></div>
+      <div class="svc"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M12 8v8"/></svg><h3>AI Product &amp; Technology</h3><p>Define product architecture, map relevant AI capabilities, establish the technical roadmap, and support MVP development.</p></div>
+      <div class="svc"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><h3>Customer Validation</h3><p>Engage design partners and early customers to validate demand, pricing, workflows, and enterprise procurement paths.</p></div>
+      <div class="svc"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><circle cx="16.5" cy="10" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg><h3>Founder &amp; Team Building</h3><p>Assemble complementary founding teams and connect founders with engineering, product, commercial, and industry talent.</p></div>
+      <div class="svc"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg><h3>Go-to-Market &amp; Brand</h3><p>Use founder credibility and industry access to develop brand positioning, early sales motions, distribution partnerships, and enterprise adoption strategies.</p></div>
+      <div class="svc"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 9.5c0-1 1.3-1.8 3-1.8s3 .8 3 1.8-1 1.6-3 2-3 1-3 2 1.3 1.8 3 1.8 3-.8 3-1.8"/></svg><h3>Capital &amp; Strategic Network</h3><p>Connect founders with AI investors, strategic partners, corporate decision-makers, and follow-on capital.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NETWORK + EVENTS ================= -->
+<section id="events" data-node="Network">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">A Network That Compounds</div>
+      <h2>Assets that flow across companies, <em>not silos.</em></h2>
+      <p class="lede">FIG Studio is not only designed to create individual companies — it is designed to build a long-term network of experienced founders who strengthen one another. Founders become one another's customers, advisors, distribution partners, and future co-founders.</p>
+    </div>
+    <div class="chant rv">
+      More founders create more companies.<br>
+      More companies create more customers, talent, and capital.<br>
+      More shared resources create stronger founders.
+    </div>
+    <div class="subblock rv">
+      <h3>Founders investing in founders</h3>
+      <p class="note">Within FIG, founders become one another's investors, customers, and co-founders. They already are.</p>
+      <div class="invest-row">
+        <a class="card" href="https://insforge.dev" target="_blank" rel="noopener"><span class="badge">Member Investment</span><div class="name">InsForge</div><div class="link">insforge.dev →</div></a>
+        <a class="card" href="https://www.augmentcode.com" target="_blank" rel="noopener"><span class="badge">Member Investment</span><div class="name">Augment Code</div><div class="link">augmentcode.com →</div></a>
+        <a class="card" href="https://www.complir.io" target="_blank" rel="noopener"><span class="badge">Member Investment</span><div class="name">Complir</div><div class="link">complir.io →</div></a>
+      </div>
+    </div>
+    <div class="subblock rv">
+      <h3>Where the FIG network convenes</h3>
+      <p class="note">Featured gatherings — photos to come.</p>
+      <div class="ev-grid">
+        <div class="ev"><svg viewBox="0 0 200 120" fill="#A9482C"><ellipse cx="100" cy="40" rx="14" ry="34"/><ellipse cx="76" cy="52" rx="12" ry="28" transform="rotate(-30 76 52)"/><ellipse cx="124" cy="52" rx="12" ry="28" transform="rotate(30 124 52)"/><circle cx="100" cy="66" r="20"/><rect x="97" y="80" width="6" height="28" rx="3"/></svg><span class="cap">Featured Event</span></div>
+        <div class="ev"><svg viewBox="0 0 200 120" fill="#A9482C"><circle cx="100" cy="60" r="34"/><circle cx="100" cy="60" r="22" fill="#F6F6F3"/><circle cx="100" cy="60" r="10"/></svg><span class="cap">Photo</span></div>
+        <div class="ev"><svg viewBox="0 0 200 120" fill="#A9482C"><circle cx="80" cy="50" r="6"/><circle cx="110" cy="70" r="6"/><circle cx="130" cy="44" r="6"/><path d="M80 50 110 70 130 44" stroke="#A9482C" stroke-width="2" fill="none"/></svg><span class="cap">Photo</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BELIEF ================= -->
+<section class="belief" data-node="Belief">
+  <svg class="leafbg" viewBox="0 0 300 300" fill="#B5CE3B" aria-hidden="true"><g transform="translate(150 190)"><ellipse cx="0" cy="-70" rx="26" ry="68"/><ellipse cx="-46" cy="-48" rx="22" ry="58" transform="rotate(-32 -46 -48)"/><ellipse cx="46" cy="-48" rx="22" ry="58" transform="rotate(32 46 -48)"/><ellipse cx="-70" cy="4" rx="19" ry="46" transform="rotate(-64 -70 4)"/><ellipse cx="70" cy="4" rx="19" ry="46" transform="rotate(64 70 4)"/><circle cx="0" cy="-18" r="38"/><rect x="-4" y="8" width="8" height="64" rx="4"/></g></svg>
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow">Our Belief</div>
+      <p class="body">The next generation of category-defining AI companies will not necessarily be built by the youngest founders or begin with the most advanced model. They may begin with a leader who has spent fifteen years inside an industry — someone who already knows where the problems are, and where the customers are. What they need is a company-creation platform that brings together their experience, AI capabilities, technical talent, customer access, and capital.</p>
+      <p class="body" style="margin-top:14px;font-weight:600;color:#fff">FIG Studio was created to provide that platform.</p>
+    </div>
+    <div class="litany rv">
+      <p>Deep expertise becomes <em>product insight.</em></p>
+      <p>Trusted relationships become <em>early customers.</em></p>
+      <p>Founder networks become <em>distribution.</em></p>
+      <p>AI becomes <em>the leverage.</em></p>
+    </div>
+    <div class="rv">
+      <p class="final">Together, we help frontier AI land where it matters most.</p>
+      <a class="btn" style="background:#B5CE3B;color:#241F1A" href="mailto:hello@figstudio.vc">Start the Conversation</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-in">
+      <div>
+        <div class="wordmark">FIG Studio<i>.</i></div>
+        <div class="tagline">Where industry experience becomes AI-native companies.</div>
+      </div>
+      <div class="foot-links">
+        <a href="#why">Why FIG</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#events">Events</a>
+        <a href="mailto:hello@figstudio.vc">hello@figstudio.vc</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+    <div class="fine">© 2026 FIG Studio. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>10)},{passive:true});
+
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* Root spine: draws with scroll; nodes light up at each section */
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const spineWrap=document.getElementById('spine');
+const path=document.getElementById('spinepath');
+if(spineWrap&&getComputedStyle(spineWrap).display!=='none'){
+  const len=path.getTotalLength();
+  path.style.strokeDasharray=len;
+  path.style.strokeDashoffset=reduced?0:len;
+  const nodes=[];
+  document.querySelectorAll('[data-node]').forEach(sec=>{
+    const d=document.createElement('div');
+    d.className='node';
+    d.innerHTML='<span class="nlabel">'+sec.dataset.node+'</span>';
+    spineWrap.appendChild(d);
+    nodes.push({el:d,sec});
+  });
+  const place=()=>{const H=document.documentElement.scrollHeight;nodes.forEach(n=>{n.el.style.top=((n.sec.offsetTop+120)/H*100)+'%'})};
+  const update=()=>{
+    const max=document.documentElement.scrollHeight-innerHeight;
+    const p=Math.min(1,Math.max(0,(scrollY+innerHeight*.6)/document.documentElement.scrollHeight));
+    if(!reduced)path.style.strokeDashoffset=len*(1-p);
+    nodes.forEach(n=>n.el.classList.toggle('lit',scrollY+innerHeight*.55>n.sec.offsetTop));
+  };
+  place();update();
+  addEventListener('scroll',update,{passive:true});
+  addEventListener('resize',()=>{place();update()});
+}
+</script>
+</body>
+</html>
