@@ -7,7 +7,7 @@ founders, and repeat entrepreneurs to turn deep expertise into AI-native compani
 ## Stack
 
 Single static `index.html` — zero build step, zero dependencies.
-Fonts (Bitter / Inter / Caveat) load from Google Fonts. Deploys as-is on Vercel.
+Fonts (Source Serif 4 / JetBrains Mono) load from Google Fonts. Deploys as-is on Vercel.
 
 ## Local preview
 
