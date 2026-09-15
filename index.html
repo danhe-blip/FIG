@@ -65,6 +65,7 @@ if(window.__figReload){
   --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px;
   --sp-6:32px; --sp-7:48px; --sp-8:64px; --sp-9:96px; --sp-10:128px;
 
+  --nav-h:76px;
   --radius-sm:6px;
   --radius-md:10px;
   --maxw:1320px;
@@ -107,20 +108,25 @@ nav,header,section,footer{position:relative;z-index:2}
 /* Nav */
 nav{position:sticky;top:0;z-index:50;background:rgba(250,249,244,.88);backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom:1px solid transparent;transition:border-color .2s,box-shadow .2s}
 nav.scrolled{backdrop-filter:blur(12px) saturate(120%);-webkit-backdrop-filter:blur(12px) saturate(120%);border-bottom-color:var(--line);box-shadow:0 8px 24px rgba(36,31,26,.04)}
-.nav-in{display:flex;align-items:center;justify-content:space-between;height:76px}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:var(--nav-h)}
 .wordmark{display:inline-flex;align-items:center;color:var(--ink)}
 .wordmark img{display:block;width:auto;height:42px}
 footer .wordmark img{height:70px}
 nav .btn{padding:var(--sp-2) var(--sp-4);font-size:var(--fs-label)}
 
 /* Hero */
-.hero{overflow:hidden}
-.hero-in{display:grid;grid-template-columns:1.02fr .98fr;gap:var(--sp-6);align-items:center;padding:var(--sp-8) var(--sp-5) var(--sp-9);min-height:100vh}
+/* Hero fills one viewport minus the nav, minus a sliver, so the logo
+   strip it ends with sits above the fold with the dark band beneath it
+   just breaking the edge — both a scroll affordance and a margin of
+   safety against mobile browser chrome measuring slightly differently
+   than svh reports. */
+.hero{overflow:hidden;display:flex;flex-direction:column;min-height:calc(100vh - var(--nav-h) - var(--sp-5));min-height:calc(100svh - var(--nav-h) - var(--sp-5))}
+.hero-in{display:grid;grid-template-columns:1.02fr .98fr;gap:var(--sp-6);align-items:center;padding:var(--sp-7) var(--sp-5);flex:1 1 auto;min-height:0}
 .hero h1{font-family:var(--display);font-size:var(--fs-hero);font-weight:600;color:var(--ink);margin:var(--sp-5) 0 var(--sp-5);letter-spacing:-.03em}
 .hero .sub{font-size:var(--fs-body);color:var(--ink-soft);max-width:34em;margin-bottom:var(--sp-6)}
 .hero-ctas{display:flex;gap:var(--sp-4);flex-wrap:wrap}
-.hero-art{position:relative;min-height:520px}
-.hero-art>svg{width:100%;height:auto;display:block;transform:translateX(28px);isolation:isolate}
+.hero-art{position:relative;min-height:0;align-self:stretch;display:flex;align-items:center;justify-content:center}
+.hero-art>svg{width:100%;height:100%;max-height:min(520px,50svh);display:block;transform:translateX(28px);isolation:isolate}
 .stop-green{transform-box:fill-box;transform-origin:center;animation:stopGreen .72s steps(1,end) .12s both}
 .stop-flower-big{transform-box:fill-box;transform-origin:center;mix-blend-mode:multiply;animation:stopFlowerBig .68s steps(1,end) .56s both}
 .stop-flower-small{transform-box:fill-box;transform-origin:center;mix-blend-mode:multiply;animation:stopFlowerSmall .64s steps(1,end) .78s both}
@@ -321,16 +327,20 @@ footer .fine{margin-top:var(--sp-6);font-size:var(--fs-micro);color:#94907F;text
 }
 
 @media(max-width:960px){
-  .hero-in{grid-template-columns:1fr;min-height:0;padding:var(--sp-7) var(--sp-5) var(--sp-8)}
-  .hero-art{min-height:400px;max-width:500px;margin:0 auto}
-  .hero-art>svg{transform:none}
+  .hero-in{grid-template-columns:1fr;min-height:0;padding:var(--sp-6) var(--sp-5)}
+  .hero-art{min-height:0;max-width:500px;margin:0 auto}
+  .hero-art>svg{transform:none;max-height:26svh}
   .fig-grid,.adv,.grid-svc,.invest-row{grid-template-columns:1fr 1fr}
   .split{grid-template-columns:1fr;gap:var(--sp-6)}
   .ev-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:600px){
   section{padding:var(--sp-7) 0}.wrap{padding:0 22px}
-  .hero-in{padding:var(--sp-7) 22px var(--sp-8)}
+  /* On a phone there is not enough height for the headline, the
+     illustration and the logo strip at once. The illustration is
+     decorative (aria-hidden), so it yields to keep the strip in view. */
+  .hero-in{padding:var(--sp-5) 22px}
+  .hero-art{display:none}
   .fig-grid,.adv,.grid-svc,.invest-row,.ev-grid{grid-template-columns:1fr}
   .fig-card-art{padding:var(--sp-3)}
   .fig-card-copy{padding:var(--sp-5)}
