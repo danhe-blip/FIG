@@ -204,10 +204,12 @@ section{padding:var(--sp-8) 0}
 /* Why FIG */
 #why .sec-head{text-align:center;margin-left:auto;margin-right:auto}
 .fig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-5);text-align:center}
-.fig-col{background:var(--card-bg);border-radius:var(--radius-md);padding:var(--sp-7) var(--sp-5)}
-.fig-letter{font-family:var(--display);font-weight:700;font-size:clamp(56px,6vw,88px);line-height:1;color:var(--accent-blue);margin-bottom:var(--sp-3)}
-.fig-col h3{font-size:var(--fs-h3-lg);font-weight:600;color:var(--on-card);margin-bottom:var(--sp-3)}
-.fig-col p{color:var(--on-card-muted);font-size:var(--fs-body-sm)}
+.fig-col{min-width:0;display:flex;flex-direction:column;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:var(--radius-md);box-shadow:0 12px 34px rgba(36,31,26,.06);text-align:left}
+.fig-card-art{display:grid;place-items:center;padding:var(--sp-4);background:var(--white);border-bottom:1px solid var(--line)}
+.fig-card-art img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain}
+.fig-card-copy{flex:1;padding:var(--sp-5) var(--sp-5) var(--sp-6);background:#fff}
+.fig-col h3{margin:0;color:var(--ink);font-size:var(--fs-h3-lg);font-weight:600}
+.fig-col p{margin:var(--sp-3) 0 0;color:var(--ink-soft);font-size:var(--fs-body-sm);line-height:1.6}
 .brand-note{margin:var(--sp-8) auto 0;max-width:680px;color:var(--ink-soft);font-size:var(--fs-body);text-align:center}
 .brand-note .tag{font-family:var(--display);font-weight:700;font-size:var(--fs-h3-lg);color:var(--ink);display:block;margin-top:var(--sp-4);letter-spacing:-0.01em}
 
@@ -330,6 +332,8 @@ footer .fine{margin-top:var(--sp-6);font-size:var(--fs-micro);color:#94907F;text
   section{padding:var(--sp-7) 0}.wrap{padding:0 22px}
   .hero-in{padding:var(--sp-7) 22px var(--sp-8)}
   .fig-grid,.adv,.grid-svc,.invest-row,.ev-grid{grid-template-columns:1fr}
+  .fig-card-art{padding:var(--sp-3)}
+  .fig-card-copy{padding:var(--sp-5)}
   .wordmark img{height:38.4px}
   footer .wordmark img{height:61px}
 }
@@ -482,9 +486,33 @@ footer .fine{margin-top:var(--sp-6);font-size:var(--fs-micro);color:#94907F;text
       <h2>Why FIG?</h2>
     </div>
     <div class="fig-grid rv">
-      <div class="fig-col"><div class="fig-letter">F</div><h3>Frontier</h3><p>Breakthrough AI capabilities at the technological edge, searching for real-world impact.</p></div>
-      <div class="fig-col"><div class="fig-letter">I</div><h3>Industry</h3><p>Deep expertise, trusted relationships, and customer access earned over decades inside real markets.</p></div>
-      <div class="fig-col"><div class="fig-letter">G</div><h3>Growth</h3><p>The venture platform that combines both into enduring, compounding companies.</p></div>
+      <article class="fig-col">
+        <div class="fig-card-art" aria-hidden="true">
+          <img src="assets/illustrations/frontier-f-card.webp" width="960" height="720" loading="lazy" decoding="async" alt="">
+        </div>
+        <div class="fig-card-copy">
+          <h3>Frontier</h3>
+          <p>Breakthrough AI capabilities at the technological edge, searching for real-world impact.</p>
+        </div>
+      </article>
+      <article class="fig-col">
+        <div class="fig-card-art" aria-hidden="true">
+          <img src="assets/illustrations/industry-i-card.webp" width="960" height="720" loading="lazy" decoding="async" alt="">
+        </div>
+        <div class="fig-card-copy">
+          <h3>Industry</h3>
+          <p>Deep expertise, trusted relationships, and customer access earned over decades inside real markets.</p>
+        </div>
+      </article>
+      <article class="fig-col">
+        <div class="fig-card-art" aria-hidden="true">
+          <img src="assets/illustrations/growth-g-card.webp" width="960" height="720" loading="lazy" decoding="async" alt="">
+        </div>
+        <div class="fig-card-copy">
+          <h3>Growth</h3>
+          <p>The venture platform that combines both into enduring, compounding companies.</p>
+        </div>
+      </article>
     </div>
     <div class="brand-note rv">
       The name carries our model: like a fig tree with deep roots, mature fruit, and countless seeds, FIG is dedicated to new growth built upon years of accumulated strength.
