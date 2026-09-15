@@ -153,8 +153,25 @@ nav .btn{padding:var(--sp-2) var(--sp-4);font-size:var(--fs-label)}
 .track{display:flex;gap:var(--sp-8);width:max-content;animation:marq 34s linear infinite}
 .logos:hover .track{animation-play-state:paused}
 @keyframes marq{to{transform:translateX(-50%)}}
-.track span{font-weight:600;font-size:var(--fs-ui);letter-spacing:.06em;color:#94907F;text-transform:uppercase;white-space:nowrap;transition:color .18s}
-.track span:hover{color:var(--ink)}
+.track span{display:flex;align-items:center;flex:none}
+/* Partner marks are held in grayscale at reduced opacity so ten clashing
+   brand palettes don't compete with the page's own, then resolve to full
+   colour on hover. */
+.track img{display:block;width:auto;filter:grayscale(1) contrast(1.15);opacity:.7;transition:filter .25s ease,opacity .25s ease}
+.track span:hover img{filter:none;opacity:1}
+/* Heights are tuned per logo rather than set uniformly: a long wordmark
+   and a stacked lockup carry very different visual weight at the same
+   cap height, so each is sized to sit at a comparable optical mass. */
+.l-aws{height:39px}
+.l-stripe{height:34px}
+.l-500-global{height:32px}
+.l-plug-and-play{height:26px}
+.l-nebius{height:24px}
+.l-pixverse{height:27px}
+.l-sixty-degree-capital{height:35px}
+.l-acorn-pacific-venture{height:30px}
+.l-hat-trick-capital{height:33px}
+.l-embedding-vc{height:48px}
 
 /* Sections */
 section{padding:var(--sp-8) 0}
@@ -291,8 +308,13 @@ footer .fine{margin-top:var(--sp-6);font-size:var(--fs-micro);color:#94907F;text
   html{scroll-behavior:auto}
   .rv{opacity:1;transform:none;transition:none}
   .card,.btn{transition:none}
-  .track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}
+  /* Nothing is scrolling, so drop the edge-fade mask that exists to let
+     the moving track enter and leave — left on, it just clips the first
+     and last logo of a static, centred row. */
+  .marquee{-webkit-mask-image:none;mask-image:none}
+  .track{animation:none;flex-wrap:wrap;width:auto;justify-content:center;column-gap:var(--sp-6);row-gap:var(--sp-5)}
   .track .dup{display:none}
+  .track img{transition:none}
   .stop-green,.stop-flower-big,.stop-flower-small{animation:none}
 }
 
@@ -415,8 +437,8 @@ footer .fine{margin-top:var(--sp-6);font-size:var(--fs-micro);color:#94907F;text
   <div class="logos">
     <div class="label">Backed by &amp; building with</div>
     <div class="marquee"><div class="track">
-      <span>AWS</span><span>Stripe</span><span>500 Global</span><span>Plug and Play</span><span>Nebius</span><span>Pixverse</span><span>Sixty Degree Capital</span><span>Acorn Pacific Venture</span><span>Hat-Trick Capital</span><span>Embedding VC</span>
-      <span class="dup">AWS</span><span class="dup">Stripe</span><span class="dup">500 Global</span><span class="dup">Plug and Play</span><span class="dup">Nebius</span><span class="dup">Pixverse</span><span class="dup">Sixty Degree Capital</span><span class="dup">Acorn Pacific Venture</span><span class="dup">Hat-Trick Capital</span><span class="dup">Embedding VC</span>
+      <span><img class="l-aws" src="logos/aws.png" alt="AWS"></span><span><img class="l-stripe" src="logos/stripe.png" alt="Stripe"></span><span><img class="l-500-global" src="logos/500-global.png" alt="500 Global"></span><span><img class="l-plug-and-play" src="logos/plug-and-play.png" alt="Plug and Play"></span><span><img class="l-nebius" src="logos/nebius.png" alt="Nebius"></span><span><img class="l-pixverse" src="logos/pixverse.png" alt="Pixverse"></span><span><img class="l-sixty-degree-capital" src="logos/sixty-degree-capital.png" alt="Sixty Degree Capital"></span><span><img class="l-acorn-pacific-venture" src="logos/acorn-pacific-venture.png" alt="Acorn Pacific Venture"></span><span><img class="l-hat-trick-capital" src="logos/hat-trick-capital.png" alt="Hat-Trick Capital"></span><span><img class="l-embedding-vc" src="logos/embedding-vc.png" alt="Embedding VC"></span>
+      <span class="dup" aria-hidden="true"><img class="l-aws" src="logos/aws.png" alt=""></span><span class="dup" aria-hidden="true"><img class="l-stripe" src="logos/stripe.png" alt=""></span><span class="dup" aria-hidden="true"><img class="l-500-global" src="logos/500-global.png" alt=""></span><span class="dup" aria-hidden="true"><img class="l-plug-and-play" src="logos/plug-and-play.png" alt=""></span><span class="dup" aria-hidden="true"><img class="l-nebius" src="logos/nebius.png" alt=""></span><span class="dup" aria-hidden="true"><img class="l-pixverse" src="logos/pixverse.png" alt=""></span><span class="dup" aria-hidden="true"><img class="l-sixty-degree-capital" src="logos/sixty-degree-capital.png" alt=""></span><span class="dup" aria-hidden="true"><img class="l-acorn-pacific-venture" src="logos/acorn-pacific-venture.png" alt=""></span><span class="dup" aria-hidden="true"><img class="l-hat-trick-capital" src="logos/hat-trick-capital.png" alt=""></span><span class="dup" aria-hidden="true"><img class="l-embedding-vc" src="logos/embedding-vc.png" alt=""></span>
     </div></div>
   </div>
 </header>
