@@ -7,7 +7,7 @@ founders, and repeat entrepreneurs to turn deep expertise into AI-native compani
 ## Stack
 
 Single static `index.html` — zero build step, zero dependencies.
-Fonts (Bitter / Inter / Caveat) load from Google Fonts. Deploys as-is on Vercel.
+Fonts (Sora / Inter) load from Google Fonts. Deploys as-is on Vercel.
 
 ## Local preview
 
@@ -36,6 +36,5 @@ upgrade to Google Workspace / Zoho for real send/receive later.
 
 - [ ] One-line descriptions for the 8 portfolio companies (currently "Description forthcoming")
 - [ ] Real LinkedIn URL on the Stealth card (Hongxia Jin)
-- [ ] Replace the 3 event placeholder tiles with real photos
 - [ ] Add an OG image (`/og.png`, 1200×630) + `<meta og:image>` in `<head>`
 - [ ] Verify the LinkedIn footer link
