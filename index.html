@@ -137,8 +137,8 @@ nav .btn{padding:var(--sp-2) var(--sp-4);font-size:var(--fs-label)}
 .annot svg{width:130px;height:52px;flex:none;margin-left:-1px}
 .annotation-mask{transform-box:fill-box;transform-origin:left center;animation:annotLineReveal .9s steps(10,end) 1.68s both}
 .stop-green{transform-box:fill-box;transform-origin:center;animation:stopGreen .72s steps(1,end) .12s both}
-.stop-flower-big{transform-box:fill-box;transform-origin:center;mix-blend-mode:multiply;animation:stopFlowerBig .68s steps(1,end) .56s both}
-.stop-flower-small{transform-box:fill-box;transform-origin:center;mix-blend-mode:multiply;animation:stopFlowerSmall .64s steps(1,end) .78s both}
+.stop-flower-big{transform-box:fill-box;transform-origin:center;animation:stopFlowerBig .68s steps(1,end) .56s both}
+.stop-flower-small{transform-box:fill-box;transform-origin:center;animation:stopFlowerSmall .64s steps(1,end) .78s both}
 @keyframes stopGreen{
   0%{opacity:0;transform:translate(-5px,-28px) rotate(-2deg) scale(.95)}
   22%{opacity:.38;transform:translate(3px,-19px) rotate(1.2deg) scale(.97)}
@@ -368,11 +368,11 @@ footer .fine{margin-top:36px;font-size:12.5px;color:#94907F;text-align:center}
         <g class="stop-green">
           <!-- olive torn block with grain -->
           <g filter="url(#rough)">
-            <path filter="url(#riso)" fill="#B5CE3B" d="M244 48 L278 41 L310 45 L338 39 L370 48 C414 53 458 73 484 107 C509 140 511 184 519 229 C529 285 540 344 534 397 C528 457 501 509 453 540 C405 572 342 583 279 575 C216 568 157 544 119 501 C84 460 69 409 72 354 C75 300 86 249 103 201 C121 151 143 108 181 80 C201 65 222 55 244 48 Z"/>
+            <path filter="url(#riso)" fill="#377456" d="M244 48 L278 41 L310 45 L338 39 L370 48 C414 53 458 73 484 107 C509 140 511 184 519 229 C529 285 540 344 534 397 C528 457 501 509 453 540 C405 572 342 583 279 575 C216 568 157 544 119 501 C84 460 69 409 72 354 C75 300 86 249 103 201 C121 151 143 108 181 80 C201 65 222 55 244 48 Z"/>
           </g>
 
           <!-- node network: rust dots + connecting lines, echoing the fig logo mark -->
-          <g filter="url(#riso)" stroke="#A9482C" stroke-width="16" stroke-linecap="round" fill="#A9482C">
+          <g filter="url(#riso)" stroke="#FC722B" stroke-width="16" stroke-linecap="round" fill="#FC722B">
             <line x1="310" y1="330" x2="300" y2="180"/>
             <line x1="310" y1="330" x2="184" y2="290"/>
             <line x1="310" y1="330" x2="450" y2="370"/>
@@ -387,7 +387,7 @@ footer .fine{margin-top:36px;font-size:12.5px;color:#94907F;text-align:center}
 
         <!-- big fig leaf, wine, grainy -->
         <g class="stop-flower-big">
-          <g filter="url(#riso)" fill="#A9482C" transform="translate(430 224) rotate(6) scale(.86)">
+          <g filter="url(#riso)" fill="#FC722B" transform="translate(430 224) rotate(6) scale(.86)">
             <ellipse cx="0" cy="-96" rx="30" ry="88"/>
             <ellipse cx="-58" cy="-62" rx="27" ry="76" transform="rotate(-32 -58 -62)"/>
             <ellipse cx="58" cy="-62" rx="27" ry="76" transform="rotate(32 58 -62)"/>
@@ -399,7 +399,7 @@ footer .fine{margin-top:36px;font-size:12.5px;color:#94907F;text-align:center}
         </g>
         <!-- small fig leaf lower-left, wine -->
         <g class="stop-flower-small">
-          <g filter="url(#riso)" fill="#A9482C" transform="translate(126 440) rotate(-16) scale(.5)" opacity=".92">
+          <g filter="url(#riso)" fill="#FC722B" transform="translate(126 440) rotate(-16) scale(.5)" opacity=".92">
             <ellipse cx="0" cy="-96" rx="30" ry="88"/>
             <ellipse cx="-58" cy="-62" rx="27" ry="76" transform="rotate(-32 -58 -62)"/>
             <ellipse cx="58" cy="-62" rx="27" ry="76" transform="rotate(32 58 -62)"/>
