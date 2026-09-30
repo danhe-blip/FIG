@@ -223,6 +223,12 @@ section{padding:var(--sp-8) 0}
 .card:hover{transform:translateY(-3px);border-color:var(--ink);background:var(--brown-deep)}
 .card .name{font-family:var(--display);font-weight:600;font-size:var(--fs-h3);color:var(--ink)}
 .card .desc{margin-top:var(--sp-2);font-size:var(--fs-body-sm);color:var(--ink-soft)}
+/* Arrow: one shape everywhere (thick square-ended shaft, 45-degree head). It is a mask, so it takes the text colour;
+   the direction modifiers rotate the same shape, and use the `rotate` property so hover translations still work. */
+.arrow{display:inline-block;flex:none;width:1.3em;height:1.3em;vertical-align:-.3em;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 342 342'%3E%3Cpolygon points='277,170 168,62 148,82 221,155 60,155 60,185 221,185 148,258 168,278'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 342 342'%3E%3Cpolygon points='277,170 168,62 148,82 221,155 60,155 60,185 221,185 148,258 168,278'/%3E%3C/svg%3E") center/contain no-repeat}
+.arrow--ne{rotate:-45deg}
+.arrow--down{rotate:90deg}
+.arrow--up{rotate:-90deg}
 .card .link{margin-top:var(--sp-4);font-size:var(--fs-label);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
 .card:hover .link{color:var(--accent-blue-deep)}
 .card.stealth{background:#EEEDE8;border-color:var(--line)}
@@ -503,16 +509,16 @@ footer .fine{margin-top:var(--sp-6);font-size:var(--fs-micro);color:#94907F;text
       <h2>Companies built by leaders who know their industries <em>from the inside.</em></h2>
     </div>
     <div class="grid-port rv">
-      <a class="card" href="https://alchedata.ai" target="_blank" rel="noopener"><div class="name">Alchedata.AI</div><div class="desc">Data infrastructure for physical AI.</div><div class="link">alchedata.ai →</div></a>
-      <a class="card stealth" href="https://www.linkedin.com/in/hongxiajin"><div class="name">Stealth</div><div class="desc">Led by a veteran AI executive.</div><div class="link">Founder on LinkedIn →</div></a>
-      <a class="card" href="https://storyverseai.art" target="_blank" rel="noopener"><div class="name">StoryVerse</div><div class="desc">Creative video production that captures audiences.</div><div class="link">storyverseai.art →</div></a>
-      <a class="card" href="https://www.agentx.so" target="_blank" rel="noopener"><div class="name">AgentX</div><div class="desc">Build your first AI agent on the best LLMs.</div><div class="link">agentx.so →</div></a>
-      <a class="card" href="https://www.numix.co" target="_blank" rel="noopener"><div class="name">Numix</div><div class="desc">Tax credits and reliable accounting for startups, in one place.</div><div class="link">numix.co →</div></a>
-      <a class="card" href="https://www.nohi.ai" target="_blank" rel="noopener"><div class="name">NILE</div><div class="desc">AI-powered product recommendations, beyond search.</div><div class="link">nohi.ai →</div></a>
-      <a class="card" href="https://www.bitownx.com" target="_blank" rel="noopener"><div class="name">Bitown</div><div class="desc">Stablecoin-based payment infrastructure.</div><div class="link">bitownx.com →</div></a>
-      <a class="card" href="https://www.puppygraph.com" target="_blank" rel="noopener"><div class="name">Puppygraph</div><div class="desc">A real-time, zero-ETL graph query engine.</div><div class="link">puppygraph.com →</div></a>
-      <a class="card" href="https://inference.ai" target="_blank" rel="noopener"><div class="name">Inference.ai</div><div class="desc">Flexible allocation of virtualized GPUs across tasks and workflows.</div><div class="link">inference.ai →</div></a>
-      <a class="card" href="https://laminarhealth.ai" target="_blank" rel="noopener"><div class="name">Laminar Health</div><div class="desc">Ultra-compact wearable ultrasound.</div><div class="link">laminarhealth.ai →</div></a>
+      <a class="card" href="https://alchedata.ai" target="_blank" rel="noopener"><div class="name">Alchedata.AI</div><div class="desc">Data infrastructure for physical AI.</div><div class="link">alchedata.ai <span class="arrow" aria-hidden="true"></span></div></a>
+      <a class="card stealth" href="https://www.linkedin.com/in/hongxiajin"><div class="name">Stealth</div><div class="desc">Led by a veteran AI executive.</div><div class="link">Founder on LinkedIn <span class="arrow" aria-hidden="true"></span></div></a>
+      <a class="card" href="https://storyverseai.art" target="_blank" rel="noopener"><div class="name">StoryVerse</div><div class="desc">Creative video production that captures audiences.</div><div class="link">storyverseai.art <span class="arrow" aria-hidden="true"></span></div></a>
+      <a class="card" href="https://www.agentx.so" target="_blank" rel="noopener"><div class="name">AgentX</div><div class="desc">Build your first AI agent on the best LLMs.</div><div class="link">agentx.so <span class="arrow" aria-hidden="true"></span></div></a>
+      <a class="card" href="https://www.numix.co" target="_blank" rel="noopener"><div class="name">Numix</div><div class="desc">Tax credits and reliable accounting for startups, in one place.</div><div class="link">numix.co <span class="arrow" aria-hidden="true"></span></div></a>
+      <a class="card" href="https://www.nohi.ai" target="_blank" rel="noopener"><div class="name">NILE</div><div class="desc">AI-powered product recommendations, beyond search.</div><div class="link">nohi.ai <span class="arrow" aria-hidden="true"></span></div></a>
+      <a class="card" href="https://www.bitownx.com" target="_blank" rel="noopener"><div class="name">Bitown</div><div class="desc">Stablecoin-based payment infrastructure.</div><div class="link">bitownx.com <span class="arrow" aria-hidden="true"></span></div></a>
+      <a class="card" href="https://www.puppygraph.com" target="_blank" rel="noopener"><div class="name">Puppygraph</div><div class="desc">A real-time, zero-ETL graph query engine.</div><div class="link">puppygraph.com <span class="arrow" aria-hidden="true"></span></div></a>
+      <a class="card" href="https://inference.ai" target="_blank" rel="noopener"><div class="name">Inference.ai</div><div class="desc">Flexible allocation of virtualized GPUs across tasks and workflows.</div><div class="link">inference.ai <span class="arrow" aria-hidden="true"></span></div></a>
+      <a class="card" href="https://laminarhealth.ai" target="_blank" rel="noopener"><div class="name">Laminar Health</div><div class="desc">Ultra-compact wearable ultrasound.</div><div class="link">laminarhealth.ai <span class="arrow" aria-hidden="true"></span></div></a>
     </div>
   </div>
 </section>
@@ -666,9 +672,9 @@ footer .fine{margin-top:var(--sp-6);font-size:var(--fs-micro);color:#94907F;text
     <div class="subblock rv">
       <h3>Within FIG, founders invest in other founders.</h3>
       <div class="invest-row">
-        <a class="card" href="https://insforge.dev" target="_blank" rel="noopener"><span class="badge">Member Investment</span><div class="name">InsForge</div><div class="link">insforge.dev →</div></a>
-        <a class="card" href="https://www.augmentcode.com" target="_blank" rel="noopener"><span class="badge">Member Investment</span><div class="name">Augment Code</div><div class="link">augmentcode.com →</div></a>
-        <a class="card" href="https://www.complir.io" target="_blank" rel="noopener"><span class="badge">Member Investment</span><div class="name">Complir</div><div class="link">complir.io →</div></a>
+        <a class="card" href="https://insforge.dev" target="_blank" rel="noopener"><span class="badge">Member Investment</span><div class="name">InsForge</div><div class="link">insforge.dev <span class="arrow" aria-hidden="true"></span></div></a>
+        <a class="card" href="https://www.augmentcode.com" target="_blank" rel="noopener"><span class="badge">Member Investment</span><div class="name">Augment Code</div><div class="link">augmentcode.com <span class="arrow" aria-hidden="true"></span></div></a>
+        <a class="card" href="https://www.complir.io" target="_blank" rel="noopener"><span class="badge">Member Investment</span><div class="name">Complir</div><div class="link">complir.io <span class="arrow" aria-hidden="true"></span></div></a>
       </div>
     </div>
   <div class="subblock rv">
