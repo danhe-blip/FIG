@@ -151,7 +151,7 @@ footer .wordmark img{height:70px}
    just breaking the edge — both a scroll affordance and a margin of
    safety against mobile browser chrome measuring slightly differently
    than svh reports. */
-.hero{overflow:hidden;display:flex;flex-direction:column;min-height:calc(100vh - var(--nav-h) - var(--sp-5));min-height:calc(100svh - var(--nav-h) - var(--sp-5))}
+.hero{overflow:hidden;display:flex;flex-direction:column;min-height:calc(100vh - var(--nav-h) - var(--sp-5));min-height:calc(100svh - var(--nav-h) - var(--bar-used,0px) - var(--sp-5))}
 .hero-in{display:grid;grid-template-columns:1.02fr .98fr;gap:var(--sp-6);align-items:center;padding:var(--sp-7) var(--sp-5);flex:1 1 auto;min-height:0}
 .hero h1{font-family:var(--display);font-size:var(--fs-hero);font-weight:600;color:var(--ink);margin:var(--sp-5) 0 var(--sp-5);letter-spacing:-.03em}
 .hero .sub{font-size:var(--fs-body);color:var(--ink-soft);max-width:34em;margin-bottom:var(--sp-6)}
@@ -383,9 +383,31 @@ footer .fine{margin-top:var(--sp-6);font-size:var(--fs-micro);color:#94907F;text
   .fig-card-copy{padding:var(--sp-5)}
   footer .wordmark img{height:61px}
 }
+
+/* ---------- Announcement bar (sits above the nav, scrolls away, dismissible) ---------- */
+.announce{position:relative;z-index:60;background:var(--ink);color:var(--white);font-size:.9375rem;line-height:1.4}
+.announce[hidden]{display:none}
+.announce-in{display:flex;align-items:center;justify-content:center;gap:var(--sp-4);min-height:var(--bar-h,52px);padding:8px 56px 8px var(--sp-5);max-width:var(--maxw);margin:0 auto;text-align:left}
+.announce-text b{font-weight:600}
+.announce-btn{flex:none;display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:var(--radius-sm);background:var(--accent-blue);color:var(--ink);font-weight:600;font-size:.875rem;text-decoration:none;white-space:nowrap;transition:background .16s}
+.announce-btn:hover{background:#A3ACF9}
+.announce-btn:focus-visible,.announce-close:focus-visible{outline:2px solid var(--white);outline-offset:2px}
+.announce-close{position:absolute;top:50%;right:var(--sp-3);translate:0 -50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;padding:0;border:0;border-radius:var(--radius-sm);background:transparent;color:inherit;cursor:pointer;opacity:.75;transition:opacity .16s}
+.announce-close:hover{opacity:1}
+.announce-close::before,.announce-close::after{content:"";position:absolute;width:16px;height:2px;border-radius:1px;background:currentColor;rotate:45deg}
+.announce-close::after{rotate:-45deg}
+@media(max-width:600px){
+  .announce{font-size:.8125rem}
+  .announce-in{justify-content:flex-start;gap:var(--sp-3);padding:8px 48px 8px var(--sp-4)}
+  .announce-more{display:none}
+  .announce-btn{padding:6px 11px;font-size:.8125rem}
+  .announce-close{right:2px}
+}
 </style>
 </head>
 <body>
+
+<div class="announce" id="announce" role="region" aria-label="Announcement"><div class="announce-in"><span class="announce-text"><b>The Executable World recap is live.</b> <span class="announce-more">See what the community built on September 19.</span></span><a class="announce-btn" href="/events/executable-world-2026">View recap <span class="arrow arrow--ne" aria-hidden="true"></span></a></div><button type="button" class="announce-close" id="announce-close" aria-label="Dismiss announcement"></button></div>
 
 <nav id="nav" aria-label="Primary">
   <div class="wrap nav-in">
@@ -743,6 +765,14 @@ footer .fine{margin-top:var(--sp-6);font-size:var(--fs-micro);color:#94907F;text
   </div>
 </div>
 
+<script>
+(function(){var bar=document.getElementById('announce'),KEY='fig-announce-executable-world-2026',root=document.documentElement;
+function used(){root.style.setProperty('--bar-used',bar.hidden?'0px':bar.offsetHeight+'px')}
+try{if(localStorage.getItem(KEY))bar.hidden=true}catch(e){}
+used();addEventListener('resize',used);
+document.getElementById('announce-close').addEventListener('click',function(){bar.hidden=true;used();try{localStorage.setItem(KEY,'1')}catch(e){}});
+})();
+</script>
 <script>
 if(window.__figReload){
   scrollTo(0,0);
