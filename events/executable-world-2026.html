@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Executable World — Event Gallery · FIG Studio</title>
-<meta name="description" content="Photo recap of The Executable World, FIG Studio's AI hackathon in San Francisco — 350+ registered, 100 builders, 25+ projects shipped.">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Executable World — FIG Studio Partner Report</title>
+<meta name="description" content="Approximately 100 builders, 25 project submissions, and one connected FIG Studio platform for the journey from registration and team formation through judging and community.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="The Executable World — Event Gallery · FIG Studio">
-<meta property="og:description" content="350+ registered · 100 builders · 25+ projects shipped. Moments from FIG Studio's AI hackathon in San Francisco.">
+<meta property="og:title" content="The Executable World — FIG Studio Partner Report">
+<meta property="og:description" content="Approximately 100 builders, 25 project submissions, and one connected FIG Studio platform for the journey from registration and team formation through judging and community.">
 <meta property="og:url" content="https://figstudio.vc/events/executable-world-2026">
-<meta property="og:image" content="https://figstudio.vc/events/executable-world-2026/photos/full/crowd-demo.jpg">
-<meta property="og:image:width" content="1170">
-<meta property="og:image:height" content="878">
+<meta property="og:image" content="https://figstudio.vc/events/executable-world-2026/img/hero.jpg">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1440">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/png" href="../favicon-v2.png">
+<link rel="icon" href="../favicon-v2.png?v=5" type="image/png" sizes="128x128">
+<link rel="apple-touch-icon" href="../favicon-v2.png?v=5">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -71,310 +71,490 @@
   --radius-md:10px;
   --maxw:1320px;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--white);color:var(--ink);font-family:var(--sans);font-size:var(--fs-body);line-height:1.6;-webkit-font-smoothing:antialiased;position:relative}
-img{display:block;max-width:100%}
+:root{
+  /* report-only aliases onto the site tokens above */
+  --blue:var(--accent-blue);
+  --paper:var(--white);
+  --muted:rgba(239,231,214,.75);
+  --rline:rgba(239,231,214,.18);
+  --pad:clamp(24px,6vw,100px);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 14px)}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+button,a,input{font:inherit}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--sp-5)}
-h1,h2,h3{font-family:var(--display);letter-spacing:-0.02em;line-height:1.08;color:var(--on-surface)}
-
-/* ---------- nav (matches main site) ---------- */
-nav{position:sticky;top:0;z-index:50;background:rgba(250,249,244,.88);border-bottom:1px solid transparent;transition:border-color .2s,box-shadow .2s}
+button{cursor:pointer}
+button:disabled{cursor:wait}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--blue);outline-offset:6px}
+button{color:inherit}
+img{display:block;width:100%}
+figure,h1,h2,h3,p{margin:0}
+p{font-size:1.0625rem;line-height:1.65}
+h1,h2,h3{font-weight:500;letter-spacing:-.03em;font-family:var(--display)}
+::selection{background:var(--blue);color:var(--ink)}
+.wrap{max-width:1600px;margin:auto;padding-left:var(--pad);padding-right:var(--pad)}
+.mono{font-family:var(--sans);font-size:.75rem;line-height:1.5;letter-spacing:.14em;text-transform:uppercase;font-weight:600;font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.eyebrow{display:flex;align-items:center;gap:14px}
+.eyebrow:before{content:'';width:26px;height:1px;background:currentColor}
+.section-label{display:flex;justify-content:space-between;border-top:1px solid var(--rline);padding-top:18px;margin-bottom:58px}
+.section-label span:last-child{color:var(--muted)}
+.pad-y{padding-top:110px;padding-bottom:110px}
+.arrow{display:inline-block;font-size:1.4em;font-weight:400}
+.skip{position:fixed;top:-100px;background:var(--blue);padding:12px;z-index:100;color:var(--ink)}
+.skip:focus{top:8px}
+.hero{position:relative;overflow:hidden;padding-top:0;isolation:isolate;min-height:max(720px,calc(100svh - var(--nav-h)))}
+.hero-image{position:absolute;z-index:-3;inset:0 0 0 33%;width:67%;height:100%;object-fit:cover;object-position:58% center;opacity:.73}
+.hero:after{content:'';position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,#241f1a 4%,#241f1ad9 33%,#241f1a15 85%),linear-gradient(0deg,#241f1a 1%,transparent 35%)}
+.hero-glow{position:absolute;z-index:-1;inset:-20% -40% 0 45%;background:radial-gradient(ellipse at center,#8e99f726,transparent 63%);animation:ambient 14s ease-in-out infinite alternate;pointer-events:none}
+.hero-inner{padding-top:64px;position:relative}
+.hero-top{display:flex;flex-direction:column;align-items:flex-start;gap:0;margin-bottom:58px}
+.hero-top .location{text-align:left;color:#ded9d4;margin-top:14px}
+.hero-meta{margin-top:0;margin-bottom:0}
+.hero-meta .eyebrow:before{display:none}
+.hero h1{font-size:clamp(3.48rem,8.33vw,9.01rem);line-height:.94;letter-spacing:-.03em;max-width:680px}
+.hero h1 .outline{color:var(--blue)}
+.hero-bottom{margin-top:44px;display:flex;justify-content:space-between;align-items:flex-end;gap:36px;padding-bottom:62px}
+.hero-summary{width:100%;max-width:600px}
+.hero-summary p{color:#cbc6c0;font-size:1.0625rem}
+.text-link{display:inline-flex;align-items:center;gap:12px;padding:16px 0 9px;border-bottom:1px solid #efe7d666;margin-top:22px;font-size:.9375rem;transition:gap .3s}
+.text-link:hover{gap:16px}
+.hero-lockup{width:clamp(95px,9.5vw,130px);height:auto;object-fit:contain;filter:drop-shadow(0 5px 24px #0009)}
+.hero-issue{display:flex;align-items:center;gap:18px}
+.hero-issue b{font-size:3.7rem;line-height:1;font-weight:400;letter-spacing:-.03em;font-family:var(--display)}
+.hero-issue span{max-width:90px;color:#dbd6d1}
+.metrics{background:var(--paper);color:var(--ink)}
+.metric-grid{display:grid;grid-template-columns:1fr 1fr 1fr;padding-top:55px;padding-bottom:55px}
+.metric{padding:0 35px;border-left:1px solid #241f1a2b}
+.metric:first-child{border-left:0;padding-left:0}
+.metric-num{font-size:clamp(4.08rem,7.22vw,7.22rem);letter-spacing:-.03em;line-height:1.04;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap;font-family:var(--display)}
+.approx{font-size:.52em;vertical-align:top;display:inline-block;padding-top:.18em;letter-spacing:-.03em}
+.metric-title{display:block;margin-top:15px;font-size:1.0625rem}
+.metric small{display:block;color:#6d655b;font-size:.8125rem;margin-top:7px;line-height:1.5;max-width:260px}
+.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:start}
+.section-title{font-size:clamp(2.38rem,4.84vw,4.76rem);line-height:1.02}
+.intro-copy{padding-top:10px}
+.intro-copy p{color:#c8c1b9;max-width:475px}
+.intro-copy p+p{margin-top:18px}
+.inline-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
+.inline-chips span{font-size:.75rem;border:1px solid #efe7d630;padding:8px 11px;color:#dad4cd}
+.story-photos{display:grid;grid-template-columns:1.3fr .7fr;gap:26px;margin-top:62px;align-items:start}
+.shot{position:relative;border:0;background:none;padding:0;text-align:left;overflow:hidden;display:block;width:100%}
+.shot img{height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.shot:hover img{transform:scale(1.035)}
+.shot:after{content:'↗';position:absolute;bottom:16px;right:16px;width:36px;height:36px;display:grid;place-items:center;background:#241f1ab3;backdrop-filter:blur(8px);font-size:20px;opacity:0;transition:opacity .25s}
+.shot:hover:after,.shot:focus-visible:after{opacity:1}
+.wide-shot{aspect-ratio:16/10}
+.portrait-shot{aspect-ratio:5/4}
+.small-photo{margin-top:86px}
+.caption{display:flex;justify-content:space-between;gap:15px;padding-top:15px;color:#bfb7ae;font-size:.8125rem;line-height:1.5}
+.caption b{color:#e9e6e2;font-weight:400}
+.figure-no{color:var(--blue);font-family:var(--sans);font-variant-numeric:tabular-nums;font-weight:600;letter-spacing:.1em}
+.project-section{background:#f6f6f3;color:var(--ink)}
+.project-section .section-label{border-color:#241f1a33}
+.project-section .section-label span:last-child{color:#746a5f}
+.project-head{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:55px}
+.project-head p{max-width:330px;color:#72675b;font-size:1rem}
+.project-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.project{border-top:2px solid #1f1b17;min-width:0}
+.project-top{display:flex;justify-content:space-between;gap:20px;padding:19px 0}
+.project-top .rank{color:#685c4f}
+.project-image{position:relative;aspect-ratio:16/9;overflow:hidden;background:#26211c;color:#e1ddd8}
+.project-kicker{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap}
+.winner-badge{position:absolute;top:14px;right:14px;z-index:2;width:100px;overflow:hidden;border:1px solid #efe7d6b3;border-radius:9px 9px 44px 44px;background:linear-gradient(125deg,#c0c9e6 0%,#e9e4f1 25%,#b7dcf1 48%,#e9e4ef 70%,#a0afd6 100%);color:#131725;text-align:center;box-shadow:0 5px 18px #0005;pointer-events:none;isolation:isolate}
+.winner-badge:after{content:"";position:absolute;inset:3px;border:1px solid #22283d55;border-radius:6px 6px 40px 40px;pointer-events:none}
+.winner-badge-header{display:block;background:#171b27;color:#f5f5fa;padding:10px 4px 8px;font-size:9px;font-weight:700;letter-spacing:.13em;line-height:1.1}
+.winner-badge-body{display:flex;flex-direction:column;align-items:center;padding:9px 6px 17px;gap:5px}
+.winner-badge-symbol{font-size:21px;line-height:1;color:#444d75}
+.winner-badge-year{font-family:var(--sans);font-size:9px;letter-spacing:.02em;line-height:1;white-space:nowrap}
+.winner-badge-label{display:block;width:90%;border-top:1px solid #242b4755;padding-top:6px;font-size:16px;font-weight:900;letter-spacing:.02em;line-height:1.12}
+@media(max-width:760px){
+  .winner-badge{top:10px;right:10px;width:76px;border-radius:7px 7px 34px 34px}
+  .winner-badge:after{border-radius:4px 4px 30px 30px}
+  .winner-badge-header{font-size:7px;padding:8px 3px 6px}
+  .winner-badge-body{padding:6px 4px 12px;gap:4px}
+  .winner-badge-symbol{font-size:16px}
+  .winner-badge-year{font-size:7px}
+  .winner-badge-label{font-size:12px;padding-top:4px}
+}
+.project-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#1b1814}
+.project-body{padding:27px 0 32px}
+.project-body h3{font-size:2.55rem;margin:8px 0 12px}
+.project-description{font-size:1rem;line-height:1.6;color:#72675a;min-height:52px;max-width:470px}
+.project-foot{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-top:26px}
+.project-foot .team{font-size:.8125rem;color:#655b4f;line-height:1.6;max-width:70%}
+.score{text-align:right;flex-shrink:0}
+.score strong{display:block;font-size:1.8rem;letter-spacing:-.03em;font-weight:400}
+.score span{font-size:.6875rem;letter-spacing:.08em;text-transform:uppercase}
+.ranking{border-top:1px solid #241f1a35;border-bottom:1px solid #241f1a35}
+.ranking summary{padding:20px 0;font-size:.9375rem;list-style:none;display:flex;justify-content:space-between;gap:20px;cursor:pointer}
+.ranking summary::-webkit-details-marker{display:none}
+.ranking summary:after{content:'+';font-size:1.25rem}
+.ranking[open] summary:after{content:'−'}
+.ranking-list{padding-bottom:12px}
+.ranking-row{display:grid;grid-template-columns:30px 1fr 50px;gap:12px;padding:19px 0;border-top:1px solid #241f1a1a;align-items:start}
+.ranking-row .place{font:600 .8125rem var(--sans);color:#7b6f61;padding-top:3px;font-variant-numeric:tabular-nums}
+.ranking-row h4{font-size:.9375rem;line-height:1.4;margin:0 0 6px;font-weight:600}
+.ranking-row .members{font-size:.75rem;color:#786d60;line-height:1.65}
+.ranking-row .final-score{font-size:.875rem;text-align:right;padding-top:3px;font-variant-numeric:tabular-nums}
+.project-note{font-size:.75rem;color:#74685b;margin-top:25px;line-height:1.6}
+.partner-heading{display:grid;grid-template-columns:1.3fr .7fr;gap:7vw;align-items:end;margin-bottom:55px}
+.partner-heading p{color:#c2bab1;max-width:350px}
+.partner-gallery{display:grid;grid-template-columns:1.5fr 1.05fr 1.2fr;gap:25px;align-items:start}
+.sponsor-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.partner-gallery .shot{aspect-ratio:3/4}
+.partner-gallery figure:nth-child(2) .shot{aspect-ratio:1/1}
+.partner-gallery figure:nth-child(3) .shot{aspect-ratio:16/9}
+.partner-gallery .sponsor-pair .shot{aspect-ratio:3/4}
+.partner-gallery h3{font-size:1.32rem;line-height:1.2;letter-spacing:-.03em;margin-top:20px}
+.partner-gallery p{font-size:.9375rem;color:#c0b8ae;margin-top:10px;line-height:1.6}
+.quote-section{position:relative;min-height:610px;isolation:isolate;display:flex;align-items:end;overflow:hidden}
+.quote-section>img{position:absolute;z-index:-2;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%}
+.quote-section:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,#241f1aed, #241f1a20 100%)}
+.quote-content{width:100%;padding-top:120px;padding-bottom:62px}
+.quote-content h2{font-size:clamp(2.55rem,5.27vw,5.27rem);line-height:1;max-width:870px;margin-top:24px}
+.quote-bottom{margin-top:38px;display:flex;justify-content:space-between;align-items:center;gap:40px}
+.quote-bottom p{max-width:410px;color:#e1dcd7;font-size:.9375rem}
+.next{background:#f6f6f3;color:var(--ink)}
+.next .section-label{border-color:#241f1a33}
+.next .section-label span:last-child{color:#746a5f}
+.next-intro{display:grid;grid-template-columns:1fr 1fr;gap:7vw;margin-bottom:58px}
+.next-intro p{color:#756a5d;margin-top:7px;max-width:455px}
+.proposal-label{color:#746758;margin-bottom:15px}
+.opportunity{border-top:1px solid #241f1a35}
+.opportunity:last-child{border-bottom:1px solid #241f1a35}
+.opportunity summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:55px 1fr 1fr 28px;gap:20px;align-items:center;padding:28px 0}
+.opportunity summary::-webkit-details-marker{display:none}
+.opportunity summary .num{color:#897a68;font-family:var(--sans);font-size:.875rem;font-variant-numeric:tabular-nums}
+.opportunity summary h3{font-size:clamp(1.27rem,2.29vw,2.12rem);letter-spacing:-.03em}
+.opportunity summary .format{font-size:.875rem;color:#74685b}
+.opportunity summary .plus{font-size:1.5rem;text-align:right}
+.opportunity[open] summary .plus{transform:rotate(45deg)}
+.opportunity-content{display:grid;grid-template-columns:1fr 1fr;gap:7vw;padding:0 0 32px 75px}
+.opportunity-content p{font-size:.9375rem;color:#6c6052}
+.opportunity-content b{font-weight:600;color:#2f2923}
+.next-note{font-size:.75rem;color:#877765;margin-top:26px}
+.last-image-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;margin-top:66px;align-items:stretch}
+.last-image-grid .shot{aspect-ratio:16/10}
+.last-image-grid .caption{color:#7b6d5d}
+.last-image-grid .caption b{color:#4e453a}
+.filled-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.closing{background:var(--blue);color:var(--ink);position:relative;overflow:hidden}
+.closing-inner{padding-top:94px;padding-bottom:86px;position:relative}
+.closing .mono{color:#463e35}
+.closing h2{font-size:clamp(2.8rem,7.14vw,7.22rem);line-height:.97;max-width:1080px;margin-top:35px}
+.closing-bottom{display:flex;justify-content:space-between;align-items:end;gap:35px;margin-top:55px}
+.closing-bottom p{max-width:360px;color:#433b32}
+.contact-link{font-size:clamp(1rem,2vw,1.6rem);padding-bottom:10px;border-bottom:1px solid #241f1a70;display:flex;align-items:center;gap:35px}
+.contact-link:hover .arrow{transform:translate(4px,-4px)}
+.contact-link .arrow{transition:transform .3s}
+.footer{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-top:30px;padding-bottom:30px;color:#bdb4a9;font-size:.75rem}
+.footer-actions{display:flex;gap:20px;align-items:center}
+.quiet-btn{border:0;background:none;padding:8px 0;color:#bdb4a9;font-size:.75rem;text-decoration:underline;text-underline-offset:4px}
+.quiet-btn:hover{color:#faf9f4}
+.poster-link{display:flex;align-items:center;gap:14px;font-size:.8125rem;color:#d0c9c0}
+.poster-thumb{width:50px;height:50px;object-fit:cover}
+dialog{background:#181512;color:#faf9f4;border:1px solid #efe7d625;padding:20px;max-width:min(1150px,95vw);max-height:93svh}
+dialog::backdrop{background:#0e0c0ae8;backdrop-filter:blur(10px)}
+.lightbox-toolbar{display:flex;justify-content:space-between;gap:20px;margin-bottom:16px;align-items:center;font-size:.875rem}
+.lightbox-toolbar button{background:#efe7d615;border:1px solid #efe7d633;padding:8px 12px;font-size:.875rem}
+.lightbox-image{max-height:73svh;max-width:88vw;width:auto;height:auto;margin:auto;object-fit:contain}
+.lightbox-caption{font-size:.75rem;color:#c5bcb2;margin-top:12px}
+.js-motion .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.js-motion .reveal.in{opacity:1;transform:none}
+.js-motion .delay{transition-delay:.13s}
+.paused *, .paused *:before, .paused *:after{animation-play-state:paused!important;transition:none!important}
+.paused .reveal{opacity:1!important;transform:none!important}
+@keyframes ambient{
+  from{transform:translate(-5%,0) scale(.9)}
+  to{transform:translate(8%,8%) scale(1.15)}
+}
+@media(min-width:1650px){
+  .hero-inner{padding-top:90px}
+  .hero h1{font-size:9.01rem}
+  .hero-bottom{margin-top:70px}
+}
+@media(max-width:1050px){
+  .hero{padding-top:0;min-height:max(720px,calc(100svh - var(--nav-h)))}
+  .hero h1{font-size:8.5vw}
+  .hero-image{inset:0 0 0 20%;width:80%}
+  .hero-inner{padding-top:48px}
+  .hero-meta{margin-bottom:75px}
+  .hero-bottom{margin-top:56px}
+  .metric{padding:0 22px}
+  .partner-gallery{gap:18px}
+  .project-body h3{font-size:2.12rem}
+  .closing-bottom{align-items:start}
+  .contact-link{gap:18px}
+  .footer{flex-wrap:wrap}
+  .project-foot{align-items:start}
+}
+@media(max-width:760px){
+  html{scroll-padding-top:calc(var(--nav-h) + 14px)}
+  .hero{padding-top:0;min-height:max(720px,calc(100svh - var(--nav-h)))}
+  .hero-inner{padding-top:30px}
+  .hero-top{margin-bottom:44px}
+  .hero-meta{margin-top:0;margin-bottom:0}
+  .hero-meta .mono,.hero-top .mono{font-size:.6875rem}
+  .hero-top .location{max-width:none}
+  .hero-image{inset:0;width:100%;height:100%;object-position:55% center;opacity:.55}
+  .hero:after{background:linear-gradient(90deg,#241f1ace,transparent),linear-gradient(0deg,#241f1a 0%,#241f1a50 50%,#241f1a88 100%)}
+  .hero h1{font-size:clamp(3.06rem,10.9vw,5.1rem);line-height:.99}
+  .hero-bottom{display:block;margin-top:36px}
+  .hero-summary{max-width:600px}
+  .hero-summary p{font-size:1rem}
+  .hero-lockup{width:min(29vw,115px);margin-top:0}
+  .hero-issue{margin-top:42px}
+  .hero-issue b{font-size:2.8rem;font-family:var(--display)}
+  .metric-grid{padding-top:36px;padding-bottom:36px;grid-template-columns:1fr;gap:26px}
+  .metric{padding:24px 0 0;border-left:0;border-top:1px solid #241f1a24;display:grid;grid-template-columns:140px 1fr;column-gap:22px;align-items:center}
+  .metric:first-child{border-top:0;padding-top:0}
+  .metric-num{font-size:4.08rem;grid-row:1/3;font-family:var(--display)}
+  .metric-title{font-size:1rem;margin-top:5px;align-self:end}
+  .metric small{font-size:.75rem;align-self:start}
+  .pad-y{padding-top:66px;padding-bottom:66px}
+  .section-label{margin-bottom:36px;gap:22px}
+  .section-label .mono{font-size:.6875rem}
+  .section-label span:last-child{text-align:right}
+  .intro-grid,.next-intro,.partner-heading{grid-template-columns:1fr;gap:24px}
+  .section-title{font-size:clamp(2.12rem,8.5vw,3.4rem)}
+  .intro-copy{padding-top:0}
+  .story-photos{grid-template-columns:1fr;gap:32px;margin-top:35px}
+  .small-photo{margin-top:0;width:82%;margin-left:auto}
+  .project-head{display:block;margin-bottom:32px}
+  .project-head p{margin-top:22px}
+  .project-grid{grid-template-columns:1fr;gap:45px}
+  .project-top .mono{font-size:.6875rem}
+  .project-body h3{font-size:2.21rem}
+  .project-description{min-height:0}
+  .partner-heading{margin-bottom:34px}
+  .partner-gallery{grid-template-columns:1fr;gap:38px}
+  .partner-gallery figure:nth-child(2),.partner-gallery figure:nth-child(3){margin-top:0}
+  .partner-gallery figure:nth-child(1),.partner-gallery figure:nth-child(2),.partner-gallery figure:nth-child(3){width:100%;margin-left:0}
+  .partner-gallery .shot{aspect-ratio:4/5}
+  .partner-gallery figure:nth-child(3) .shot{aspect-ratio:16/9}
+  .quote-section{min-height:570px}
+  .quote-content h2{font-size:2.63rem}
+  .quote-bottom{display:block}
+  .quote-bottom .mono{margin-top:25px;display:block}
+  .next-intro{margin-bottom:35px}
+  .opportunity summary{grid-template-columns:25px 1fr 24px;gap:12px;padding:22px 0}
+  .opportunity summary .format{grid-column:2;grid-row:2;font-size:.8125rem}
+  .opportunity summary .plus{grid-column:3;grid-row:1/3}
+  .opportunity summary h3{font-size:1.49rem}
+  .opportunity-content{grid-template-columns:1fr;gap:15px;padding:0 0 26px 37px}
+  .last-image-grid{grid-template-columns:1fr;margin-top:40px}
+  .closing-inner{padding-top:60px;padding-bottom:65px}
+  .closing h2{font-size:clamp(2.8rem,10.2vw,4.67rem)}
+  .closing-bottom{display:block;margin-top:32px}
+  .contact-link{margin-top:30px;width:fit-content;font-size:1.125rem;gap:24px}
+  .footer{align-items:start;gap:24px}
+  .footer-actions{width:100%;justify-content:space-between}
+  .hero-glow{display:none}
+  .caption{font-size:.75rem}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*:before,*:after{animation:none!important;transition:none!important}
+  .js-motion .reveal{opacity:1;transform:none}
+}
+@media print{
+  .hero{padding-top:0;min-height:max(720px,calc(100svh - var(--nav-h)))}
+  .hero-inner{padding-top:0}
+  .hero{padding-top:0;min-height:max(720px,calc(100svh - var(--nav-h)))}
+  .reveal{opacity:1!important;transform:none!important}
+  .pad-y{padding-top:45px;padding-bottom:45px}
+  .project-grid{display:block}
+  .project{break-inside:avoid;margin-bottom:30px}
+  .project-image{height:180px;aspect-ratio:auto}
+  .hero,.metrics,.project-section,.next,.closing{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  .ranking{break-inside:avoid}
+  .footer{padding-bottom:20px}
+  body{font-size:12px;font-family:var(--sans)}
+  a[href^='mailto']:after{content:none}
+}
+.project-directory{margin-top:56px}
+.project-directory-list{display:grid;grid-template-columns:1fr 1fr;column-gap:55px}
+.project-directory .ranking-row{grid-template-columns:52px 1fr;gap:14px}
+.project-directory .ranking-row .place{white-space:nowrap}
+.project-directory .ranking-row .members{font-size:.8125rem}
+@media(max-width:760px){
+  .project-directory{margin-top:42px}
+  .project-directory-list{grid-template-columns:1fr}
+  .project-directory .ranking-row{grid-template-columns:52px 1fr}
+}
+.hero h1{font-size:4.59rem;line-height:.99;width:100%;max-width:680px}
+@media(min-width:1650px){
+  .hero h1{font-size:6.54rem}
+}
+@media(min-width:761px) and (max-width:1050px){
+  .hero h1{font-size:6.38vw}
+}
+@media(max-width:760px){
+  .hero h1{font-size:clamp(2.55rem,9.01vw,3.91rem);line-height:1.02}
+}
+.platform-section{background:#2f2820;color:var(--paper);position:relative;overflow:hidden}
+.platform-section:before{content:'';position:absolute;width:60vw;height:60vw;right:-34vw;top:-29vw;border-radius:50%;background:radial-gradient(circle,#8e99f721,transparent 67%);pointer-events:none}
+.platform-section .wrap{position:relative}
+.platform-intro{display:grid;grid-template-columns:1.25fr .75fr;gap:8vw;align-items:end;margin-bottom:72px}
+.platform-intro p{max-width:480px;color:#d7d0c9}
+.platform-intro strong{color:#faf9f4;font-weight:600}
+.platform-section .section-title em{font-style:normal;color:var(--blue)}
+.platform-phase{color:var(--blue);margin-bottom:17px}
+.platform-journey{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid #8e99f78c}
+.platform-journey li{padding:20px 22px 48px 0;min-width:0;position:relative}
+.platform-journey li:not(:last-child){border-right:1px solid #efe7d620;padding-right:20px}
+.platform-journey li:not(:first-child){padding-left:20px}
+.platform-journey li:before{content:'';position:absolute;width:7px;height:7px;border-radius:50%;top:-4px;left:0;background:var(--blue)}
+.platform-journey li:not(:first-child):before{left:20px}
+.platform-journey .step{color:#b2a79a;display:block;margin:0 0 38px}
+.platform-journey h3{font-size:clamp(1.19rem,1.7vw,1.95rem);letter-spacing:-.03em;line-height:1.12;min-height:2.25em;margin-bottom:14px}
+.platform-journey p{font-size:.9rem;line-height:1.5;color:#c7bfb5;max-width:210px}
+.platform-after{display:grid;grid-template-columns:.9fr 1.1fr;gap:8vw;padding:50px 0 10px;border-top:1px solid #efe7d633}
+.platform-after h3{font-size:clamp(2.21rem,3.82vw,4.08rem);line-height:1.02;max-width:500px}
+.platform-after h3 span{color:var(--blue)}
+.platform-after-intro{color:#d1cac2;margin-top:22px;max-width:430px}
+.platform-destinations{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.platform-destinations li{padding:22px 24px;display:grid;grid-template-columns:40px 1fr;gap:16px;align-items:start;background:#39322b;border:1px solid #8e99f735;border-radius:16px;transition:background .25s,transform .25s,border-color .25s}
+.platform-destinations li:hover{background:#484036;border-color:#8e99f788;transform:translateY(-3px)}
+.platform-destinations .mono{color:var(--blue);padding-top:5px}
+.platform-destinations h4{font-size:1.1rem;font-weight:500;letter-spacing:-.03em;margin:0 0 5px;font-family:var(--display)}
+.platform-destinations p{font-size:.875rem;color:#cdc5bc}
+.platform-compound{margin-top:84px;border-top:1px solid #8e99f770;padding:27px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:start}
+.platform-compound strong{display:block;font-size:clamp(1.44rem,2.12vw,2.25rem);line-height:1.1;font-weight:500;letter-spacing:-.03em;font-family:var(--display)}
+.platform-compound p{font-size:.9375rem;color:#d7d1ca;max-width:520px}
+.platform-status{display:block;color:#bdb3a8;margin:12px 0 0}
+@media(max-width:1050px){
+  .platform-intro{gap:5vw}
+  .platform-journey h3{font-size:1.27rem}
+  .platform-journey li{padding-right:12px}
+  .platform-journey li:not(:first-child){padding-left:12px}
+  .platform-journey li:not(:first-child):before{left:12px}
+}
+@media(max-width:760px){
+  .hero{padding-top:0;min-height:max(720px,calc(100svh - var(--nav-h)))}
+  .platform-intro,.platform-after,.platform-compound{grid-template-columns:1fr;gap:24px}
+  .platform-intro{margin-bottom:52px}
+  .platform-journey{grid-template-columns:1fr 1fr}
+  .platform-journey li{border-bottom:1px solid #efe7d624;min-height:185px;padding:17px 16px 24px 0}
+  .platform-journey li:not(:first-child){padding-left:0}
+  .platform-journey li:not(:first-child):before{left:0}
+  .platform-journey li:nth-child(2n){padding-left:18px!important;border-right:0}
+  .platform-journey li:nth-child(2n):before{left:18px}
+  .platform-journey li:nth-child(2n+1){border-right:1px solid #efe7d620}
+  .platform-journey li:last-child{grid-column:1/-1;min-height:0;padding-bottom:30px}
+  .platform-journey .step{margin-bottom:25px}
+  .platform-journey h3{font-size:1.15rem;min-height:0}
+  .platform-journey p{font-size:.875rem}
+  .platform-after{padding-top:45px}
+  .platform-after h3{font-size:clamp(2.12rem,7.65vw,3.23rem)}
+  .platform-compound{margin-top:50px}
+  .platform-destinations li{padding:18px 20px}
+}
+.media-shot{position:absolute;inset:0;width:100%;height:100%;cursor:zoom-in}
+.shot{cursor:zoom-in;color:#faf9f4}
+.shot:focus-visible{outline:3px solid var(--blue);outline-offset:-3px}
+.shot:focus-visible img{transform:scale(1.035)}
+.shot:after{z-index:3;color:#faf9f4;pointer-events:none}
+.background-photo-view{position:absolute;right:24px;bottom:24px;z-index:3;width:36px;height:36px;border:0;background:#241f1ab3;backdrop-filter:blur(8px);color:#faf9f4;font-size:20px;cursor:zoom-in;opacity:0;transition:opacity .25s}
+.hero:hover .background-photo-view,.quote-section:hover .background-photo-view,.background-photo-view:focus-visible{opacity:1}
+@media(hover:none){
+  .shot:after,.background-photo-view{opacity:1}
+}
+.media-frame{position:relative}
+.collab .wide-shot{aspect-ratio:16/9}
+.fill-frame{aspect-ratio:16/10;overflow:hidden;background:var(--white-tint)}
+.project-image .filled-image{object-fit:contain}
+.progress{position:fixed;top:calc(var(--nav-h) - 2px);left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:left;background:var(--blue);z-index:51}
+@media(max-width:1050px){
+  .platform-journey h3{font-size:0.935rem;overflow-wrap:anywhere}
+}
+.btn{display:inline-block;font-family:var(--sans);font-weight:600;font-size:var(--fs-ui);padding:var(--sp-3) var(--sp-5);background:var(--accent-blue);color:var(--ink);border-radius:var(--radius-sm);border:1.5px solid var(--accent-blue);transition:background .16s,color .16s}
+.btn:hover{background:var(--accent-blue-deep);border-color:var(--accent-blue-deep);color:#fff}
+/* ---------- Primary navigation (shared by every page) ---------- */
+nav{position:sticky;top:0;z-index:50;line-height:1.6;background:rgba(250,249,244,.88);border-bottom:1px solid transparent;transition:border-color .2s,box-shadow .2s}
 nav.scrolled{backdrop-filter:blur(12px) saturate(120%);-webkit-backdrop-filter:blur(12px) saturate(120%);border-bottom-color:var(--line);box-shadow:0 8px 24px rgba(36,31,26,.04)}
-.nav-in{display:flex;align-items:center;justify-content:space-between;height:var(--nav-h)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);max-width:var(--maxw);margin:0 auto;padding:0 var(--sp-5)}
 .wordmark{display:inline-flex;align-items:center;color:var(--ink)}
 .wordmark img{display:block;width:auto;height:42px}
-.btn{display:inline-block;font-family:var(--sans);font-weight:600;font-size:var(--fs-ui);padding:var(--sp-3) var(--sp-5);background:var(--accent-blue);color:var(--ink);border-radius:var(--radius-sm);border:1.5px solid var(--accent-blue);transition:background .16s,color .16s;cursor:pointer}
-.btn:hover{background:var(--accent-blue-deep);border-color:var(--accent-blue-deep);color:#fff}
-.btn:focus-visible,a:focus-visible{outline:2px solid var(--accent-blue);outline-offset:3px}
-.btn-lg{font-size:calc(var(--fs-h3)*.8);font-weight:700;padding:calc(var(--sp-4)*.8) calc(var(--sp-8)*.8)}
+.nav-right{display:flex;align-items:center;gap:var(--sp-7)}
+.nav-links{display:flex;align-items:center;gap:var(--sp-6)}
+.nav-links a{position:relative;padding:var(--sp-2) 0;font-size:var(--fs-ui);font-weight:600;color:var(--ink-soft);transition:color .16s}
+.nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--ink)}
+.nav-links a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;border-radius:1px;background:var(--accent-blue)}
+nav a:focus-visible{outline:2px solid var(--accent-blue);outline-offset:3px}
 nav .btn{padding:var(--sp-2) var(--sp-4);font-size:var(--fs-label)}
-
-/* ---------- hero ---------- */
-.backlink{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-ui);color:var(--ink-soft);margin:var(--sp-6) 0 var(--sp-5);transition:color .16s}
-.backlink:hover{color:var(--accent-blue-deep)}
-.eyebrow{font-family:var(--sans);font-size:var(--fs-label);font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--on-surface-muted)}
-.hero h1{font-family:var(--display);font-size:var(--fs-hero);font-weight:600;letter-spacing:-.03em;line-height:1.05;margin:var(--sp-4) 0 var(--sp-5)}
-.hero .lede{font-size:var(--fs-lede);color:var(--ink-soft);max-width:36em}
-.stats{display:flex;gap:var(--sp-7);margin:var(--sp-7) 0 var(--sp-9);flex-wrap:wrap}
-.stat{padding-left:var(--sp-5);border-left:2px solid var(--accent-blue)}
-.stat .num{font-family:var(--display);font-size:clamp(30px,4vw,44px);font-weight:700;letter-spacing:-.02em;line-height:1.1}
-.stat .lbl{font-size:var(--fs-ui);color:var(--ink-soft);margin-top:var(--sp-1)}
-
-/* ---------- gallery ---------- */
-.sec-head h2{font-family:var(--display);font-size:var(--fs-h2);font-weight:600;letter-spacing:-.02em}
-.sec-head p{color:var(--ink-soft);margin-top:var(--sp-3);max-width:44em}
-.gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--sp-4);margin:var(--sp-6) 0 var(--sp-10)}
-.tile{position:relative;overflow:hidden;border-radius:var(--radius-md);min-height:300px;background:#EDEAE2;cursor:zoom-in;border:1px solid var(--line)}
-/* --focus on a tile biases the cover crop toward that photo's subject; default is centred */
-.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--focus,50% 50%);transition:transform .5s cubic-bezier(.2,.6,.2,1)}
-.tile:hover img{transform:scale(1.035)}
-.tile .shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,17,13,.62) 0%,rgba(20,17,13,0) 46%);opacity:0;transition:opacity .3s}
-.tile:hover .shade{opacity:1}
-.tile .meta{position:absolute;left:0;right:0;bottom:0;padding:var(--sp-5) var(--sp-5) var(--sp-4);color:#fff;transform:translateY(8px);opacity:0;transition:opacity .3s,transform .3s}
-.tile:hover .meta{transform:none;opacity:1}
-.tile .meta .cap{font-size:var(--fs-ui);font-weight:500}
-.tile .meta .hint{font-size:var(--fs-micro);opacity:.75;margin-top:2px}
-.tile .dl{position:absolute;top:var(--sp-3);right:var(--sp-3);width:38px;height:38px;border-radius:50%;background:rgba(250,249,244,.92);display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(-6px);transition:opacity .3s,transform .3s;cursor:pointer;border:none}
-.tile:hover .dl{opacity:1;transform:none}
-.tile .dl:hover{background:#fff}
-.tile .dl svg{width:16px;height:16px;stroke:var(--ink)}
-.s7{grid-column:span 7}.s5{grid-column:span 5}.s8{grid-column:span 8}.s4{grid-column:span 4}
-.tall{min-height:400px}
-
-/* ---------- lightbox ---------- */
-.lightbox{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;background:rgba(20,18,15,.94);padding:var(--sp-6)}
-.lightbox.open{display:flex}
-.lightbox figure{max-width:min(92vw,1100px);text-align:center}
-.lightbox img{max-width:100%;max-height:78vh;border-radius:var(--radius-md);margin:0 auto}
-.lightbox .cap{margin-top:var(--sp-4);color:var(--white);font-size:var(--fs-ui)}
-.lightbox .count{color:rgba(250,249,244,.55);font-size:var(--fs-micro);margin-top:var(--sp-2);letter-spacing:.1em}
-.lb-btn{position:absolute;width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.12);color:var(--white);border:none;font-size:20px;cursor:pointer;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .16s}
-.lb-btn:hover{background:rgba(255,255,255,.24)}
-.lb-close{top:var(--sp-5);right:var(--sp-5)}
-.lb-prev{left:var(--sp-5);top:50%;transform:translateY(-50%)}
-.lb-next{right:var(--sp-5);top:50%;transform:translateY(-50%)}
-.lb-dl{position:absolute;bottom:var(--sp-6);left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:8px;background:var(--accent-blue);color:var(--ink);font-weight:600;font-size:var(--fs-ui);padding:10px 22px;border-radius:var(--radius-sm);border:none;cursor:pointer}
-.lb-dl:hover{background:var(--accent-blue-deep);color:#fff}
-.lb-dl svg{width:15px;height:15px}
-
-/* ---------- closing CTA (dark band) ---------- */
-.cta-band{background:var(--ink);color:var(--white);border-radius:var(--radius-md);padding:var(--sp-9) var(--sp-7);text-align:center;margin-bottom:var(--sp-10)}
-.cta-band h2{font-family:var(--display);font-size:var(--fs-h2);font-weight:600;letter-spacing:-.02em}
-.cta-band h2 em{font-style:normal;color:var(--accent-blue)}
-.cta-band p{color:rgba(250,249,244,.72);margin:var(--sp-4) auto var(--sp-6);max-width:34em}
-.cta-band .btn{border-color:var(--accent-blue)}
-
-/* ---------- footer (matches main site) ---------- */
-footer{padding:var(--sp-8) 0 var(--sp-7);border-top:1px solid var(--line)}
-.foot-in{display:flex;justify-content:space-between;gap:var(--sp-6);flex-wrap:wrap;align-items:flex-start}
-.foot-links{display:grid;grid-template-columns:repeat(2,max-content);gap:0 var(--sp-7);font-size:var(--fs-ui);color:var(--ink-soft)}
-.foot-link-col{display:flex;flex-direction:column;gap:var(--sp-3)}
-.foot-links a:hover{color:var(--accent-blue)}
-footer .wordmark img{height:70px}
-footer .fine{margin-top:var(--sp-6);font-size:var(--fs-micro);color:#94907F;text-align:center}
-
-/* ---------- reveal ---------- */
-.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
-.rv.on{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.tile img{transition:none}}
-
-@media (max-width:760px){
-  .wordmark img{height:38px}
-  .gallery{gap:var(--sp-3)}
-  .s7,.s5,.s8,.s4{grid-column:span 12}
-  .tile{min-height:250px}
-  .tall{min-height:340px}
-  .tile .dl{opacity:1;transform:none}
-  .stats{gap:var(--sp-5)}
-  .cta-band{padding:var(--sp-7) var(--sp-5)}
-  .lb-prev{left:var(--sp-2)}.lb-next{right:var(--sp-2)}
+/* Phones: logo and call-to-action share the first row, the page links get their own */
+@media(max-width:600px){
+  :root{--nav-h:96px}
+  .nav-in{display:grid;grid-template-columns:1fr auto;grid-template-rows:56px 40px;padding:0 22px}
+  .nav-right{display:contents}
+  .wordmark{grid-area:1/1}
+  .wordmark img{height:38.4px}
+  nav .btn{grid-area:1/2}
+  .nav-links{grid-area:2/1/3/3;align-self:stretch;border-top:1px solid var(--line)}
 }
+
+/* This page's ground is dark, so the shared translucent nav would blend into a muddy grey. */
+nav{background:var(--white)}
 </style>
 </head>
 <body>
-
-<nav id="nav">
-  <div class="wrap nav-in">
-    <a class="wordmark" href="/" aria-label="FIG Studio — Home">
-      <img src="../fig-logo-vector.svg" alt="FIG Studio">
-    </a>
-    <a class="btn" href="mailto:contact@figstudio.vc">Work With Us</a>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="wrap">
-    <a class="backlink rv" href="/">&#8592; Back to FIG Studio</a>
-    <div class="eyebrow rv">Event Recap &nbsp;&middot;&nbsp; San Francisco &nbsp;&middot;&nbsp; September 19, 2026</div>
-    <h1 class="rv">The Executable<br>World</h1>
-    <p class="lede rv">One room, one day, one hundred builders turning frontier AI into working software. Demos ran long, the judging was close, and twenty-five projects shipped by nightfall &mdash; here are the moments.</p>
-    <div class="stats rv">
-      <div class="stat"><div class="num">350+</div><div class="lbl">Registered</div></div>
-      <div class="stat"><div class="num">100</div><div class="lbl">Builders on site</div></div>
-      <div class="stat"><div class="num">25+</div><div class="lbl">Projects shipped</div></div>
+<a class="skip" href="#impact">Skip to report</a>
+<nav id="nav" aria-label="Primary">
+  <div class="nav-in">
+    <a class="wordmark" href="/" aria-label="FIG Studio — Home"><img src="../fig-logo-vector.svg" alt="FIG Studio"></a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/events/executable-world-2026" aria-current="page">Events</a>
+        <a href="/#why">About</a>
+      </div>
+      <a class="btn" href="mailto:contact@figstudio.vc">Work With Us</a>
     </div>
   </div>
-</header>
-
+</nav><div class="progress" aria-hidden="true"></div>
 <main>
-  <div class="wrap">
-    <div class="sec-head rv">
-      <h2>Moments from the day</h2>
-      <p>Click any photo to view it full-screen and download the original. More photos coming soon &mdash; the full album will live here.</p>
-    </div>
-
-    <div class="gallery" id="gallery">
-      <figure class="tile s7 rv" data-i="0" tabindex="0" role="button" aria-label="View photo: Demo hour">
-        <img src="executable-world-2026/photos/thumb/crowd-demo.jpg" alt="Builders crowd the showcase screens during demo hour" loading="lazy">
-        <div class="shade"></div>
-        <button class="dl" data-dl="0" aria-label="Download photo"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg></button>
-        <figcaption class="meta"><div class="cap">Demo hour &mdash; the room gathers around the showcase screens</div><div class="hint">Click to enlarge &middot; download available</div></figcaption>
-      </figure>
-
-      <figure class="tile s5 tall rv" data-i="1" style="--focus:50% 33%" tabindex="0" role="button" aria-label="View photo: Live pitch">
-        <img src="executable-world-2026/photos/thumb/pitch-workbuddy.jpg" alt="Live pitch: What is Workbuddy?" loading="lazy">
-        <div class="shade"></div>
-        <button class="dl" data-dl="1" aria-label="Download photo"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg></button>
-        <figcaption class="meta"><div class="cap">Live pitch: &ldquo;What is Workbuddy?&rdquo;</div><div class="hint">Click to enlarge &middot; download available</div></figcaption>
-      </figure>
-
-      <figure class="tile s5 rv" data-i="2" tabindex="0" role="button" aria-label="View photo: Building in progress">
-        <img src="executable-world-2026/photos/thumb/hacking.jpg" alt="Builders heads down, hacking through the afternoon" loading="lazy">
-        <div class="shade"></div>
-        <button class="dl" data-dl="2" aria-label="Download photo"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg></button>
-        <figcaption class="meta"><div class="cap">Heads down &mdash; building through the afternoon</div><div class="hint">Click to enlarge &middot; download available</div></figcaption>
-      </figure>
-
-      <figure class="tile s7 rv" data-i="3" tabindex="0" role="button" aria-label="View photo: Team moment">
-        <img src="executable-world-2026/photos/thumb/team-judges.jpg" alt="Team photo in front of the judges board" loading="lazy">
-        <div class="shade"></div>
-        <button class="dl" data-dl="3" aria-label="Download photo"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg></button>
-        <figcaption class="meta"><div class="cap">Team moment in front of the judges board</div><div class="hint">Click to enlarge &middot; download available</div></figcaption>
-      </figure>
-
-      <figure class="tile s8 rv" data-i="4" tabindex="0" role="button" aria-label="View photo: EdgeOne Makers session">
-        <img src="executable-world-2026/photos/thumb/edgeone-talk.jpg" alt="Tencent Cloud EdgeOne Makers session" loading="lazy">
-        <div class="shade"></div>
-        <button class="dl" data-dl="4" aria-label="Download photo"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg></button>
-        <figcaption class="meta"><div class="cap">Tencent Cloud EdgeOne Makers session</div><div class="hint">Click to enlarge &middot; download available</div></figcaption>
-      </figure>
-
-      <figure class="tile s4 tall rv" data-i="5" tabindex="0" role="button" aria-label="View photo: Sponsor lounge">
-        <img src="executable-world-2026/photos/thumb/sponsor-booth.jpg" alt="Sponsor lounge — EdgeOne Makers" loading="lazy">
-        <div class="shade"></div>
-        <button class="dl" data-dl="5" aria-label="Download photo"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg></button>
-        <figcaption class="meta"><div class="cap">Sponsor lounge &mdash; EdgeOne Makers</div><div class="hint">Click to enlarge &middot; download available</div></figcaption>
-      </figure>
-    </div>
-
-    <section class="cta-band rv">
-      <h2>Missed it? <em>Build what&rsquo;s next</em> with FIG.</h2>
-      <p>The Executable World is part of how the FIG network compounds &mdash; founders building alongside founders. If you&rsquo;re turning frontier AI into a real product, we should talk.</p>
-      <a class="btn btn-lg" href="mailto:contact@figstudio.vc">Start the Conversation</a>
-    </section>
-  </div>
+<section class="hero" id="top"><img class="hero-image" fetchpriority="high" decoding="async" src="executable-world-2026/img/hero.jpg" alt="Builders gathered for a presentation at The Executable World hackathon"><div class="hero-glow" aria-hidden="true"></div><div class="hero-inner wrap"><div class="hero-top"><div class="hero-meta"><span class="eyebrow mono">The Executable World<br>Full Stack AI Hackathon & Mixer</span></div><span class="mono location">September 19, 2026<br>09:00 — 20:00</span></div><h1 class="reveal">A room of builders. <span class="outline">A world of possibility.</span></h1><div class="hero-bottom"><div class="hero-summary reveal delay"><p>One day of building, technical exchange and live demos. A closer look at what FIG Studio brought together.</p><a class="text-link" href="#impact">Explore the impact <span class="arrow" aria-hidden="true">↓</span></a></div></div></div><button type="button" class="background-photo-view" data-lightbox-source=".hero .hero-image" aria-label="Enlarge background event photo">↗</button></section>
+<section class="metrics" id="impact" aria-label="Event impact"><div class="metric-grid wrap"><div class="metric"><div class="metric-num"><span class="approx">~</span><span data-count="100">100</span></div><b class="metric-title">Builders in the room</b><small>Researchers, engineers, founders<br>and product builders</small></div><div class="metric"><div class="metric-num" data-count="25">25</div><b class="metric-title">Project submissions</b><small>Ideas taken into active building<br>during the event</small></div><div class="metric"><div class="metric-num" data-count="2">2</div><b class="metric-title">AI tracks</b><small>AI Assistants +<br>Production-Ready AI Agent</small></div></div></section>
+<section class="platform-section pad-y" id="platform"><div class="wrap"><div class="section-label"><span class="mono">01 / One connected platform</span><span class="mono">Before · During · After</span></div><div class="platform-intro"><h2 class="section-title reveal">The event has<br>a <em>longer life</em><br>on the Fig Event Platform.</h2><p class="reveal delay">We built the <strong>Fig Event Platform</strong>, our end-to-end event platform for registration, team formation, communication, project submission and judging. After the event, builders and projects stay visible.</p></div><p class="platform-phase mono">The event journey / five connected steps</p><ol class="platform-journey"><li class="reveal"><span class="step mono">01 / Join</span><h3>Register</h3><p>Find the event and sign up in one place.</p></li><li class="reveal"><span class="step mono">02 / Find your people</span><h3>Form a team</h3><p>Discover collaborators, send invitations and build a team.</p></li><li class="reveal"><span class="step mono">03 / Stay connected</span><h3>Communicate</h3><p>Keep conversations going through event chat and networking.</p></li><li class="reveal"><span class="step mono">04 / Make it real</span><h3>Submit a project</h3><p>Bring the work together in a project submission.</p></li><li class="reveal"><span class="step mono">05 / Get evaluated</span><h3>Judges score</h3><p>Give judges a clear place to review and score the work.</p></li></ol><div class="platform-after"><div class="reveal"><h3>Give builders<br>and projects<br><span>a longer runway.</span></h3><p class="platform-after-intro">Keep builders and their work visible between events.</p></div><ul class="platform-destinations reveal delay"><li><span class="mono">01</span><div><h4>Builders Leaderboard</h4><p>Recognize builders across programs.</p></div></li><li><span class="mono">02</span><div><h4>Project Highlights</h4><p>Keep standout work easy to discover.</p></div></li><li><span class="mono">03</span><div><h4>Community</h4><p>Keep conversations moving.</p></div></li></ul></div><div class="platform-compound reveal"><div><span class="platform-phase mono">Why it matters for partners</span><strong>Every event adds to the next.</strong></div><div><p>As FIG Studio hosts more programs, the builder network and project portfolio can keep growing in one place. Partners can support the full journey and engage around work that remains visible beyond a single event.</p><span class="platform-status mono">A long-term network and project portfolio</span></div></div></div></section>
+<section class="wrap pad-y" id="experience"><div class="section-label"><span class="mono">02 / The experience</span><span class="mono">From conversation to creation</span></div><div class="intro-grid"><h2 class="section-title reveal">The energy<br>was in<br><span style="color:var(--blue)">the making.</span></h2><div class="intro-copy reveal delay"><p>FIG Studio brought researchers, engineers, founders and product builders together around a shared challenge: build the next generation of AI products.</p><p>Across two tracks, teams worked through ideas, developed submissions and presented their work—with technical discussions and community connection alongside the build.</p><div class="inline-chips"><span>Build sessions</span><span>Technical talks</span><span>Live demos</span></div></div></div><div class="story-photos"><figure class="reveal"><div class="media-frame collab"><button class="shot wide-shot" data-lightbox aria-label="Enlarge photo of two builders collaborating"><img src="executable-world-2026/img/collaboration.jpg" alt="Two builders collaborating at the hackathon" loading="lazy"></button></div><figcaption class="caption"><b>Working through the next idea.</b><span class="figure-no">FIG. 01</span></figcaption></figure><figure class="small-photo reveal delay"><div class="media-frame"><button class="shot portrait-shot" data-lightbox aria-label="Enlarge team build-session photo"><img src="executable-world-2026/img/build-session.jpg" alt="A team working together during the build session" loading="lazy"></button></div><figcaption class="caption"><b>From shared tables to submissions.</b><span class="figure-no">FIG. 02</span></figcaption></figure></div></section>
+<section class="project-section pad-y" id="projects"><div class="wrap"><div class="section-label"><span class="mono">03 / What they built</span><span class="mono">25 project submissions</span></div><div class="project-head"><h2 class="section-title reveal">Ideas became<br>something to show.</h2><p class="reveal delay">A look at two projects from the build. Browse more submissions below.</p></div><div class="project-grid">
+<article class="project reveal"><div class="project-top"><span class="mono">Project spotlight</span><span class="rank mono">#013</span></div><div class="project-image"><div class="winner-badge" role="img" aria-label="Fig Hackathon Top Winner"><span class="winner-badge-header">FIG HACKATHON</span><span class="winner-badge-body"><span class="winner-badge-symbol" aria-hidden="true">✦</span><span class="winner-badge-label">TOP<br>WINNER</span></span></div><button type="button" class="shot media-shot" data-lightbox aria-label="Enlarge yuzu image"><img class="filled-image" src="executable-world-2026/img/project-yuzu.jpg" alt="Yuzu multi-agent workspace demo screenshot" loading="lazy"></button></div><div class="project-body"><span class="project-kicker"><span class="mono">Project #013 · 4 members</span></span><h3>Yuzu</h3><p class="project-description">A multi-agent AI workplace where agents with distinct roles, capabilities and permissions share one chat and behave like a real team, not a chorus.</p><div class="project-foot"><div class="team">Jiaxin Liu · yan ziyuan<br>Ruixiang Huang · Fanchao Yu</div></div></div></article>
+<article class="project reveal delay"><div class="project-top"><span class="mono">Project spotlight</span><span class="rank mono">#022</span></div><div class="project-image"><div class="winner-badge" role="img" aria-label="Fig Hackathon Top Winner"><span class="winner-badge-header">FIG HACKATHON</span><span class="winner-badge-body"><span class="winner-badge-symbol" aria-hidden="true">✦</span><span class="winner-badge-label">TOP<br>WINNER</span></span></div><button type="button" class="shot media-shot" data-lightbox aria-label="Enlarge player image"><img class="filled-image" src="executable-world-2026/img/project-player-two.jpg" alt="Player Two robot training project demo screenshot" loading="lazy"></button></div><div class="project-body"><span class="project-kicker"><span class="mono">Project #022 · 2 members</span></span><h3>Player Two</h3><p class="project-description">An AI agent that finds licensed video of people doing a task and turns it into physics-checked training demonstrations for real robot models.</p><div class="project-foot"><div class="team">Nithin Aruswamy<br>Pranav Achar</div></div></div></article>
+</div><details class="ranking project-directory"><summary>Browse more projects from the event</summary><div class="ranking-list project-directory-list"><div class="ranking-row"><span class="place">#025</span><div><h4>SafetyLens</h4><p class="members">3 members · Sean aminov; Yug Amol More; Abhinavkrishna GS</p></div></div><div class="ranking-row"><span class="place">#010</span><div><h4>PaperWeb — Design your own website like painting</h4><p class="members">2 members · Eric Zhao; Mark Shen</p></div></div><div class="ranking-row"><span class="place">#023</span><div><h4>ArgusAI | Verify Software. With Evidence.</h4><p class="members">2 members · Jay Kurivella; Nikitha Sai Lasya</p></div></div><div class="ranking-row"><span class="place">#016</span><div><h4>Signage</h4><p class="members">5 members · Gary Wang; Kevin Yang; Hanson Yan; Jay Jiang; Davis Jin</p></div></div><div class="ranking-row"><span class="place">#017</span><div><h4>Faultline</h4><p class="members">3 members · Anmol Sharma; Siddharth Bhat; Aarsh Sheth</p></div></div><div class="ranking-row"><span class="place">#011</span><div><h4>SimVal.Ai</h4><p class="members">1 member · Bharat Bhavnasi</p></div></div><div class="ranking-row"><span class="place">#015</span><div><h4>RefundGuard</h4><p class="members">1 member · Zubair Zafar</p></div></div><div class="ranking-row"><span class="place">#009</span><div><h4>Injection Canary</h4><p class="members">2 members · Ahmed Hrishit; Haroon Qahtan</p></div></div><div class="ranking-row"><span class="place">#003</span><div><h4>ShipGate</h4><p class="members">2 members · Richard Chang; Samuel Zhu</p></div></div><div class="ranking-row"><span class="place">#021</span><div><h4>OpenApps — agents you can watch working</h4><p class="members">1 member · KOH DE JIAN</p></div></div></div></details><p class="project-note">The projects above are examples from the event, shown without track assignments or ranking. Attendance is approximate.</p></div></section>
+<section class="wrap pad-y" id="partners"><div class="section-label"><span class="mono">04 / In the room</span><span class="mono">Presence. Exchange. Connection.</span></div><div class="partner-heading"><h2 class="section-title reveal">Closer to the people<br>building what’s next.</h2><p class="reveal delay">Partner materials, technical discussion and face-to-face exchange shared the same setting as the build.</p></div><div class="partner-gallery"><figure class="reveal"><div class="sponsor-pair"><div class="media-frame"><button class="shot" data-lightbox aria-label="Enlarge partner booth photo"><img src="executable-world-2026/img/partner-booth.jpg" alt="Partner booth and materials on display at the event" loading="lazy"></button></div><div class="media-frame"><button class="shot" data-lightbox aria-label="Enlarge VeloDB sponsor display"><img src="executable-world-2026/img/partner-velodb.jpg" alt="VeloDB sponsor table and Apache Doris banner at the event" loading="lazy"></button></div></div><h3>A tangible presence.</h3><p>Two sponsors, with materials and displays throughout the venue.</p></figure><figure class="reveal delay"><div class="media-frame"><button class="shot" data-lightbox aria-label="Enlarge panel discussion photo"><img src="executable-world-2026/img/panel.jpg" alt="Panelists discussing the executable AI stack" loading="lazy"></button></div><h3>Technical conversations.</h3><p>Speakers and judges brought discussion into a day centered on building.</p></figure><figure class="reveal"><div class="media-frame"><button class="shot" data-lightbox aria-label="Enlarge speaker photo"><img src="executable-world-2026/img/speaker.jpg" alt="Speaker sharing technical context with participants" loading="lazy"></button></div><h3>Context for the work.</h3><p>Talks and presentations alongside hands-on team sessions and live demos.</p></figure></div></section>
+<section class="quote-section"><img src="executable-world-2026/img/community-banner.jpg" alt="Builders and community members posing together at the event" loading="lazy"><div class="quote-content wrap"><span class="mono">The community behind the projects</span><h2 class="reveal">The build ends.<br>The connections<br>keep going.</h2><div class="quote-bottom"><p>FIG Studio connects builders through hackathons, demo days, mixers and smaller conversations.</p><span class="mono">Deep roots. New ventures.</span></div></div><button type="button" class="background-photo-view" data-lightbox-source=".quote-section > img" aria-label="Enlarge background event photo">↗</button></section>
+<section class="next pad-y" id="next"><div class="wrap"><div class="section-label"><span class="mono">05 / The next partnership</span><span class="mono">An invitation to build with FIG</span></div><div class="next-intro"><h2 class="section-title reveal">Put your support<br>where the<br>building happens.</h2><p class="reveal delay">Help make the next room possible. We’re seeking partners across cloud, infrastructure, databases and developer tools to support future FIG Studio programs.<br><br>Start with the outcome that matters to your team. We can shape the format and scope together.</p></div><p class="proposal-label mono">Proposed partnership directions</p>
+<details class="opportunity" open><summary><span class="num">01</span><h3>Power the platform.</h3><span class="format">The full builder journey</span><span class="plus" aria-hidden="true">+</span></summary><div class="opportunity-content"><p><b>Contribute:</b> Funding, product credits or expertise for the platform that connects registration, team formation, conversations, submissions, judging and post-event discovery.</p><p><b>Shape together:</b> Relevant partner touchpoints and an agreed plan for reporting on participation and project activity.</p></div></details>
+<details class="opportunity"><summary><span class="num">02</span><h3>Support the build.</h3><span class="format">Future hackathons</span><span class="plus" aria-hidden="true">+</span></summary><div class="opportunity-content"><p><b>Contribute:</b> Event funding, product credits and technical expertise to help teams move from ideas to submissions.</p><p><b>Shape together:</b> A relevant challenge, hands-on support and a post-event summary of participation and submitted work.</p></div></details>
+<details class="opportunity"><summary><span class="num">03</span><h3>Meet emerging teams.</h3><span class="format">Demo days + mixers</span><span class="plus" aria-hidden="true">+</span></summary><div class="opportunity-content"><p><b>Contribute:</b> Support for a program that brings builders and emerging teams together around their work.</p><p><b>Shape together:</b> A demo showcase, partner participation and introductions with interested, consenting teams.</p></div></details>
+<details class="opportunity"><summary><span class="num">04</span><h3>Go deeper.</h3><span class="format">Private dinners</span><span class="plus" aria-hidden="true">+</span></summary><div class="opportunity-content"><p><b>Contribute:</b> Support for a focused gathering of founders, researchers and technical leaders.</p><p><b>Shape together:</b> A shared topic, a curated guest profile and space for sustained technical and business conversations.</p></div></details>
+<p class="next-note">Future formats and deliverables are proposals. Timing, scope and sponsorship commitments will be agreed with each partner.</p>
+<div class="last-image-grid"><figure class="reveal"><div class="media-frame"><button class="shot" data-lightbox aria-label="Enlarge event audience photo"><img src="executable-world-2026/img/audience.jpg" alt="Audience gathered for demos and presentations" loading="lazy"></button></div><figcaption class="caption"><b>The room, in motion.</b><span>September 19</span></figcaption></figure><figure class="reveal delay"><div class="media-frame fill-frame"><button type="button" class="shot media-shot" data-lightbox aria-label="Enlarge community image"><img class="filled-image" src="executable-world-2026/img/community-group.jpg" alt="Six members of the FIG Studio community posing together in the event space" loading="lazy" style="object-position:50% 58%"></button></div><figcaption class="caption"><b>A community to build with.</b><span>FIG Studio</span></figcaption></figure></div>
+</div></section>
+<section class="closing" id="contact"><div class="closing-inner wrap"><span class="mono">Let’s shape the next chapter.</span><h2 class="reveal">Back the builders.<br>Build with FIG.</h2><div class="closing-bottom"><p>Tell us which part of the builder journey<br>your team wants to support.</p><a class="contact-link" href="mailto:contact@figstudio.vc?subject=FIG%20Studio%20%E2%80%94%20Partnership%20conversation">contact@figstudio.vc <span class="arrow" aria-hidden="true">↗</span></a></div></div></section>
 </main>
-
-<footer>
-  <div class="wrap">
-    <div class="foot-in">
-      <div>
-        <div class="wordmark">
-          <img src="../fig-logo-vector.svg" alt="FIG Studio">
-        </div>
-      </div>
-      <div class="foot-links">
-        <div class="foot-link-col">
-          <a href="/#why">Why FIG</a>
-          <a href="/#events">Network</a>
-          <a href="/#belief">Belief</a>
-        </div>
-        <div class="foot-link-col">
-          <a href="mailto:contact@figstudio.vc">contact@figstudio.vc</a>
-          <a href="#">LinkedIn</a>
-        </div>
-      </div>
-    </div>
-    <div class="fine">&copy; 2026 FIG Studio. All rights reserved.</div>
-  </div>
-</footer>
-
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
-  <button class="lb-btn lb-close" id="lb-close" aria-label="Close">&times;</button>
-  <button class="lb-btn lb-prev" id="lb-prev" aria-label="Previous photo">&#8592;</button>
-  <button class="lb-btn lb-next" id="lb-next" aria-label="Next photo">&#8594;</button>
-  <figure>
-    <img id="lb-img" src="" alt="">
-    <figcaption class="cap" id="lb-cap"></figcaption>
-    <div class="count" id="lb-count"></div>
-  </figure>
-  <a class="lb-dl" id="lb-dl" href="#" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg>Download original</a>
-</div>
-
+<footer class="footer wrap"><span>© 2026 FIG Studio · The Executable World</span><button class="quiet-btn poster-link" id="show-poster"><img class="poster-thumb" loading="lazy" decoding="async" src="executable-world-2026/img/poster.jpg" alt="Original event poster">View event poster ↗</button><div class="footer-actions"><button class="quiet-btn" id="motion-toggle" aria-pressed="false">Pause motion</button><a href="#top">Back to top ↑</a></div></footer>
+<dialog id="lightbox" aria-label="Event photo viewer"><div class="lightbox-toolbar"><span>FIG Studio / The Executable World</span><button id="close-lightbox" aria-label="Close enlarged photo">Close ×</button></div><img class="lightbox-image" alt=""><p class="lightbox-caption"></p></dialog>
 <script>
-/* nav */
-const nav=document.getElementById('nav');
-const updateNav=()=>nav.classList.toggle('scrolled',scrollY>10);
-addEventListener('scroll',updateNav,{passive:true});
-updateNav();
-
-/* reveal on scroll */
-const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.1});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-
-/* gallery data */
-const PHOTOS=[
-  {file:'crowd-demo',     cap:'Demo hour \u2014 the room gathers around the showcase screens', alt:'Builders crowd the showcase screens during demo hour'},
-  {file:'pitch-workbuddy',cap:'Live pitch: \u201CWhat is Workbuddy?\u201D',                   alt:'Live pitch: What is Workbuddy?'},
-  {file:'hacking',        cap:'Heads down \u2014 building through the afternoon',              alt:'Builders heads down, hacking through the afternoon'},
-  {file:'team-judges',    cap:'Team moment in front of the judges board',                     alt:'Team photo in front of the judges board'},
-  {file:'edgeone-talk',   cap:'Tencent Cloud EdgeOne Makers session',                         alt:'Tencent Cloud EdgeOne Makers session'},
-  {file:'sponsor-booth',  cap:'Sponsor lounge \u2014 EdgeOne Makers',                          alt:'Sponsor lounge \u2014 EdgeOne Makers'}
-];
-const fullSrc=f=>'executable-world-2026/photos/full/'+f+'.jpg';
-
-/* lightbox */
-const lb=document.getElementById('lightbox');
-const lbImg=document.getElementById('lb-img');
-const lbCap=document.getElementById('lb-cap');
-const lbCount=document.getElementById('lb-count');
-const lbDl=document.getElementById('lb-dl');
-let cur=0, lastFocus=null;
-
-function show(i){
-  cur=(i+PHOTOS.length)%PHOTOS.length;
-  const p=PHOTOS[cur];
-  lbImg.src=fullSrc(p.file);
-  lbImg.alt=p.alt;
-  lbCap.textContent=p.cap;
-  lbCount.textContent=(cur+1)+' / '+PHOTOS.length;
-  lbDl.href=fullSrc(p.file);
-  lbDl.setAttribute('download',p.file+'.jpg');
-}
-function openLb(i){ show(i); lastFocus=document.activeElement; lb.classList.add('open'); document.body.style.overflow='hidden'; document.getElementById('lb-close').focus(); }
-function closeLb(){ lb.classList.remove('open'); document.body.style.overflow=''; if(lastFocus){lastFocus.focus();lastFocus=null} }
-
-document.querySelectorAll('.tile').forEach(t=>{
-  t.addEventListener('click',e=>{
-    if(e.target.closest('.dl'))return;
-    openLb(+t.dataset.i);
-  });
-  t.addEventListener('keydown',e=>{
-    if((e.key==='Enter'||e.key===' ')&&!e.target.closest('.dl')){e.preventDefault();openLb(+t.dataset.i);}
-  });
-});
-/* per-tile download buttons */
-document.querySelectorAll('.tile .dl').forEach(b=>{
-  b.addEventListener('click',e=>{
-    e.stopPropagation();
-    const p=PHOTOS[+b.dataset.dl];
-    const a=document.createElement('a');
-    a.href=fullSrc(p.file); a.download=p.file+'.jpg';
-    document.body.appendChild(a); a.click(); a.remove();
-  });
-});
-
-document.getElementById('lb-close').addEventListener('click',closeLb);
-document.getElementById('lb-prev').addEventListener('click',e=>{e.stopPropagation();show(cur-1)});
-document.getElementById('lb-next').addEventListener('click',e=>{e.stopPropagation();show(cur+1)});
-lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});
-addEventListener('keydown',e=>{
-  if(!lb.classList.contains('open'))return;
-  if(e.key==='Escape')closeLb();
-  else if(e.key==='ArrowLeft')show(cur-1);
-  else if(e.key==='ArrowRight')show(cur+1);
-});
-/* swipe */
-let sx=null;
-lb.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
-lb.addEventListener('touchend',e=>{
-  if(sx===null)return;
-  const dx=e.changedTouches[0].clientX-sx;
-  if(Math.abs(dx)>48)show(cur+(dx<0?1:-1));
-  sx=null;
-},{passive:true});
+(()=>{'use strict';
+const root=document.documentElement,body=document.body,nav=document.getElementById('nav'),reduce=matchMedia('(prefers-reduced-motion: reduce)');
+let paused=reduce.matches;const motionButton=document.querySelector('#motion-toggle');
+function setMotion(value){paused=value;body.classList.toggle('paused',value);motionButton.textContent=value?'Enable motion':'Pause motion';motionButton.setAttribute('aria-pressed',String(value));if(value)document.querySelectorAll('[data-count]').forEach(x=>x.textContent=x.dataset.count)}
+setMotion(paused);motionButton.addEventListener('click',()=>setMotion(!paused));reduce.addEventListener('change',e=>setMotion(e.matches));
+if('IntersectionObserver' in window){root.classList.add('js-motion');const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');observer.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(e=>observer.observe(e));const nums=new IntersectionObserver(entries=>entries.forEach(e=>{if(!e.isIntersecting)return;nums.unobserve(e.target);if(paused)return;const el=e.target,target=Number(el.dataset.count);let start;function tick(t){if(paused){el.textContent=String(target);return}if(!start)start=t;const k=Math.min((t-start)/1050,1);el.textContent=String(Math.round(target*(1-Math.pow(1-k,3))));if(k<1)requestAnimationFrame(tick)}requestAnimationFrame(tick)}),{threshold:.7});document.querySelectorAll('[data-count]').forEach(el=>nums.observe(el))}
+let scheduled=false;function onScroll(){scheduled=false;const span=root.scrollHeight-innerHeight;document.querySelector('.progress').style.transform='scaleX('+Math.max(0,Math.min(1,span?scrollY/span:0))+')';nav.classList.toggle('scrolled',scrollY>10)}
+addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(onScroll)}},{passive:true});addEventListener('resize',onScroll);onScroll();
+const dialog=document.querySelector('#lightbox'),large=document.querySelector('.lightbox-image'),caption=document.querySelector('.lightbox-caption');
+function enlarge(src,alt){large.src=src;large.alt=alt;caption.textContent=alt;dialog.showModal()}
+document.querySelectorAll('[data-lightbox]').forEach(b=>b.addEventListener('click',()=>{const im=b.querySelector('img');enlarge(im.src,im.alt)}));
+document.querySelectorAll('[data-lightbox-source]').forEach(b=>b.addEventListener('click',()=>{const im=document.querySelector(b.dataset.lightboxSource);if(im)enlarge(im.src,im.alt)}));
+document.querySelector('#show-poster').addEventListener('click',()=>{const im=document.querySelector('.poster-thumb');enlarge(im.src,'The Executable World — original event poster')});
+document.querySelector('#close-lightbox').addEventListener('click',()=>dialog.close());
+dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});
+})();
 </script>
-</body>
-</html>
+</body></html>
