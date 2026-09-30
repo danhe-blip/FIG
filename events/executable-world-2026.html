@@ -527,7 +527,24 @@ dialog::backdrop{background:#0e0c0ae8;backdrop-filter:blur(10px)}
 .collab .wide-shot{aspect-ratio:16/9}
 .fill-frame{aspect-ratio:16/10;overflow:hidden;background:var(--white-tint)}
 .project-image .filled-image{object-fit:contain}
-.progress{position:fixed;top:calc(var(--nav-h) - 2px);left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:left;background:var(--blue);z-index:51}
+/* Scroll progress: a 2px line that opens into a section map on hover / keyboard focus */
+.progress{position:fixed;top:calc(var(--nav-h) - 2px);left:0;width:100%;height:2px;z-index:51;transition:height .22s var(--ease)}
+.progress::after{content:"";position:absolute;left:0;right:0;top:100%;height:14px}
+.pg-layer{position:absolute;inset:0;display:flex;overflow:hidden}
+.pg-base{background:#5f5a55}
+.pg-fill{background:var(--blue);color:#241f1a;clip-path:inset(0 100% 0 0);pointer-events:none}
+.pg-base,.pg-fill{font:600 .6875rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase}
+.pg-seg{display:flex;gap:.6em;align-items:center;min-width:0;padding:0 12px;color:#faf9f4;text-decoration:none;white-space:nowrap;border-left:1px solid #241f1a;opacity:0;transition:opacity .15s}
+.pg-fill .pg-seg{color:#241f1a;border-left-color:transparent}
+.pg-seg:first-child{border-left:0}
+.pg-seg b{flex:none;font-weight:700}
+.pg-seg span{overflow:hidden;text-overflow:ellipsis}
+.pg-base .pg-seg:hover{background:#7a746d}
+.progress.open{height:30px}
+.progress.open .pg-seg{opacity:1}
+.progress.open .pg-base{cursor:pointer}
+.pg-seg:focus-visible{outline:2px solid #faf9f4;outline-offset:-3px}
+@media(prefers-reduced-motion:reduce){.progress,.pg-seg{transition:none}}
 @media(max-width:1050px){
   .platform-journey h3{font-size:0.935rem;overflow-wrap:anywhere}
 }
@@ -591,13 +608,12 @@ nav{background:var(--white)}
       <div class="nav-links" id="nav-links">
         <a href="/">Home</a>
         <a href="/events/executable-world-2026" aria-current="page">Events</a>
-        <a href="/#why">About</a>
       </div>
       <a class="btn" href="mailto:contact@figstudio.vc">Work With Us</a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu"><span class="bars" aria-hidden="true"></span></button>
     </div>
   </div>
-</nav><div class="progress" aria-hidden="true"></div>
+</nav><div class="progress" id="progress" role="navigation" aria-label="Jump to section"><div class="pg-layer pg-base"><a class="pg-seg" href="#top" data-target="top"><b>00</b><span>/ Overview</span></a><a class="pg-seg" href="#platform" data-target="platform"><b>01</b><span>/ One connected platform</span></a><a class="pg-seg" href="#experience" data-target="experience"><b>02</b><span>/ The experience</span></a><a class="pg-seg" href="#projects" data-target="projects"><b>03</b><span>/ What they built</span></a><a class="pg-seg" href="#partners" data-target="partners"><b>04</b><span>/ In the room</span></a><a class="pg-seg" href="#thanks" data-target="thanks"><b>05</b><span>/ With thanks</span></a><a class="pg-seg" href="#community" data-target="community"><b>—</b><span>/ Community</span></a><a class="pg-seg" href="#next" data-target="next"><b>06</b><span>/ The next partnership</span></a><a class="pg-seg" href="#contact" data-target="contact"><b>—</b><span>/ Get in touch</span></a></div><div class="pg-layer pg-fill" aria-hidden="true"><div class="pg-seg" data-target="top"><b>00</b><span>/ Overview</span></div><div class="pg-seg" data-target="platform"><b>01</b><span>/ One connected platform</span></div><div class="pg-seg" data-target="experience"><b>02</b><span>/ The experience</span></div><div class="pg-seg" data-target="projects"><b>03</b><span>/ What they built</span></div><div class="pg-seg" data-target="partners"><b>04</b><span>/ In the room</span></div><div class="pg-seg" data-target="thanks"><b>05</b><span>/ With thanks</span></div><div class="pg-seg" data-target="community"><b>—</b><span>/ Community</span></div><div class="pg-seg" data-target="next"><b>06</b><span>/ The next partnership</span></div><div class="pg-seg" data-target="contact"><b>—</b><span>/ Get in touch</span></div></div></div>
 <main>
 <section class="hero" id="top"><img class="hero-image" fetchpriority="high" decoding="async" src="executable-world-2026/img/hero.jpg" alt="Builders gathered for a presentation at The Executable World hackathon"><div class="hero-glow" aria-hidden="true"></div><div class="hero-inner wrap"><div class="hero-top"><div class="hero-meta"><span class="eyebrow mono">The Executable World<br>Full Stack AI Hackathon & Mixer</span></div><span class="mono location">September 19, 2026<br>09:00 — 20:00</span></div><h1 class="reveal">A room of builders. <span class="outline">A world of possibility.</span></h1><div class="hero-bottom"><div class="hero-summary reveal delay"><p>One day of building, technical exchange and live demos. A closer look at what FIG Studio brought together.</p><a class="text-link" href="#impact">Explore the impact <span class="arrow arrow--down" aria-hidden="true"></span></a></div></div></div><button type="button" class="background-photo-view" data-lightbox-source=".hero .hero-image" aria-label="Enlarge background event photo"><span class="arrow arrow--ne" aria-hidden="true"></span></button></section>
 <section class="metrics" id="impact" aria-label="Event impact"><div class="metric-grid wrap"><div class="metric"><div class="metric-num"><span class="approx">~</span><span data-count="100">100</span></div><b class="metric-title">Builders in the room</b><small>Researchers, engineers, founders<br>and product builders</small></div><div class="metric"><div class="metric-num" data-count="25">25</div><b class="metric-title">Project submissions</b><small>Ideas taken into active building<br>during the event</small></div><div class="metric"><div class="metric-num" data-count="2">2</div><b class="metric-title">AI tracks</b><small>AI Assistants +<br>Production-Ready AI Agent</small></div></div></section>
@@ -629,8 +645,19 @@ let paused=reduce.matches;
 function setMotion(value){paused=value;body.classList.toggle('paused',value);if(value)document.querySelectorAll('[data-count]').forEach(x=>x.textContent=x.dataset.count)}
 setMotion(paused);reduce.addEventListener('change',e=>setMotion(e.matches));
 if('IntersectionObserver' in window){root.classList.add('js-motion');const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');observer.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(e=>observer.observe(e));const nums=new IntersectionObserver(entries=>entries.forEach(e=>{if(!e.isIntersecting)return;nums.unobserve(e.target);if(paused)return;const el=e.target,target=Number(el.dataset.count);let start;function tick(t){if(paused){el.textContent=String(target);return}if(!start)start=t;const k=Math.min((t-start)/1050,1);el.textContent=String(Math.round(target*(1-Math.pow(1-k,3))));if(k<1)requestAnimationFrame(tick)}requestAnimationFrame(tick)}),{threshold:.7});document.querySelectorAll('[data-count]').forEach(el=>nums.observe(el))}
-let scheduled=false;function onScroll(){scheduled=false;const span=root.scrollHeight-innerHeight;document.querySelector('.progress').style.transform='scaleX('+Math.max(0,Math.min(1,span?scrollY/span:0))+')';nav.classList.toggle('scrolled',scrollY>10)}
-addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(onScroll)}},{passive:true});addEventListener('resize',onScroll);onScroll();
+const pg=document.getElementById('progress'),pgSegs=[...pg.querySelectorAll('.pg-base .pg-seg')],pgFillSegs=[...pg.querySelectorAll('.pg-fill .pg-seg')],pgFill=pg.querySelector('.pg-fill');
+let pgTops=[],pgDoc=1;
+function pgMeasure(){pgDoc=root.scrollHeight;pgTops=pgSegs.map((a,i)=>i?document.getElementById(a.dataset.target).getBoundingClientRect().top+scrollY:0);
+  pgSegs.forEach((a,i)=>{const w=((pgTops[i+1]??pgDoc)-pgTops[i])/pgDoc*100;a.style.flex=pgFillSegs[i].style.flex='0 0 '+w+'%';a.title=a.textContent.replace(/\s+/g,' ').trim()})}
+function pgUpdate(){const span=Math.max(1,root.scrollHeight-innerHeight),navH=nav.offsetHeight,t=Math.max(0,Math.min(1,scrollY/span)),ref=scrollY+navH+t*(innerHeight-navH);
+  let i=pgTops.length-1;while(i>0&&pgTops[i]>ref)i--;const end=pgTops[i+1]??pgDoc,f=Math.max(0,Math.min(1,(ref-pgTops[i])/Math.max(1,end-pgTops[i])));
+  const pct=((pgTops[i]+f*(end-pgTops[i]))/pgDoc)*100;pgFill.style.clipPath='inset(0 '+(100-pct)+'% 0 0)';pg.setAttribute('aria-valuenow',Math.round(pct))}
+pg.addEventListener('mouseenter',()=>pg.classList.add('open'));pg.addEventListener('mouseleave',()=>{if(!pg.contains(document.activeElement))pg.classList.remove('open')});
+pg.addEventListener('focusin',()=>pg.classList.add('open'));pg.addEventListener('focusout',()=>{if(!pg.matches(':hover'))pg.classList.remove('open')});
+pg.addEventListener('click',e=>{if(e.target.closest('a'))pg.blur()});
+addEventListener('load',()=>{pgMeasure();pgUpdate()});addEventListener('resize',()=>{pgMeasure();pgUpdate()});
+let scheduled=false;function onScroll(){scheduled=false;pgUpdate();nav.classList.toggle('scrolled',scrollY>10)}
+addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(onScroll)}},{passive:true});pgMeasure();onScroll();
 const menuBtn=document.querySelector('.nav-toggle'),menuNav=document.getElementById('nav');
 function setMenu(open){menuNav.classList.toggle('open',open);menuBtn.setAttribute('aria-expanded',String(open));menuBtn.setAttribute('aria-label',open?'Close menu':'Open menu')}
 menuBtn.addEventListener('click',()=>setMenu(!menuNav.classList.contains('open')));
