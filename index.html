@@ -117,18 +117,32 @@ nav.scrolled{backdrop-filter:blur(12px) saturate(120%);-webkit-backdrop-filter:b
 .nav-links a{position:relative;padding:var(--sp-2) 0;font-size:var(--fs-ui);font-weight:600;color:var(--ink-soft);transition:color .16s}
 .nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--ink)}
 .nav-links a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;border-radius:1px;background:var(--accent-blue)}
-nav a:focus-visible{outline:2px solid var(--accent-blue);outline-offset:3px}
+nav a:focus-visible,nav button:focus-visible{outline:2px solid var(--accent-blue);outline-offset:3px}
 nav .btn{padding:var(--sp-2) var(--sp-4);font-size:var(--fs-label)}
-/* Phones: logo and call-to-action share the first row, the page links get their own */
+.nav-toggle{display:none;width:44px;height:44px;align-items:center;justify-content:center;margin-right:-10px;padding:0;border:0;border-radius:var(--radius-sm);background:transparent;color:var(--ink);cursor:pointer}
+.nav-toggle .bars,.nav-toggle .bars::before,.nav-toggle .bars::after{display:block;width:20px;height:2px;border-radius:1px;background:currentColor;transition:transform .2s,background .2s}
+.nav-toggle .bars{position:relative}
+.nav-toggle .bars::before,.nav-toggle .bars::after{content:"";position:absolute;left:0}
+.nav-toggle .bars::before{top:-6px}
+.nav-toggle .bars::after{top:6px}
+nav.open .nav-toggle .bars{background:transparent}
+nav.open .nav-toggle .bars::before{transform:translateY(6px) rotate(45deg)}
+nav.open .nav-toggle .bars::after{transform:translateY(-6px) rotate(-45deg)}
+/* Phones: the bar keeps the wordmark, the call to action and a menu button;
+   the page links drop into a panel under the bar. */
 @media(max-width:600px){
-  :root{--nav-h:96px}
-  .nav-in{display:grid;grid-template-columns:1fr auto;grid-template-rows:56px 40px;padding:0 22px}
-  .nav-right{display:contents}
-  .wordmark{grid-area:1/1}
+  :root{--nav-h:64px}
+  .nav-in{padding:0 22px}
   .wordmark img{height:38.4px}
-  nav .btn{grid-area:1/2}
-  .nav-links{grid-area:2/1/3/3;align-self:stretch;border-top:1px solid var(--line)}
+  .nav-right{gap:var(--sp-3)}
+  .nav-toggle{display:inline-flex}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:var(--sp-2) 0;background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line);box-shadow:0 16px 32px rgba(36,31,26,.08)}
+  nav.open .nav-links{display:flex}
+  .nav-links a{padding:var(--sp-4) 22px;font-size:var(--fs-body)}
+  .nav-links a[aria-current="page"]{box-shadow:inset 3px 0 0 var(--accent-blue)}
+  .nav-links a[aria-current="page"]::after{display:none}
 }
+@media(prefers-reduced-motion:reduce){.nav-toggle .bars,.nav-toggle .bars::before,.nav-toggle .bars::after{transition:none}}
 footer .wordmark img{height:70px}
 
 /* Hero */
@@ -357,9 +371,6 @@ footer .fine{margin-top:var(--sp-6);font-size:var(--fs-micro);color:#94907F;text
      illustration and the logo strip at once. The illustration is
      decorative (aria-hidden), so it yields to keep the strip in view. */
   .hero-in{padding:var(--sp-5) 22px}
-  .hero .sub{margin-bottom:var(--sp-5)}
-  .logos{padding:var(--sp-5) 0}
-  .logos .label{margin-bottom:var(--sp-4)}
   .hero-art{display:none}
   .fig-grid,.adv,.grid-svc,.invest-row,.ev-grid{grid-template-columns:1fr}
   .fig-card-art{padding:var(--sp-3)}
@@ -376,12 +387,13 @@ footer .fine{margin-top:var(--sp-6);font-size:var(--fs-micro);color:#94907F;text
       <img src="fig-logo-vector.svg" alt="FIG Studio">
     </a>
     <div class="nav-right">
-      <div class="nav-links">
+      <div class="nav-links" id="nav-links">
         <a href="#top" aria-current="page">Home</a>
         <a href="/events/executable-world-2026">Events</a>
         <a href="#why">About</a>
       </div>
       <a class="btn" href="mailto:contact@figstudio.vc">Work With Us</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu"><span class="bars" aria-hidden="true"></span></button>
     </div>
   </div>
 </nav>
@@ -731,6 +743,13 @@ if(window.__figReload){
   requestAnimationFrame(()=>scrollTo(0,0));
   addEventListener('pageshow',()=>scrollTo(0,0),{once:true});
 }
+const menuBtn=document.querySelector('.nav-toggle'),menuNav=document.getElementById('nav');
+function setMenu(open){menuNav.classList.toggle('open',open);menuBtn.setAttribute('aria-expanded',String(open));menuBtn.setAttribute('aria-label',open?'Close menu':'Open menu')}
+menuBtn.addEventListener('click',()=>setMenu(!menuNav.classList.contains('open')));
+addEventListener('keydown',e=>{if(e.key==='Escape'&&menuNav.classList.contains('open')){setMenu(false);menuBtn.focus()}});
+addEventListener('click',e=>{if(menuNav.classList.contains('open')&&!menuNav.contains(e.target))setMenu(false)});
+menuNav.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+matchMedia('(min-width:601px)').addEventListener('change',e=>{if(e.matches)setMenu(false)});
 const nav=document.getElementById('nav');
 const updateNav=()=>nav.classList.toggle('scrolled',scrollY>10);
 addEventListener('scroll',updateNav,{passive:true});
