@@ -1,16 +1,54 @@
 {
   "event": "FIG AI Design Makeathon 2026",
-  "voice": "Technical and geometric: hard edges, no rounded corners, monospaced capitals, a bright-green offset on the headline, and a pixel mosaic that dissolves into a halftone portrait.",
+  "voice": "Technical and geometric: hard edges, no rounded corners, monospaced capitals with a green offset on the headline, and a pixel mosaic that dissolves into a halftone portrait.",
   "typography": {
-    "display": { "family": "JetBrains Mono", "weights": [700, 800], "case": "upper", "note": "Poster headline: heavy monospaced capitals with a bright-green offset shadow" },
-    "label": { "family": "JetBrains Mono", "weights": [600], "case": "upper", "note": "Dates and chips: monospaced capitals, wide tracking" },
-    "heading": { "family": "Sora", "note": "FIG house heading face, kept from the event recap so the site stays one family" },
-    "body": { "family": "Inter" }
+    "display": {
+      "family": "JetBrains Mono",
+      "weights": [
+        700,
+        800
+      ],
+      "case": "upper",
+      "note": "Poster headline: heavy monospaced capitals with a bright-green offset shadow"
+    },
+    "label": {
+      "family": "JetBrains Mono",
+      "weights": [
+        600
+      ],
+      "case": "upper",
+      "note": "Dates and chips: monospaced capitals, wide tracking"
+    },
+    "heading": {
+      "family": "Sora",
+      "note": "FIG house heading face, kept from the event recap so the site stays one family"
+    },
+    "body": {
+      "family": "Inter"
+    }
   },
   "motifs": {
-    "pixel_field": { "sizes": [1, 2, 3], "density": "grows toward the right edge", "halftone_inside_blocks": true },
-    "rings": { "count": 2 },
-    "chips": { "radius": 0, "note": "Solid accent chips with white caps; a black chip with a pin for the venue" },
+    "pixel_field": {
+      "sizes": [
+        1,
+        2,
+        3
+      ],
+      "density": "grows toward the right edge",
+      "halftone_inside_blocks": true
+    },
+    "rings": {
+      "count": 2
+    },
+    "chips": {
+      "radius": 0,
+      "note": "Solid accent chips with white caps; a black chip with a pin for the venue"
+    },
     "i_dot_square": "A small bright-green square (the dot of the 'i' in AI) is used as the bullet for eyebrow labels"
+  },
+  "highlight": {
+    "max_saturation": 0.5,
+    "max_value": 0.8,
+    "note": "The poster's neon green is capped to a calmer green so it reads as an accent, not a glow"
   }
 }

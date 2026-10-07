@@ -61,9 +61,15 @@ def extract(path):
     return dict(paper=tuple(paper), tint=tuple(tint), ink=tuple(ink), deep=tuple(deep),
                 bright=tuple(bright), hue=centre)
 
-def fit(p):
-    """Make the roles legible: accent >= 4.5:1 on paper, ink >= 4.5:1 on the bright accent."""
+def fit(p, profile):
+    """Tame and check the roles: the highlight is capped in saturation/brightness so a neon poster
+    colour doesn't flood the page; accent >= 4.5:1 on paper; ink >= 4.5:1 on the highlight."""
     notes = []
+    hl = profile.get('highlight', {})
+    h_, s_, v_ = colorsys.rgb_to_hsv(*[c/255 for c in p['bright']])
+    s2, v2 = min(s_, hl.get('max_saturation', .55)), min(v_, hl.get('max_value', .8))
+    if (s2, v2) != (s_, v_):
+        p['bright'] = tuple(c*255 for c in colorsys.hsv_to_rgb(h_, s2, v2)); notes.append('highlight softened (saturation/brightness capped)')
     d = p['deep']
     for _ in range(40):
         if contrast(d, p['paper']) >= 4.5: break
@@ -122,7 +128,7 @@ def theme_css(p, profile, motif):
   --ev-paper-tint:{hx(p['tint'])};
   --ev-ink:{hx(p['ink'])};
   --ev-accent:{hx(p['deep'])};
-  --ev-accent-bright:{hx(p['bright'])};
+  --ev-highlight:{hx(p['bright'])};
   --ev-white:#ffffff;
   /* derived neutrals */
   --ev-ink-soft:color-mix(in srgb,var(--ev-ink) 76%,var(--ev-paper));
@@ -142,17 +148,17 @@ def theme_css(p, profile, motif):
   /* motif: the poster's pixel mosaic, as an image */
   --ev-motif-field:url("{uri}");
 }}
-.ev-display{{font-family:var(--ev-font-display);font-weight:800;text-transform:uppercase;letter-spacing:-.04em;text-shadow:.045em .055em 0 var(--ev-accent-bright)}}
+.ev-display{{font-family:var(--ev-font-display);font-weight:800;text-transform:uppercase;letter-spacing:-.04em;text-shadow:.045em .055em 0 var(--ev-highlight)}}
 .ev-label{{font-family:var(--ev-font-label);font-weight:600;font-size:.75rem;line-height:1.5;letter-spacing:.1em;text-transform:uppercase;font-variant-numeric:tabular-nums}}
-.ev-mark:before{{content:"";display:inline-block;width:.62em;height:.62em;background:var(--ev-accent-bright);margin-right:.9em;vertical-align:.04em}}
+.ev-mark:before{{content:"";display:inline-block;width:.62em;height:.62em;background:var(--ev-highlight);margin-right:.9em;vertical-align:.04em}}
 .ev-chip{{display:inline-flex;align-items:center;gap:.6em;padding:.5em .75em;font:600 .75rem/1 var(--ev-font-label);letter-spacing:.08em;text-transform:uppercase;background:var(--ev-accent);color:var(--ev-white);border-radius:var(--ev-radius)}}
 .ev-chip--ink{{background:var(--ev-ink);color:var(--ev-paper)}}
-.ev-chip--pin:before{{content:"";width:.95em;height:.95em;background:var(--ev-accent-bright);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z'/%3E%3C/svg%3E") center/contain no-repeat}}
+.ev-chip--pin:before{{content:"";width:.95em;height:.95em;background:var(--ev-highlight);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z'/%3E%3C/svg%3E") center/contain no-repeat}}
 .ev-field{{background:var(--ev-motif-field) right top/contain no-repeat}}
 """
 
 PAIRS = [('Ink on paper', 'ink', 'paper'), ('Accent on paper', 'deep', 'paper'), ('White on accent (chips)', 'white', 'deep'),
-         ('Ink on bright accent', 'ink', 'bright'), ('Bright accent on ink', 'bright', 'ink'), ('Paper on ink', 'paper', 'ink')]
+         ('Ink on highlight', 'ink', 'bright'), ('Highlight on ink', 'bright', 'ink'), ('Paper on ink', 'paper', 'ink')]
 
 def report(p):
     c = dict(p, white=(255, 255, 255)); rows = []
@@ -161,8 +167,8 @@ def report(p):
     return rows
 
 def specimen(p, profile, rep, poster_rel, motif_svg_text, notes):
-    sw = [('paper', 'Ground', p['paper']), ('tint', 'Paper tint', p['tint']), ('ink', 'Ink', p['ink']), ('deep', 'Accent', p['deep']), ('bright', 'Accent bright', p['bright'])]
-    swatches = ''.join(f'<div class="sw"><i style="background:{hx(c)}"></i><b>{n}</b><span>--ev-{k if k not in ("deep","bright","tint") else {"deep":"accent","bright":"accent-bright","tint":"paper-tint"}[k]}</span><code>{hx(c)}</code></div>' for k, n, c in sw)
+    sw = [('paper', 'Ground', p['paper']), ('tint', 'Paper tint', p['tint']), ('ink', 'Ink', p['ink']), ('deep', 'Accent', p['deep']), ('bright', 'Highlight', p['bright'])]
+    swatches = ''.join(f'<div class="sw"><i style="background:{hx(c)}"></i><b>{n}</b><span>--ev-{k if k not in ("deep","bright","tint") else {"deep":"accent","bright":"highlight","tint":"paper-tint"}[k]}</span><code>{hx(c)}</code></div>' for k, n, c in sw)
     rows = ''.join(f'<tr><td><span style="display:inline-block;width:2.2em;text-align:center;padding:.15em 0;background:{r["bg"]};color:{r["fg"]}">Aa</span> {r["pair"]}</td><td>{r["ratio"]}:1</td><td>{"AA" if r["aa"] else "below AA"}</td></tr>' for r in rep)
     voice = profile.get('voice', '')
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -176,7 +182,7 @@ h1,h2{{font-family:var(--ev-font-heading);font-weight:500;letter-spacing:-.03em;
 table{{border-collapse:collapse;width:100%;margin-top:20px}}td{{padding:10px 8px;border-bottom:1px solid var(--ev-line);font-size:.9375rem}}
 .dark{{background:var(--ev-ink);color:var(--ev-on-dark);padding:28px}}.dark p{{color:var(--ev-on-dark-muted);margin:8px 0 0}}
 .mot{{background:var(--ev-paper-tint);border:1px solid var(--ev-line);aspect-ratio:1;max-width:420px}}.mot svg{{width:100%;height:100%;display:block}}
-.btn{{display:inline-block;padding:12px 22px;background:var(--ev-accent-bright);color:var(--ev-ink);font:600 .875rem var(--ev-font-body);border-radius:var(--ev-radius)}}
+.btn{{display:inline-block;padding:12px 22px;background:var(--ev-highlight);color:var(--ev-ink);font:600 .875rem var(--ev-font-body);border-radius:var(--ev-radius)}}
 @media(max-width:760px){{.g2{{grid-template-columns:1fr}}.sws{{grid-template-columns:repeat(2,1fr)}}}}
 </style></head><body>
 <header class="w" style="padding-top:56px;padding-bottom:48px"><p class="ev-label ev-mark">Event design system · generated from the poster</p>
@@ -184,7 +190,7 @@ table{{border-collapse:collapse;width:100%;margin-top:20px}}td{{padding:10px 8px
 <p class="lead">{voice}</p></header>
 <section><div class="w"><h2>1. Source → palette</h2><p class="lead">Roles are measured from the poster's pixels: the dominant chromatic hue family, its flat mid-tone and vivid tone, the paper, the ink and the pale wash.</p>
 <div class="grid g2" style="margin-top:24px;align-items:start"><img src="{poster_rel}" alt="Source poster" style="width:100%;max-width:460px;border:1px solid var(--ev-line-strong)"><div><div class="sws" style="grid-template-columns:repeat(2,1fr)">{swatches}</div></div></div></div></section>
-<section><div class="w"><h2>2. Contrast</h2><p class="lead">Checked on every build. The accent is darkened automatically if it falls under 4.5:1 on paper.{(' Notes: ' + '; '.join(notes) + '.') if notes else ''}</p><table>{rows}</table></div></section>
+<section><div class="w"><h2>2. Contrast</h2><p class="lead">Checked on every build. The accent is darkened automatically if it falls under 4.5:1 on paper, and the highlight is capped so it never turns neon.{(' Notes: ' + '; '.join(notes) + '.') if notes else ''}</p><table>{rows}</table></div></section>
 <section><div class="w"><h2>3. Type</h2><div class="grid g2" style="margin-top:20px"><div><p class="ev-label">Display · {profile.get('typography',{}).get('display',{}).get('family','')}</p><div class="ev-display" style="font-size:3rem;line-height:1">AI Design<br>Makeathon.</div></div>
 <div><p class="ev-label">Heading · {profile.get('typography',{}).get('heading',{}).get('family','')}</p><div style="font-family:var(--ev-font-heading);font-size:2.2rem;line-height:1.1;letter-spacing:-.03em">Design must catch up.</div><p style="margin-top:14px">Body · {profile.get('typography',{}).get('body',{}).get('family','')}. Participants will tackle emerging AI interaction and product challenges.</p></div></div></div></section>
 <section><div class="w"><h2>4. Components</h2><div class="grid" style="margin-top:20px;gap:18px"><div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center"><span class="ev-chip">Online</span><span class="ev-chip">Winner demo</span><span class="ev-chip ev-chip--ink ev-chip--pin">Venue, City</span><a class="btn" href="#">Work with us</a></div>
@@ -198,7 +204,7 @@ def main():
     a = ap.parse_args()
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
     profile = json.loads(Path(a.profile).read_text()) if a.profile else {}
-    p, notes = fit(extract(a.poster))
+    p, notes = fit(extract(a.poster), profile)
     seed = int(hashlib.sha1(Path(a.poster).read_bytes()).hexdigest()[:8], 16)
     svg = motif_svg(p, profile, seed)
     rep = report(p)
