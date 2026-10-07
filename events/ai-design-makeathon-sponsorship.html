@@ -71,27 +71,32 @@ h1,h2,h3{font-weight:500;letter-spacing:-.03em;font-family:var(--display)}
 .arrow--up{rotate:-90deg}
 .skip{position:fixed;top:-100px;background:var(--blue);padding:12px;z-index:100;color:var(--ink)}
 .skip:focus{top:8px}
-.text-link{display:inline-flex;align-items:center;gap:12px;padding:16px 0 9px;border-bottom:1px solid #efe7d666;margin-top:22px;font-size:.9375rem;transition:gap .3s}
+.text-link{display:inline-flex;align-items:center;gap:12px;padding:16px 0 9px;border-bottom:1px solid #241f1a66;margin-top:22px;font-size:.9375rem;transition:gap .3s}
 .text-link:hover{gap:16px}
 
 /* ---------- Hero: sponsor details + event poster ---------- */
-.hero{position:relative;overflow:hidden;isolation:isolate;min-height:max(720px,calc(100svh - var(--nav-h)));display:flex;flex-direction:column}
-.hero-glow{position:absolute;z-index:-1;inset:-20% -40% 0 45%;background:radial-gradient(ellipse at center,#8e99f726,transparent 63%);animation:ambient 14s ease-in-out infinite alternate;pointer-events:none}
+.hero{position:relative;overflow:hidden;isolation:isolate;min-height:max(720px,calc(100svh - var(--nav-h)));display:flex;flex-direction:column;color:var(--ink);border-bottom:1px solid #241f1a1f;background:radial-gradient(ellipse 70% 80% at 82% 38%,#8e99f733,transparent 70%),linear-gradient(180deg,var(--white) 0%,var(--white) 55%,#eceefd 100%)}
+/* design layer: a halftone dot field (echoes the poster) and two thin rings behind the poster */
+.hero:before{content:"";position:absolute;z-index:-1;right:0;top:0;width:62%;height:100%;background-image:radial-gradient(#374af13d 1.3px,transparent 1.6px);background-size:22px 22px;-webkit-mask-image:radial-gradient(ellipse 75% 70% at 78% 42%,#000 0,transparent 72%);mask-image:radial-gradient(ellipse 75% 70% at 78% 42%,#000 0,transparent 72%)}
+.hero:after{content:"";position:absolute;z-index:-1;right:-14%;top:-6%;width:64vw;height:64vw;max-width:980px;max-height:980px;border-radius:50%;border:1px solid #374af12e;box-shadow:0 0 0 70px #374af108,0 0 0 71px #374af11f;pointer-events:none}
+.hero-glow{position:absolute;z-index:-1;inset:-20% -40% 0 45%;background:radial-gradient(ellipse at center,#8e99f740,transparent 63%);animation:ambient 14s ease-in-out infinite alternate;pointer-events:none}
 .hero-inner{flex:1;width:100%;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(32px,6vw,96px);align-items:center;padding-top:64px;padding-bottom:64px}
 .hero h1{font-size:clamp(3rem,6.2vw,6.2rem);line-height:.96;margin:30px 0 26px}
-.hero h1 .outline{color:var(--blue)}
-.hero-intro{font-family:var(--display);font-size:clamp(1.2rem,1.9vw,1.65rem);line-height:1.35;letter-spacing:-.02em;color:#e1dcd7;max-width:480px}
-.hero-dates{margin-top:38px;display:grid;gap:0;max-width:480px;border-top:1px solid var(--rline)}
-.hero-dates>div{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--rline);align-items:baseline}
-.hero-dates .mono{color:var(--blue)}
+.hero h1 .outline{color:var(--accent-blue-deep)}
+.hero-intro{font-family:var(--display);font-size:clamp(1.2rem,1.9vw,1.65rem);line-height:1.35;letter-spacing:-.02em;color:var(--ink-soft);max-width:480px}
+.hero-dates{margin-top:38px;display:grid;gap:0;max-width:480px;border-top:1px solid #241f1a33}
+.hero-dates>div{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid #241f1a1f;align-items:baseline}
+.hero-dates .mono{color:var(--accent-blue-deep)}
 .hero-dates b{display:block;font-family:var(--display);font-weight:500;font-size:1.15rem;letter-spacing:-.02em}
-.hero-dates span{display:block;font-size:.875rem;color:#cbc6c0;margin-top:3px}
-.hero-poster{margin:0;position:relative}
-.hero-poster img{height:auto;aspect-ratio:1080/1095;object-fit:cover;border:1px solid #efe7d62e;box-shadow:0 30px 80px #0007}
-.hero-partners{border-top:1px solid var(--rline);padding-top:26px;padding-bottom:38px;display:grid;grid-template-columns:.8fr 1.1fr 1fr;gap:30px}
-.hero-partners .mono{display:block;color:var(--blue);margin-bottom:9px}
+.hero-dates span{display:block;font-size:.875rem;color:#6c6052;margin-top:3px}
+.hero-poster{margin:0;position:relative;isolation:isolate}
+.hero-poster:before{content:"";position:absolute;z-index:-1;inset:22px -22px -22px 22px;background:var(--accent-blue);opacity:.9}
+.hero-poster:after{content:"Student Makeathon · 2026";position:absolute;left:0;bottom:-44px;font:600 .6875rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#746a5f}
+.hero-poster img{height:auto;aspect-ratio:1080/1095;object-fit:cover;border:1px solid #241f1a26;box-shadow:0 24px 60px #241f1a24}
+.hero-partners{border-top:1px solid #241f1a33;padding-top:26px;padding-bottom:38px;display:grid;grid-template-columns:.8fr 1.1fr 1fr;gap:30px}
+.hero-partners .mono{display:block;color:var(--accent-blue-deep);margin-bottom:9px}
 .hero-partners strong{display:block;font-family:var(--display);font-weight:500;font-size:1.3rem;letter-spacing:-.03em}
-.hero-partners small{display:block;font-size:.8125rem;color:#bfb7ae;margin-top:5px}
+.hero-partners small{display:block;font-size:.8125rem;color:#6c6052;margin-top:5px}
 
 /* ---------- 01 The opportunity ---------- */
 .opportunity-sec{background:var(--white);color:var(--ink)}
@@ -248,6 +253,9 @@ nav.open .nav-toggle .bars::after{transform:translateY(-6px) rotate(-45deg)}
   .hero-dates div{grid-template-columns:110px 1fr}
   .hero-partners{grid-template-columns:1fr;gap:22px;padding-bottom:30px}
   .hero-glow{display:none}
+  .hero:after{width:120vw;height:120vw;right:-60vw;top:30%}
+  .hero-poster:before{inset:14px -10px -14px 10px}
+  .hero-poster:after{display:none}
   .intro-grid{grid-template-columns:1fr;gap:24px}
   .intro-copy{padding-top:0}
   .tiles{grid-template-columns:1fr;gap:34px;margin-top:48px}
