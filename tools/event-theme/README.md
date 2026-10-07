@@ -4,9 +4,9 @@ Turns an event poster into a design system and applies it to the event's page.
 
 ```bash
 python3 tools/event-theme/build.py \
-  events/ai-design-makeathon-sponsorship/img/poster.jpg \
-  --profile events/ai-design-makeathon-sponsorship/poster-profile.json \
-  --out events/ai-design-makeathon-sponsorship
+  events/ai-design-makeathon/img/poster.jpg \
+  --profile events/ai-design-makeathon/poster-profile.json \
+  --out events/ai-design-makeathon
 ```
 
 Needs Python 3, Pillow and numpy. Output is deterministic: the same poster gives the same files.
