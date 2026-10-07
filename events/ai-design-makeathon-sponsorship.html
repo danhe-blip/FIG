@@ -135,7 +135,8 @@ h1,h2,h3{font-weight:500;letter-spacing:-.03em;font-family:var(--display)}
 .proof-numbers{display:grid;grid-template-columns:1fr 1fr;gap:28px;border-top:1px solid color-mix(in srgb,var(--ev-highlight) 44%,transparent);padding-top:27px}
 .proof-numbers strong{display:block;font-family:var(--display);font-weight:500;font-size:clamp(3rem,5.4vw,5.2rem);line-height:1.04;letter-spacing:-.03em;font-variant-numeric:tabular-nums;white-space:nowrap}
 .proof-numbers .approx{font-size:.52em;vertical-align:top;display:inline-block;padding-top:.18em}
-.proof-numbers small{display:block;margin-top:8px;font-size:.875rem;line-height:1.5;color:var(--ev-on-dark-muted);max-width:200px}
+.proof-numbers b{display:block;margin-top:12px;font-weight:500;font-size:1.0625rem}
+.proof-numbers small{display:block;margin-top:6px;font-size:.875rem;line-height:1.5;color:var(--ev-on-dark-muted);max-width:240px}
 .proof-note{grid-column:1/-1;margin-top:26px;font-size:.75rem;line-height:1.6;color:var(--ev-on-dark-muted);max-width:520px}
 
 /* ---------- 03 Sponsorship packages ---------- */
@@ -355,10 +356,11 @@ nav.open .nav-toggle .bars::after{transform:translateY(-6px) rotate(-45deg)}
     <li class="reveal"><span class="mono">Date TBD</span><h3>Winner Demo</h3><p>The only in-person day: selected winning teams present in San Francisco, followed by awards and a mixer. Date and venue to be announced; everything before it is virtual.</p></li>
   </ol>
   <div class="proof">
-    <figure class="reveal"><div class="shot"><img src="ai-design-makeathon-sponsorship/img/builders.jpg" alt="Builders watching a project demo at FIG Studio’s September 2026 hackathon" loading="lazy"></div><figcaption class="caption"><b>FIG community · Prior event, September 2026</b><span class="figure-no">FIG. 01</span></figcaption></figure>
-    <div class="proof-numbers reveal delay">
-      <div><strong><span class="approx">~</span>100</strong><small>builders in the room at The Executable World</small></div>
-      <div><strong>25</strong><small>project submissions from the event</small></div>
+    <figure class="reveal"><div class="shot"><img src="ai-design-makeathon-sponsorship/img/builders.jpg" alt="Builders watching a project demo at FIG Studio’s September 2026 hackathon" loading="lazy"></div><figcaption class="caption"><b>The Executable World · Prior event, September 19, 2026</b><span class="figure-no">FIG. 01</span></figcaption></figure>
+    <div class="proof-numbers reveal delay" id="prior-stats">
+      <!-- Static values are a fallback; the script below refreshes them from the recap page's metrics. -->
+      <div data-stat="rsvps"><strong><span data-num>408</span></strong><b data-title>RSVPs</b><small data-note>People who signed up to join the hackathon &amp; mixer</small></div>
+      <div data-stat="builders"><strong><span class="approx">~</span><span data-num>100</span></strong><b data-title>Builders in the room</b><small data-note>Researchers, engineers, founders and product builders</small></div>
       <p class="proof-note">Prior-event figures illustrate FIG’s community experience; they are not attendance projections for this makeathon. <a href="/events/executable-world-2026" style="text-decoration:underline;text-underline-offset:3px">Read the event recap</a>.</p>
     </div>
   </div>
@@ -423,6 +425,22 @@ pg.addEventListener('click',e=>{if(e.target.closest('a'))pg.blur()});
 addEventListener('load',()=>{pgMeasure();pgUpdate()});addEventListener('resize',()=>{pgMeasure();pgUpdate()});
 let scheduled=false;function onScroll(){scheduled=false;pgUpdate();nav.classList.toggle('scrolled',scrollY>10)}
 addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(onScroll)}},{passive:true});pgMeasure();onScroll();
+/* Prior-event figures come from the recap page itself, so there is one source of truth.
+   If it can't be fetched (offline, preview), the static fallback in the markup stays. */
+(async()=>{const box=document.getElementById('prior-stats');if(!box)return;
+  for(const url of ['executable-world-2026','executable-world-2026.html']){
+    try{const r=await fetch(url,{credentials:'same-origin'});if(!r.ok)continue;
+      const doc=new DOMParser().parseFromString(await r.text(),'text/html');let n=0;
+      doc.querySelectorAll('.metric').forEach(m=>{
+        const title=(m.querySelector('.metric-title')?.textContent||'').trim(),t=title.toLowerCase();
+        const key=t==='rsvps'?'rsvps':t.startsWith('builders')?'builders':'';
+        const count=m.querySelector('[data-count]')?.dataset.count,card=key&&box.querySelector('[data-stat="'+key+'"]');
+        if(!card||!/^\d+$/.test(count||''))return;
+        card.querySelector('[data-num]').textContent=count;
+        const ap=card.querySelector('.approx');if(ap)ap.hidden=!m.querySelector('.approx');
+        card.querySelector('[data-title]').textContent=title;
+        const sm=m.querySelector('small');if(sm)sm.querySelectorAll('br').forEach(br=>br.replaceWith(' '));const note=(sm?.textContent||'').replace(/\s+/g,' ').trim();if(note)card.querySelector('[data-note]').textContent=note;n++});
+      if(n)return}catch(e){}}})();
 const pv=document.getElementById('poster-video');if(pv&&reduce.matches){pv.removeAttribute('autoplay');pv.pause()}
 const menuBtn=document.querySelector('.nav-toggle');
 function setMenu(open){nav.classList.toggle('open',open);menuBtn.setAttribute('aria-expanded',String(open));menuBtn.setAttribute('aria-label',open?'Close menu':'Open menu')}
