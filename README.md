@@ -9,6 +9,11 @@ founders, and repeat entrepreneurs to turn deep expertise into AI-native compani
 Static HTML — `index.html` plus an event recap page and the AI Design Makeathon sponsorship page under `events/` — zero build step, zero dependencies.
 Fonts (Sora / Inter) load from Google Fonts. Deploys as-is on Vercel.
 
+## Event design system
+
+`tools/event-theme/build.py` derives an event's colours, type, chips and pixel-mosaic motif from its poster and writes
+`theme.css` next to the event page. See `tools/event-theme/README.md`.
+
 ## Local preview
 
 Just open `index.html` in a browser, or:

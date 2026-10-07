@@ -1,0 +1,55 @@
+{
+  "hue": 142,
+  "tokens": {
+    "paper": "#f7fafb",
+    "tint": "#f0fcf6",
+    "ink": "#1a201b",
+    "deep": "#367254",
+    "bright": "#26f14f"
+  },
+  "contrast": [
+    {
+      "pair": "Ink on paper",
+      "fg": "#1a201b",
+      "bg": "#f7fafb",
+      "ratio": 15.81,
+      "aa": true
+    },
+    {
+      "pair": "Accent on paper",
+      "fg": "#367254",
+      "bg": "#f7fafb",
+      "ratio": 5.42,
+      "aa": true
+    },
+    {
+      "pair": "White on accent (chips)",
+      "fg": "#ffffff",
+      "bg": "#367254",
+      "ratio": 5.69,
+      "aa": true
+    },
+    {
+      "pair": "Ink on bright accent",
+      "fg": "#1a201b",
+      "bg": "#26f14f",
+      "ratio": 10.88,
+      "aa": true
+    },
+    {
+      "pair": "Bright accent on ink",
+      "fg": "#26f14f",
+      "bg": "#1a201b",
+      "ratio": 10.88,
+      "aa": true
+    },
+    {
+      "pair": "Paper on ink",
+      "fg": "#f7fafb",
+      "bg": "#1a201b",
+      "ratio": 15.81,
+      "aa": true
+    }
+  ],
+  "notes": []
+}
