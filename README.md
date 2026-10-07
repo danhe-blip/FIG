@@ -6,7 +6,7 @@ founders, and repeat entrepreneurs to turn deep expertise into AI-native compani
 
 ## Stack
 
-Static HTML — `index.html` plus one event recap page under `events/` — zero build step, zero dependencies.
+Static HTML — `index.html` plus an event recap page and the AI Design Makeathon sponsorship page under `events/` — zero build step, zero dependencies.
 Fonts (Sora / Inter) load from Google Fonts. Deploys as-is on Vercel.
 
 ## Local preview
