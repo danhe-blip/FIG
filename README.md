@@ -9,6 +9,17 @@ founders, and repeat entrepreneurs to turn deep expertise into AI-native compani
 Static HTML — `index.html` plus an event recap page and the AI Design Makeathon sponsorship page under `events/` — zero build step, zero dependencies.
 Fonts (Sora / Inter) load from Google Fonts. Deploys as-is on Vercel.
 
+## Unlinked event pages
+
+Two stand-alone pages are live but deliberately not linked from anywhere on the site, and are marked `noindex`
+(meta tag plus an `X-Robots-Tag` header in `vercel.json`):
+
+- `/events/ai-design-makeathon-sponsorship` (sponsor package)
+- `/events/ai-design-makeathon-university` (university partnership)
+
+They share `events/ai-design-makeathon/` (theme, `page.css`, `page.js`, images). The prior-event figures on both pages
+are read from the recap page at load time, with static fallbacks in the markup.
+
 ## Event design system
 
 `tools/event-theme/build.py` derives an event's colours, type, chips and pixel-mosaic motif from its poster and writes
