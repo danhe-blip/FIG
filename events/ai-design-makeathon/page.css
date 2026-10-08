@@ -262,6 +262,8 @@ h1,h2,h3{font-weight:500;letter-spacing:-.03em;font-family:var(--display)}
 .reason p{font-size:.9375rem;color:var(--ev-muted);max-width:460px}
 .ways .tiles{margin-top:56px}
 .ways .tile{padding-bottom:12px}
+.ways .tile--wide{grid-column:1/-1;border-top-color:var(--ev-accent)}
+.ways .tile--wide p{max-width:780px}
 @media(max-width:1050px){.benefit-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){
   .hero-brand{padding-top:20px}.hero-brand img{height:36px}.hero-brand .mono{font-size:.6875rem;max-width:150px}
