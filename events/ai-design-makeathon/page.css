@@ -281,7 +281,7 @@ h1,h2,h3{font-weight:500;letter-spacing:-.03em;font-family:var(--display)}
 }
 
 /* ---------- Judges ---------- */
-.judge-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:44px 26px;margin-top:64px}
+.judge-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:44px 26px;margin-top:64px}
 .judge{border-top:2px solid var(--ev-ink);padding-top:19px;min-width:0}
 .judge .mono{color:var(--accent-blue-deep)}
 .judge h3{font-size:clamp(1.3rem,1.7vw,1.6rem);line-height:1.15;margin:12px 0 8px}
