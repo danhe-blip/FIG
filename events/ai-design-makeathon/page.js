@@ -43,4 +43,5 @@ addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFra
         card.querySelector('[data-title]').textContent=title;
         const sm=m.querySelector('small');if(sm)sm.querySelectorAll('br').forEach(br=>br.replaceWith(' '));const note=(sm?.textContent||'').replace(/\s+/g,' ').trim();if(note)card.querySelector('[data-note]').textContent=note;n++});
       if(n)return}catch(e){}}})();
+const pv=document.getElementById('poster-video');if(pv&&reduce.matches){pv.removeAttribute('autoplay');pv.pause()}
 })();
