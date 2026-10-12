@@ -43,5 +43,9 @@ addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFra
         card.querySelector('[data-title]').textContent=title;
         const sm=m.querySelector('small');if(sm)sm.querySelectorAll('br').forEach(br=>br.replaceWith(' '));const note=(sm?.textContent||'').replace(/\s+/g,' ').trim();if(note)card.querySelector('[data-note]').textContent=note;n++});
       if(n)return}catch(e){}}})();
-const pv=document.getElementById('poster-video');if(pv&&reduce.matches){pv.removeAttribute('autoplay');pv.pause()}
+const pv=document.getElementById('poster-video');
+if(pv){if(reduce.matches){pv.removeAttribute('autoplay');pv.pause()}
+else{/* Some in-app browsers (e.g. WeChat) and iOS Low Power Mode block video autoplay: swap in the animated image instead */
+const fb=()=>{if(pv.dataset.fb||!pv.isConnected)return;pv.dataset.fb='1';const im=new Image();im.width=1080;im.height=1096;im.alt=pv.getAttribute('aria-label')||'';im.decoding='async';im.onload=()=>{if(pv.paused)pv.replaceWith(im)};im.src=pv.dataset.anim};
+const pr=pv.play&&pv.play();if(pr&&pr.catch)pr.catch(fb);setTimeout(()=>{if(pv.paused)fb()},2500)}}
 })();
