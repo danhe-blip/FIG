@@ -18,15 +18,21 @@ function pgPaint(){let before=0;for(let j=0;j<pgI;j++)before+=pgW[j];const pct=(
 function pgUpdate(){const span=Math.max(1,root.scrollHeight-innerHeight),navH=0,t=Math.max(0,Math.min(1,scrollY/span)),ref=scrollY+navH+t*(innerHeight-navH);
   let i=pgTops.length-1;while(i>0&&pgTops[i]>ref)i--;const end=pgTops[i+1]??pgDoc;pgF=Math.max(0,Math.min(1,(ref-pgTops[i])/Math.max(1,end-pgTops[i])));pgI=i;
   if(i!==pgCur){pgCur=i;pgLayout()}else pgPaint()}
-pg.addEventListener('mouseenter',()=>{pg.classList.add('open');pgLayout()});
-pg.addEventListener('mouseleave',()=>{pgHov=-1;if(!pg.contains(document.activeElement)){pg.classList.remove('open');pgLayout()}else pgLayout()});
-pg.addEventListener('mouseover',e=>{const a=e.target.closest('.pg-base .pg-seg');const k=a?pgSegs.indexOf(a):-1;if(k!==pgHov){pgHov=k;pgLayout()}});
+/* The map stays a thin line until the reader scrolls; it opens while scrolling and folds back 5 s after scrolling stops.
+   On devices with a real pointer it also opens on hover. Touch "hover" is ignored, so a tap never leaves it stuck open. */
+const pgHover=matchMedia('(hover:hover) and (pointer:fine)');let pgT=0;
+function pgOpen(){if(!pg.classList.contains('open')){pg.classList.add('open');pgLayout()}}
+function pgClose(){if((pgHover.matches&&pg.matches(':hover'))||pg.contains(document.activeElement))return;pgHov=-1;if(pg.classList.contains('open')){pg.classList.remove('open');pgLayout()}}
+function pgKick(){pgOpen();clearTimeout(pgT);pgT=setTimeout(pgClose,5000)}
+pg.addEventListener('mouseenter',()=>{if(pgHover.matches){clearTimeout(pgT);pgOpen()}});
+pg.addEventListener('mouseleave',()=>{if(!pgHover.matches)return;pgHov=-1;clearTimeout(pgT);pgClose();pgLayout()});
+pg.addEventListener('mouseover',e=>{if(!pgHover.matches)return;const a=e.target.closest('.pg-base .pg-seg');const k=a?pgSegs.indexOf(a):-1;if(k!==pgHov){pgHov=k;pgLayout()}});
 pg.addEventListener('focusin',e=>{pg.classList.add('open');const k=pgSegs.indexOf(e.target.closest('.pg-seg'));if(k>=0)pgHov=k;pgLayout()});
-pg.addEventListener('focusout',()=>{if(!pg.matches(':hover')){pgHov=-1;pg.classList.remove('open');pgLayout()}});
-pg.addEventListener('click',e=>{if(e.target.closest('a'))pg.blur()});
+pg.addEventListener('focusout',()=>{setTimeout(pgClose,0)});
+pg.addEventListener('click',e=>{const l=e.target.closest('a');if(l)l.blur()});
 addEventListener('load',()=>{pgMeasure();pgUpdate()});addEventListener('resize',()=>{pgMeasure();pgUpdate()});
 let scheduled=false;function onScroll(){scheduled=false;pgUpdate()}
-addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(onScroll)}},{passive:true});pgMeasure();onScroll();
+addEventListener('scroll',()=>{pgKick();if(!scheduled){scheduled=true;requestAnimationFrame(onScroll)}},{passive:true});pgMeasure();onScroll();
 /* Prior-event figures come from the recap page itself, so there is one source of truth.
    If it can't be fetched (offline, preview), the static fallback in the markup stays. */
 (async()=>{const box=document.getElementById('prior-stats');if(!box)return;
