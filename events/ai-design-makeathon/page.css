@@ -240,6 +240,7 @@ h1,h2,h3{font-weight:500;letter-spacing:-.03em;font-family:var(--display)}
 /* ---------- Stand-alone page: brand bar instead of the site navigation ---------- */
 .hero-brand{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:30px;padding-bottom:20px;border-bottom:1px solid var(--ev-line-strong)}
 .hero-brand img{width:auto;height:42px}
+.hero-brand .brand-home{display:block;line-height:0;transition:opacity .2s}.hero-brand .brand-home:hover{opacity:.7}.hero-brand .brand-home:focus-visible{outline:2px solid var(--ev-accent);outline-offset:4px}
 .hero-brand .mono{color:var(--ev-muted);text-align:right}
 
 /* ---------- University page: for students / why FIG / ways to partner ---------- */
