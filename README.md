@@ -16,6 +16,7 @@ Two stand-alone pages are live but deliberately not linked from anywhere on the 
 
 - `/events/ai-design-makeathon-sponsorship` (sponsor package)
 - `/events/ai-design-makeathon-university` (university partnership)
+- `/events/ai-design-makeathon-partnership` (industry partnership, no pricing)
 
 They share `events/ai-design-makeathon/` (theme, `page.css`, `page.js`, images). The prior-event figures on both pages
 are read from the recap page at load time, with static fallbacks in the markup.
