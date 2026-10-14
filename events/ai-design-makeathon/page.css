@@ -202,6 +202,7 @@ h1,h2,h3{font-weight:500;letter-spacing:-.03em;font-family:var(--display)}
   .hero-poster{order:2}
   .hero-dates div{grid-template-columns:110px 1fr}
   .hero-partners{grid-template-columns:1fr;gap:22px;padding-bottom:30px}
+  .section-badge{justify-content:flex-start;padding-bottom:0}
   .hero-glow{display:none}
   .hero:before{display:none}
   .hero h1{font-size:clamp(2.2rem,12.4vw,3.6rem)}
@@ -253,6 +254,8 @@ h1,h2,h3{font-weight:500;letter-spacing:-.03em;font-family:var(--display)}
 .students .section-title em,.why .section-title em,.ways .section-title em,.judges .section-title em{color:var(--accent-blue-deep)}
 .section-head{display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:end}
 .section-head p{color:var(--ev-muted);max-width:440px}
+.section-badge{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;padding-bottom:.4em}
+.section-badge .ev-chip{font-size:.8125rem;padding:.6em .9em}
 .benefit-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px 26px;margin-top:64px}
 .benefit{border-top:2px solid var(--ev-ink);padding-top:19px}
 .benefit .mono{color:var(--ev-muted)}
@@ -309,3 +312,5 @@ h1,h2,h3{font-weight:500;letter-spacing:-.03em;font-family:var(--display)}
   .feature{grid-template-columns:1fr;gap:28px;margin-bottom:34px}
   .feature-mark,.feature-mark .spark{width:64px;height:64px}
   }
+
+@media(max-width:760px){.section-badge{justify-content:flex-start;padding-bottom:0}}
