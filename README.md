@@ -6,12 +6,12 @@ founders, and repeat entrepreneurs to turn deep expertise into AI-native compani
 
 ## Stack
 
-Static HTML — `index.html` plus an event recap page and the AI Design Makeathon sponsorship page under `events/` — zero build step, zero dependencies.
+Static HTML — `index.html` plus an event recap page and the AI Design Makeathon pages under `events/` — zero build step, zero dependencies.
 Fonts (Sora / Inter) load from Google Fonts. Deploys as-is on Vercel.
 
 ## Unlinked event pages
 
-Two stand-alone pages are live but deliberately not linked from anywhere on the site, and are marked `noindex`
+Four stand-alone pages are live but deliberately not linked from anywhere on the site, and are marked `noindex`
 (meta tag plus an `X-Robots-Tag` header in `vercel.json`):
 
 - `/events/ai-design-makeathon-sponsorship` (sponsor packages, prices hidden)
@@ -19,8 +19,18 @@ Two stand-alone pages are live but deliberately not linked from anywhere on the 
 - `/events/ai-design-makeathon-university` (university partnership)
 - `/events/ai-design-makeathon-partnership` (industry partnership, no pricing)
 
-They share `events/ai-design-makeathon/` (theme, `page.css`, `page.js`, images). The prior-event figures on both pages
+They share `events/ai-design-makeathon/` (theme, `page.css`, `page.js`, images). The prior-event figures on these pages
 are read from the recap page at load time, with static fallbacks in the markup.
+
+Blocks that must stay identical on all four pages (copy from the partnership page, which is the reference):
+
+- Hero strip: "Hosted by FIG Studio", "Co-host Lovable" (the only co-host), then "Judges & partners" without Lovable.
+- Section 01 ("AI is changing products."): one paragraph and the single "Concepts made visible" tile. Nothing that
+  hints at the project theme.
+- Judge grid, in the same order, ending with the full-width "University judges" TBA card.
+- Audience wording: "design students and young design professionals".
+
+The two sponsor pages are the same page apart from prices: edit both together.
 
 ## Event design system
 
