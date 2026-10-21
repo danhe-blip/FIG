@@ -294,12 +294,12 @@ h1,h2,h3{font-weight:500;letter-spacing:-.03em;font-family:var(--display)}
 .judge h3{font-size:clamp(1.3rem,1.7vw,1.6rem);line-height:1.15;margin:12px 0 8px}
 .judge p{font-size:.9375rem;line-height:1.45;color:var(--ev-ink-soft)}
 .judge small{display:block;margin-top:8px;font-size:.8125rem;line-height:1.5;color:var(--ev-muted)}
-.judge--tba{grid-column:1/-1;border-top-style:dashed;border-top-color:var(--ev-faint)}
+.judge--tba{grid-column:span 2;border-top-style:dashed;border-top-color:var(--ev-faint)}
 .judge--tba h3,.judge--tba p{color:var(--ev-muted)}
 .judges-tag{margin-top:14px;text-decoration:none;transition:background .16s,gap .2s}
 .judges-tag:hover{background:var(--ev-ink);gap:.9em}
 .judges-tag .arrow{width:1.2em;height:1.2em;vertical-align:0}
-@media(max-width:760px){.judge-grid{grid-template-columns:1fr;gap:34px;margin-top:40px}}
+@media(max-width:760px){.judge-grid{grid-template-columns:1fr;gap:34px;margin-top:40px}.judge--tba{grid-column:auto}}
 
 /* ---------- Featured Lead benefit ---------- */
 .feature{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(24px,3.4vw,44px);align-items:start;background:var(--ev-ink);color:var(--ev-paper);padding:clamp(24px,3.4vw,44px);margin-bottom:44px;position:relative;overflow:hidden}
