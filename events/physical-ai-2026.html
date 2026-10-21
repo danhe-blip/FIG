@@ -527,24 +527,24 @@ dialog::backdrop{background:#0b0c0fe8;backdrop-filter:blur(10px)}
 .collab .wide-shot{aspect-ratio:16/9}
 .fill-frame{aspect-ratio:16/10;overflow:hidden;background:var(--white-tint)}
 .project-image .filled-image{object-fit:contain}
-/* Scroll progress: a 2px line that opens into a section map on hover / keyboard focus */
+/* Scroll progress / section map (same style and behaviour as the Makeathon sponsorship page; it sits under the nav here) */
 .progress{position:fixed;top:calc(var(--nav-h) - 2px);left:0;width:100%;height:2px;z-index:51;transition:height .22s var(--ease)}
 .progress::after{content:"";position:absolute;left:0;right:0;top:100%;height:14px}
 .pg-layer{position:absolute;inset:0;display:flex;overflow:hidden}
-.pg-base{background:#5a5b5e}
-.pg-fill{background:var(--blue);color:#1f2023;clip-path:inset(0 100% 0 0);pointer-events:none;transition:clip-path .2s var(--ease)}
+.pg-base{background:color-mix(in srgb,var(--ink) 38%,var(--white))}
+.pg-fill{background:var(--blue);color:var(--ink);clip-path:inset(0 100% 0 0);pointer-events:none;transition:clip-path .2s var(--ease)}
 .pg-base,.pg-fill{font:600 .6875rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase}
-.pg-seg{display:flex;gap:.6em;align-items:center;min-width:0;padding:0 12px;color:#faf9f4;text-decoration:none;white-space:nowrap;border-left:1px solid #1f2023;opacity:0;transition:opacity .15s}
-.pg-fill .pg-seg{color:#1f2023;border-left-color:transparent}
+.pg-seg{display:flex;gap:.6em;align-items:center;min-width:0;padding:0 12px;color:var(--white);text-decoration:none;white-space:nowrap;border-left:1px solid var(--ink);opacity:0;transition:flex-basis .2s var(--ease),opacity .15s,background .15s}
+.pg-fill .pg-seg{color:var(--ink);border-left-color:transparent}
 .pg-seg:first-child{border-left:0}
-.pg-seg{transition:flex-basis .2s var(--ease),opacity .15s,background .15s}
 .pg-seg b{flex:none;font-weight:700}
 .pg-seg span{overflow:hidden;text-overflow:ellipsis}
-.pg-base .pg-seg:hover{background:#747578}
+.pg-base .pg-seg:hover{background:color-mix(in srgb,var(--ink) 55%,var(--white))}
 .progress.open{height:30px}
 .progress.open .pg-seg{opacity:1}
 .progress.open .pg-base{cursor:pointer}
-.pg-seg:focus-visible{outline:2px solid #faf9f4;outline-offset:-3px}
+.progress:not(.open) .pg-seg{pointer-events:none}
+.pg-seg:focus-visible{outline:2px solid var(--white);outline-offset:-3px}
 @media(prefers-reduced-motion:reduce){.progress,.pg-seg{transition:none}}
 @media(max-width:1050px){
   .platform-journey h3{font-size:0.935rem;overflow-wrap:anywhere}
@@ -683,15 +683,21 @@ function pgPaint(){let before=0;for(let j=0;j<pgI;j++)before+=pgW[j];const pct=(
 function pgUpdate(){const span=Math.max(1,root.scrollHeight-innerHeight),navH=nav.offsetHeight,t=Math.max(0,Math.min(1,scrollY/span)),ref=scrollY+navH+t*(innerHeight-navH);
   let i=pgTops.length-1;while(i>0&&pgTops[i]>ref)i--;const end=pgTops[i+1]??pgDoc;pgF=Math.max(0,Math.min(1,(ref-pgTops[i])/Math.max(1,end-pgTops[i])));pgI=i;
   if(i!==pgCur){pgCur=i;pgLayout()}else pgPaint()}
-pg.addEventListener('mouseenter',()=>{pg.classList.add('open');pgLayout()});
-pg.addEventListener('mouseleave',()=>{pgHov=-1;if(!pg.contains(document.activeElement)){pg.classList.remove('open');pgLayout()}else pgLayout()});
-pg.addEventListener('mouseover',e=>{const a=e.target.closest('.pg-base .pg-seg');const k=a?pgSegs.indexOf(a):-1;if(k!==pgHov){pgHov=k;pgLayout()}});
+/* The map stays a thin line until the reader scrolls; it opens while scrolling and folds back 5 s after scrolling stops.
+   On devices with a real pointer it also opens on hover. Touch "hover" is ignored, so a tap never leaves it stuck open. */
+const pgHover=matchMedia('(hover:hover) and (pointer:fine)');let pgT=0;
+function pgOpen(){if(!pg.classList.contains('open')){pg.classList.add('open');pgLayout()}}
+function pgClose(){if((pgHover.matches&&pg.matches(':hover'))||pg.contains(document.activeElement))return;pgHov=-1;if(pg.classList.contains('open')){pg.classList.remove('open');pgLayout()}}
+function pgKick(){pgOpen();clearTimeout(pgT);pgT=setTimeout(pgClose,5000)}
+pg.addEventListener('mouseenter',()=>{if(pgHover.matches){clearTimeout(pgT);pgOpen()}});
+pg.addEventListener('mouseleave',()=>{if(!pgHover.matches)return;pgHov=-1;clearTimeout(pgT);pgClose();pgLayout()});
+pg.addEventListener('mouseover',e=>{if(!pgHover.matches)return;const a=e.target.closest('.pg-base .pg-seg');const k=a?pgSegs.indexOf(a):-1;if(k!==pgHov){pgHov=k;pgLayout()}});
 pg.addEventListener('focusin',e=>{pg.classList.add('open');const k=pgSegs.indexOf(e.target.closest('.pg-seg'));if(k>=0)pgHov=k;pgLayout()});
-pg.addEventListener('focusout',()=>{if(!pg.matches(':hover')){pgHov=-1;pg.classList.remove('open');pgLayout()}});
-pg.addEventListener('click',e=>{if(e.target.closest('a'))pg.blur()});
+pg.addEventListener('focusout',()=>{setTimeout(pgClose,0)});
+pg.addEventListener('click',e=>{const l=e.target.closest('a');if(l)l.blur()});
 addEventListener('load',()=>{pgMeasure();pgUpdate()});addEventListener('resize',()=>{pgMeasure();pgUpdate()});
 let scheduled=false;function onScroll(){scheduled=false;pgUpdate();nav.classList.toggle('scrolled',scrollY>10)}
-addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(onScroll)}},{passive:true});pgMeasure();onScroll();
+addEventListener('scroll',()=>{pgKick();if(!scheduled){scheduled=true;requestAnimationFrame(onScroll)}},{passive:true});pgMeasure();onScroll();
 const menuBtn=document.querySelector('.nav-toggle'),menuNav=document.getElementById('nav');
 function setMenu(open){menuNav.classList.toggle('open',open);menuBtn.setAttribute('aria-expanded',String(open));menuBtn.setAttribute('aria-label',open?'Close menu':'Open menu')}
 menuBtn.addEventListener('click',()=>setMenu(!menuNav.classList.contains('open')));
