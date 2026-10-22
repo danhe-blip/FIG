@@ -85,10 +85,42 @@
     var btn = dd.querySelector('.nav-dd-btn');
     var menu = dd.querySelector('.nav-dd-menu');
 
-    function group(label, list) {
-      if (!list.length) return;
-      menu.appendChild(el('div', 'nav-dd-label', label));
-      list.forEach(function (e) {
+    /*
+     * Two columns: the list, and beside it the poster of whichever event the
+     * pointer (or keyboard focus) is on, large enough to read. It starts on
+     * the first event, so the panel never opens on an empty frame. Phones
+     * have no hover and hide the preview; see events.css.
+     */
+    var list = el('div', 'nav-dd-list');
+    var preview = el('div', 'nav-dd-preview');
+    var big = el('img');
+    big.alt = '';
+    big.decoding = 'async';
+    preview.appendChild(big);
+    menu.appendChild(list);
+    menu.appendChild(preview);
+
+    var shown = null;
+    function show(e, item) {
+      if (shown === e) return;
+      shown = e;
+      // Out at once, then back in over two frames, so the swap is a fade
+      // rather than a cut even when the poster is already cached.
+      big.classList.add('is-out');
+      big.src = e.img;
+      big.alt = e.imgAlt;
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { big.classList.remove('is-out'); });
+      });
+      list.querySelectorAll('.nav-dd-item').forEach(function (n) {
+        n.classList.toggle('is-shown', n === item);
+      });
+    }
+
+    function group(label, events) {
+      if (!events.length) return;
+      list.appendChild(el('div', 'nav-dd-label', label));
+      events.forEach(function (e) {
         var a = linkTo(e, 'nav-dd-item');
         var thumb = el('img', 'nav-dd-thumb');
         thumb.src = e.img;
@@ -100,14 +132,18 @@
         text.appendChild(el('span', 'nav-dd-title', e.title));
         text.appendChild(el('span', 'nav-dd-meta', e.short + ' · ' + e.where));
         a.appendChild(text);
-        menu.appendChild(a);
+        a.addEventListener('mouseenter', function () { show(e, a); });
+        a.addEventListener('focus', function () { show(e, a); });
+        list.appendChild(a);
       });
     }
     group('Upcoming', upcoming);
     group('Past events', past);
     var all = el('a', 'nav-dd-all', 'All events on the FIG platform →');
     all.href = PLATFORM;
-    menu.appendChild(all);
+    list.appendChild(all);
+    var first = upcoming.concat(past)[0];
+    if (first) show(first, list.querySelector('.nav-dd-item'));
 
     function setOpen(open) {
       dd.classList.toggle('dd-open', open);
