@@ -6,8 +6,10 @@
  * from `ends`, so an event moves from "Upcoming" to "Past" on its own the day
  * after it ends; nothing needs editing when that happens.
  *
- * `href` starting with http opens the event platform (events.figstudio.vc) in
- * a new tab; a path starting with / is a page on this site.
+ * `href` starting with http is the event platform (events.figstudio.vc); a
+ * path starting with / is a page on this site. Both open in the same tab, and
+ * the platform links back to this site the same way, so the two read as one
+ * site rather than as a visit to another one.
  */
 (function () {
   var PLATFORM = 'https://events.figstudio.vc';
@@ -68,7 +70,6 @@
   function linkTo(e, cls) {
     var a = el('a', cls);
     a.href = e.href;
-    if (isExternal(e)) { a.target = '_blank'; a.rel = 'noopener'; }
     if (!isExternal(e) && location.pathname.replace(/\/$/, '') === e.href) {
       a.setAttribute('aria-current', 'page');
     }
@@ -88,16 +89,14 @@
         var a = linkTo(e, 'nav-dd-item');
         a.appendChild(el('span', 'nav-dd-title', e.title));
         a.appendChild(el('span', 'nav-dd-meta',
-          e.short + ' · ' + e.where + (isExternal(e) ? ' ↗' : '')));
+          e.short + ' · ' + e.where));
         menu.appendChild(a);
       });
     }
     group('Upcoming', upcoming);
     group('Past events', past);
-    var all = el('a', 'nav-dd-all', 'All events on the FIG platform ↗');
+    var all = el('a', 'nav-dd-all', 'All events on the FIG platform →');
     all.href = PLATFORM;
-    all.target = '_blank';
-    all.rel = 'noopener';
     menu.appendChild(all);
 
     function setOpen(open) {
@@ -154,7 +153,7 @@
       body.appendChild(el('p', 'ev-tile-blurb', e.blurb));
       var go = el('span', 'ev-tile-link', up && isExternal(e) ? 'Join on the platform' : 'Read the recap');
       if (!up && isExternal(e)) go.textContent = 'See the event';
-      var arrow = el('span', 'arrow' + (isExternal(e) ? ' arrow--ne' : ''));
+      var arrow = el('span', 'arrow');
       arrow.setAttribute('aria-hidden', 'true');
       go.appendChild(arrow);
       body.appendChild(go);
