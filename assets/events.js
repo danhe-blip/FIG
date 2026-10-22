@@ -86,10 +86,10 @@
     var menu = dd.querySelector('.nav-dd-menu');
 
     /*
-     * Two columns: the list, and beside it the poster of whichever event the
-     * pointer (or keyboard focus) is on, large enough to read. It starts on
-     * the first event, so the panel never opens on an empty frame. Phones
-     * have no hover and hide the preview; see events.css.
+     * The list, and a large poster that appears beside it -- in the empty
+     * page to its left -- while the pointer or keyboard focus is on an event,
+     * and goes again when it leaves. Nothing is shown until then. Phones have
+     * no hover and never show it; see events.css.
      */
     var list = el('div', 'nav-dd-list');
     var preview = el('div', 'nav-dd-preview');
@@ -101,7 +101,15 @@
     menu.appendChild(preview);
 
     var shown = null;
+    function hide() {
+      shown = null;
+      menu.classList.remove('has-preview');
+      list.querySelectorAll('.nav-dd-item').forEach(function (n) {
+        n.classList.remove('is-shown');
+      });
+    }
     function show(e, item) {
+      menu.classList.add('has-preview');
       if (shown === e) return;
       shown = e;
       // Out at once, then back in over two frames, so the swap is a fade
@@ -134,6 +142,8 @@
         a.appendChild(text);
         a.addEventListener('mouseenter', function () { show(e, a); });
         a.addEventListener('focus', function () { show(e, a); });
+        a.addEventListener('mouseleave', hide);
+        a.addEventListener('blur', hide);
         list.appendChild(a);
       });
     }
@@ -142,10 +152,9 @@
     var all = el('a', 'nav-dd-all', 'All events on the FIG platform →');
     all.href = PLATFORM;
     list.appendChild(all);
-    var first = upcoming.concat(past)[0];
-    if (first) show(first, list.querySelector('.nav-dd-item'));
 
     function setOpen(open) {
+      if (!open) hide();
       dd.classList.toggle('dd-open', open);
       btn.setAttribute('aria-expanded', String(open));
     }
