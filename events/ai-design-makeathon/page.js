@@ -33,22 +33,22 @@ pg.addEventListener('click',e=>{const l=e.target.closest('a');if(l)l.blur()});
 addEventListener('load',()=>{pgMeasure();pgUpdate()});addEventListener('resize',()=>{pgMeasure();pgUpdate()});
 let scheduled=false;function onScroll(){scheduled=false;pgUpdate()}
 addEventListener('scroll',()=>{pgKick();if(!scheduled){scheduled=true;requestAnimationFrame(onScroll)}},{passive:true});pgMeasure();onScroll();
-/* Prior-event figures come from the recap page itself, so there is one source of truth.
-   If it can't be fetched (offline, preview), the static fallback in the markup stays. */
-(async()=>{const box=document.getElementById('prior-stats');if(!box)return;
-  for(const url of ['executable-world-2026','executable-world-2026.html']){
+/* Prior-event figures come from each recap page itself (data-recap), so there is one source of truth.
+   If a recap can't be fetched (offline, preview), the static fallback in the markup stays.
+   A metric fills the card whose data-stat is the first word of its title (RSVPs -> rsvps, Builders -> builders). */
+document.querySelectorAll('.proof-numbers[data-recap]').forEach(async box=>{const page=box.dataset.recap;
+  for(const url of [page,page+'.html']){
     try{const r=await fetch(url,{credentials:'same-origin'});if(!r.ok)continue;
       const doc=new DOMParser().parseFromString(await r.text(),'text/html');let n=0;
       doc.querySelectorAll('.metric').forEach(m=>{
-        const title=(m.querySelector('.metric-title')?.textContent||'').trim(),t=title.toLowerCase();
-        const key=t==='rsvps'?'rsvps':t.startsWith('builders')?'builders':'';
+        const title=(m.querySelector('.metric-title')?.textContent||'').trim(),key=title.toLowerCase().split(/\s+/)[0];
         const count=m.querySelector('[data-count]')?.dataset.count,card=key&&box.querySelector('[data-stat="'+key+'"]');
         if(!card||!/^\d+$/.test(count||''))return;
-        card.querySelector('[data-num]').textContent=count;
+        card.querySelector('[data-num]').textContent=Number(count).toLocaleString('en-US');
         const ap=card.querySelector('.approx');if(ap)ap.hidden=!m.querySelector('.approx');
         card.querySelector('[data-title]').textContent=title;
         const sm=m.querySelector('small');if(sm)sm.querySelectorAll('br').forEach(br=>br.replaceWith(' '));const note=(sm?.textContent||'').replace(/\s+/g,' ').trim();if(note)card.querySelector('[data-note]').textContent=note;n++});
-      if(n)return}catch(e){}}})();
+      if(n)return}catch(e){}}});
 const pv=document.getElementById('poster-video');
 if(pv){if(reduce.matches){pv.removeAttribute('autoplay');pv.pause()}
 else{/* Some in-app browsers (e.g. WeChat) and iOS Low Power Mode block video autoplay: swap in the animated image instead */
