@@ -6,6 +6,9 @@
  * from `ends`, so an event moves from "Upcoming" to "Past" on its own the day
  * after it ends; nothing needs editing when that happens.
  *
+ * `img` is the event's own poster, the image it was promoted with. Posters are
+ * square, and the tiles and the menu's thumbnails are cut square to match.
+ *
  * `href` starting with http is the event platform (events.figstudio.vc); a
  * path starting with / is a page on this site. Both open in the same tab, and
  * the platform links back to this site the same way, so the two read as one
@@ -24,7 +27,7 @@
       blurb: 'Three days for design students to turn AI problems into working prototypes.',
       href: PLATFORM + '/e/fig-ai-design-makeathon-2026',
       img: '/events/ai-design-makeathon/img/poster.jpg',
-      imgAlt: 'AI Design Makeathon poster'
+      imgAlt: 'Poster for the AI Design Student Makeathon, November 7 to 9, online'
     },
     {
       title: 'Frontier in Action: Physical Intelligence',
@@ -34,8 +37,8 @@
       ends: '2026-10-10',
       blurb: 'Physical AI demos and an investor and research panel at SF Tech Week.',
       href: '/events/physical-ai-2026',
-      img: '/events/physical-ai-2026/img/hero.jpg',
-      imgAlt: 'A packed audience at Frontier in Action: Physical Intelligence'
+      img: '/events/physical-ai-2026/img/poster.jpg',
+      imgAlt: 'Poster for Frontier in Action: Physical AI, SF Tech Week demo day, October 10'
     },
     {
       title: 'The Executable World',
@@ -45,8 +48,8 @@
       ends: '2026-09-19',
       blurb: 'A day of building, technical exchange and live demos.',
       href: '/events/executable-world-2026',
-      img: '/events/executable-world-2026/img/hero.jpg',
-      imgAlt: 'Builders gathered at The Executable World hackathon'
+      img: '/events/executable-world-2026/img/poster.jpg',
+      imgAlt: 'Poster for The Executable World: Full Stack AI Hackathon & Mixer, September 19'
     }
   ];
 
@@ -87,9 +90,16 @@
       menu.appendChild(el('div', 'nav-dd-label', label));
       list.forEach(function (e) {
         var a = linkTo(e, 'nav-dd-item');
-        a.appendChild(el('span', 'nav-dd-title', e.title));
-        a.appendChild(el('span', 'nav-dd-meta',
-          e.short + ' · ' + e.where));
+        var thumb = el('img', 'nav-dd-thumb');
+        thumb.src = e.img;
+        thumb.alt = '';
+        thumb.loading = 'lazy';
+        thumb.decoding = 'async';
+        a.appendChild(thumb);
+        var text = el('span', 'nav-dd-text');
+        text.appendChild(el('span', 'nav-dd-title', e.title));
+        text.appendChild(el('span', 'nav-dd-meta', e.short + ' · ' + e.where));
+        a.appendChild(text);
         menu.appendChild(a);
       });
     }
