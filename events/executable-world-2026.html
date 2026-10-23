@@ -13,6 +13,7 @@
 <meta property="og:image:height" content="1440">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../favicon-v2.png?v=5" type="image/png" sizes="128x128">
+<link rel="icon" href="../favicon.svg?v=6" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../favicon-v2.png?v=5">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,9 +23,9 @@
 :root{
   --paper:#FFFFFF;          /* white */
   --paper-2:#F6F6F3;        /* light neutral band */
-  --ink:#241F1A;            /* near-black text */
-  --ink-soft:#5A5248;       /* muted gray text */
-  --line:rgba(36,31,26,.14);
+  --ink:#1f2023;            /* near-black text */
+  --ink-soft:#525356;       /* muted gray text */
+  --line:rgba(31,32,35,.14);
   --sans:'Inter',-apple-system,sans-serif;
 
   /* ---- New design system (redesign) ---- */
@@ -32,8 +33,8 @@
   --white-tint:#F6F6F3;            /* light neutral band */
   --accent-blue:#8E99F7;           /* periwinkle accent */
   --accent-blue-deep:#374AF1;      /* hover/interaction state */
-  --brown:#E4D5CD;                 /* card material */
-  --brown-deep:#D5BDB1;            /* card hover */
+  --brown:#d7d8db;                 /* card material */
+  --brown-deep:#c0c1c4;            /* card hover */
 
   /* Theme tokens. Defaults are "light"; add class="theme-dark" to a
      section to flip background, text and card colors together. */
@@ -43,9 +44,9 @@
   --divider:var(--line);
   --card-bg:var(--ink);
   --on-card:var(--white);
-  --on-card-muted:rgba(239,231,214,.75);
+  --on-card-muted:rgba(231,232,235,.75);
   --card-divider:rgba(255,255,255,.18);
-  --card-bg-hover:#2F2820;
+  --card-bg-hover:#28292c;
 
   --display:'Sora',-apple-system,sans-serif;
 
@@ -76,8 +77,8 @@
   /* report-only aliases onto the site tokens above */
   --blue:var(--accent-blue);
   --paper:var(--white);
-  --muted:rgba(239,231,214,.75);
-  --rline:rgba(239,231,214,.18);
+  --muted:rgba(231,232,235,.75);
+  --rline:rgba(231,232,235,.18);
   --pad:clamp(24px,6vw,100px);
   --ease:cubic-bezier(.2,.7,.2,1);
 }
@@ -112,67 +113,67 @@ h1,h2,h3{font-weight:500;letter-spacing:-.03em;font-family:var(--display)}
 .skip{position:fixed;top:-100px;background:var(--blue);padding:12px;z-index:100;color:var(--ink)}
 .skip:focus{top:8px}
 .hero{position:relative;overflow:hidden;padding-top:0;isolation:isolate;min-height:max(720px,calc(100svh - var(--nav-h)))}
-.hero-image{position:absolute;z-index:-3;inset:0 0 0 auto;width:72%;height:100%;object-fit:cover;object-position:80% center;opacity:.73;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 45%);mask-image:linear-gradient(90deg,transparent 0,#000 45%)}
-.hero:after{content:'';position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,#241f1a 4%,#241f1ad9 33%,#241f1a15 85%),linear-gradient(0deg,#241f1a 1%,transparent 35%)}
+.hero-image{position:absolute;z-index:-3;inset:0 0 0 auto;width:72%;height:100%;object-fit:cover;object-position:80% center;opacity:.73;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000003 45%);mask-image:linear-gradient(90deg,transparent 0,#000003 45%)}
+.hero:after{content:'';position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,#1f2023 4%,#1f2023d9 33%,#1f202315 85%),linear-gradient(0deg,#1f2023 1%,transparent 35%)}
 .hero-glow{position:absolute;z-index:-1;inset:-20% -40% 0 45%;background:radial-gradient(ellipse at center,#8e99f726,transparent 63%);animation:ambient 14s ease-in-out infinite alternate;pointer-events:none}
 .hero-inner{padding-top:64px;position:relative}
 .hero-top{display:flex;flex-direction:column;align-items:flex-start;gap:0;margin-bottom:58px}
-.hero-top .location{text-align:left;color:#ded9d4;margin-top:14px}
+.hero-top .location{text-align:left;color:#d9dadd;margin-top:14px}
 .hero-meta{margin-top:0;margin-bottom:0}
 .hero-meta .eyebrow:before{display:none}
 .hero h1{font-size:clamp(3.48rem,8.33vw,9.01rem);line-height:.94;letter-spacing:-.03em;max-width:680px}
 .hero h1 .outline{color:var(--blue)}
 .hero-bottom{margin-top:44px;display:flex;justify-content:space-between;align-items:flex-end;gap:36px;padding-bottom:62px}
 .hero-summary{width:100%;max-width:600px}
-.hero-summary p{color:#cbc6c0;font-size:1.0625rem}
-.text-link{display:inline-flex;align-items:center;gap:12px;padding:16px 0 9px;border-bottom:1px solid #efe7d666;margin-top:22px;font-size:.9375rem;transition:gap .3s}
+.hero-summary p{color:#c6c7ca;font-size:1.0625rem}
+.text-link{display:inline-flex;align-items:center;gap:12px;padding:16px 0 9px;border-bottom:1px solid #e7e8eb66;margin-top:22px;font-size:.9375rem;transition:gap .3s}
 .text-link:hover{gap:16px}
 .hero-lockup{width:clamp(95px,9.5vw,130px);height:auto;object-fit:contain;filter:drop-shadow(0 5px 24px #0009)}
 .hero-issue{display:flex;align-items:center;gap:18px}
 .hero-issue b{font-size:3.7rem;line-height:1;font-weight:400;letter-spacing:-.03em;font-family:var(--display)}
-.hero-issue span{max-width:90px;color:#dbd6d1}
+.hero-issue span{max-width:90px;color:#d6d7da}
 .metrics{background:var(--paper);color:var(--ink)}
 .metric-grid{display:grid;grid-template-columns:1fr 1fr 1fr;padding-top:55px;padding-bottom:55px}
-.metric{padding:0 35px;border-left:1px solid #241f1a2b}
+.metric{padding:0 35px;border-left:1px solid #1f20232b}
 .metric:first-child{border-left:0;padding-left:0}
 .metric-num{font-size:clamp(4.08rem,7.22vw,7.22rem);letter-spacing:-.03em;line-height:1.04;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap;font-family:var(--display)}
 .approx{font-size:.52em;vertical-align:top;display:inline-block;padding-top:.18em;letter-spacing:-.03em}
 .metric-title{display:block;margin-top:15px;font-size:1.0625rem}
-.metric small{display:block;color:#6d655b;font-size:.8125rem;margin-top:7px;line-height:1.5;max-width:260px}
+.metric small{display:block;color:#656669;font-size:.8125rem;margin-top:7px;line-height:1.5;max-width:260px}
 .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:start}
 .section-title{font-size:clamp(2.38rem,4.84vw,4.76rem);line-height:1.02}
 .intro-copy{padding-top:10px}
-.intro-copy p{color:#c8c1b9;max-width:475px}
+.intro-copy p{color:#c1c2c5;max-width:475px}
 .intro-copy p+p{margin-top:18px}
 .inline-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
-.inline-chips span{font-size:.75rem;border:1px solid #efe7d630;padding:8px 11px;color:#dad4cd}
+.inline-chips span{font-size:.75rem;border:1px solid #e7e8eb30;padding:8px 11px;color:#d4d5d8}
 .story-photos{display:grid;grid-template-columns:1.3fr .7fr;gap:26px;margin-top:62px;align-items:start}
 .shot{position:relative;border:0;background:none;padding:0;text-align:left;overflow:hidden;display:block;width:100%}
 .shot img{height:100%;object-fit:cover;transition:transform .8s var(--ease)}
 .shot:hover img{transform:scale(1.035)}
-.shot:after{content:'';position:absolute;bottom:16px;right:16px;width:36px;height:36px;background:#241f1ab3 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 342 342'%3E%3Cpolygon fill='%23faf9f4' transform='rotate(-45 171 171)' points='277,170 168,62 148,82 221,155 60,155 60,185 221,185 148,258 168,278'/%3E%3C/svg%3E") center/22px no-repeat;backdrop-filter:blur(8px);opacity:0;transition:opacity .25s}
+.shot:after{content:'';position:absolute;bottom:16px;right:16px;width:36px;height:36px;background:#1f2023b3 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 342 342'%3E%3Cpolygon fill='%23faf9f4' transform='rotate(-45 171 171)' points='277,170 168,62 148,82 221,155 60,155 60,185 221,185 148,258 168,278'/%3E%3C/svg%3E") center/22px no-repeat;backdrop-filter:blur(8px);opacity:0;transition:opacity .25s}
 .shot:hover:after,.shot:focus-visible:after{opacity:1}
 .wide-shot{aspect-ratio:16/10}
 .portrait-shot{aspect-ratio:5/4}
 .small-photo{margin-top:86px}
-.caption{display:flex;justify-content:space-between;gap:15px;padding-top:15px;color:#bfb7ae;font-size:.8125rem;line-height:1.5}
-.caption b{color:#e9e6e2;font-weight:400}
+.caption{display:flex;justify-content:space-between;gap:15px;padding-top:15px;color:#b7b8bb;font-size:.8125rem;line-height:1.5}
+.caption b{color:#e5e6e9;font-weight:400}
 .figure-no{color:var(--blue);font-family:var(--sans);font-variant-numeric:tabular-nums;font-weight:600;letter-spacing:.1em}
 .project-section{background:#f6f6f3;color:var(--ink)}
-.project-section .section-label{border-color:#241f1a33}
-.project-section .section-label span:last-child{color:#746a5f}
+.project-section .section-label{border-color:#1f202333}
+.project-section .section-label span:last-child{color:#6a6b6e}
 .project-head{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:55px}
-.project-head p{max-width:330px;color:#72675b;font-size:1rem}
+.project-head p{max-width:330px;color:#67686b;font-size:1rem}
 .project-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-.project{border-top:2px solid #1f1b17;min-width:0}
+.project{border-top:2px solid #1b1c1f;min-width:0}
 .project-top{display:flex;justify-content:space-between;gap:20px;padding:19px 0}
-.project-top .rank{color:#685c4f}
-.project-image{position:relative;aspect-ratio:16/9;overflow:hidden;background:#26211c;color:#e1ddd8}
+.project-top .rank{color:#5d5e61}
+.project-image{position:relative;aspect-ratio:16/9;overflow:hidden;background:#212225;color:#dcdde0}
 .project-kicker{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap}
 /* The badge is sized from its cover, not from the viewport: --b is a share of the cover's width (clamped so the
    text stays legible), and every measurement below is a multiple of --u, one hundredth of --b. */
 .project-image{container-type:inline-size}
-.winner-badge{--b:clamp(62px,16cqw,100px);--u:calc(var(--b) / 100);position:absolute;top:calc(14 * var(--u));right:calc(14 * var(--u));z-index:2;width:var(--b);overflow:hidden;border:1px solid #efe7d6b3;border-radius:calc(9 * var(--u)) calc(9 * var(--u)) calc(44 * var(--u)) calc(44 * var(--u));background:linear-gradient(125deg,#c0c9e6 0%,#e9e4f1 25%,#b7dcf1 48%,#e9e4ef 70%,#a0afd6 100%);color:#131725;text-align:center;box-shadow:0 5px 18px #0005;pointer-events:none;isolation:isolate}
+.winner-badge{--b:clamp(62px,16cqw,100px);--u:calc(var(--b) / 100);position:absolute;top:calc(14 * var(--u));right:calc(14 * var(--u));z-index:2;width:var(--b);overflow:hidden;border:1px solid #e7e8ebb3;border-radius:calc(9 * var(--u)) calc(9 * var(--u)) calc(44 * var(--u)) calc(44 * var(--u));background:linear-gradient(125deg,#c0c9e6 0%,#e9e4f1 25%,#b7dcf1 48%,#e9e4ef 70%,#a0afd6 100%);color:#131725;text-align:center;box-shadow:0 5px 18px #0005;pointer-events:none;isolation:isolate}
 .winner-badge:after{content:"";position:absolute;inset:calc(3 * var(--u));border:1px solid #22283d55;border-radius:calc(6 * var(--u)) calc(6 * var(--u)) calc(40 * var(--u)) calc(40 * var(--u));pointer-events:none}
 .winner-badge-header{display:block;background:#171b27;color:#f5f5fa;padding:calc(10 * var(--u)) calc(4 * var(--u)) calc(8 * var(--u));font-size:calc(9 * var(--u));font-weight:700;letter-spacing:.13em;line-height:1.1}
 .winner-badge-body{display:flex;flex-direction:column;align-items:center;padding:calc(9 * var(--u)) calc(6 * var(--u)) calc(17 * var(--u));gap:calc(5 * var(--u))}
@@ -185,55 +186,55 @@ h1,h2,h3{font-weight:500;letter-spacing:-.03em;font-family:var(--display)}
   .winner-badge-header{display:none}
   .winner-badge-body{padding-top:calc(9 * var(--u))}
 }
-.project-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#1b1814}
+.project-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#17181b}
 .project-body{padding:27px 0 32px}
 .project-body h3{font-size:2.55rem;margin:8px 0 12px}
-.project-description{font-size:1rem;line-height:1.6;color:#72675a;min-height:52px;max-width:470px}
+.project-description{font-size:1rem;line-height:1.6;color:#67686b;min-height:52px;max-width:470px}
 .project-foot{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-top:26px}
 .project-foot .project-link{position:relative;flex:none;font-size:.8125rem;font-weight:600;color:var(--ink);border-bottom:2px solid var(--accent-blue);padding-bottom:1px;transition:color .16s,border-color .16s}
 .project-foot .project-link::before{content:"";position:absolute;inset:-13px -10px}
 .project-foot .project-link:hover{color:var(--accent-blue-deep);border-bottom-color:var(--accent-blue-deep)}
-.project-foot .team{font-size:.8125rem;color:#655b4f;line-height:1.6;max-width:70%}
+.project-foot .team{font-size:.8125rem;color:#5b5c5f;line-height:1.6;max-width:70%}
 .score{text-align:right;flex-shrink:0}
 .score strong{display:block;font-size:1.8rem;letter-spacing:-.03em;font-weight:400}
 .score span{font-size:.6875rem;letter-spacing:.08em;text-transform:uppercase}
-.ranking{border-top:1px solid #241f1a35;border-bottom:1px solid #241f1a35}
+.ranking{border-top:1px solid #1f202335;border-bottom:1px solid #1f202335}
 .ranking summary{padding:20px 0;font-size:.9375rem;list-style:none;display:flex;justify-content:space-between;gap:20px;cursor:pointer}
 .ranking summary::-webkit-details-marker{display:none}
 .ranking summary:after{content:'+';font-size:1.25rem}
 .ranking[open] summary:after{content:'−'}
 .ranking-list{padding-bottom:12px}
-.ranking-row{display:grid;grid-template-columns:30px 1fr 50px;gap:12px;padding:19px 0;border-top:1px solid #241f1a1a;align-items:start}
-.ranking-row .place{font:600 .8125rem var(--sans);color:#7b6f61;padding-top:3px;font-variant-numeric:tabular-nums}
+.ranking-row{display:grid;grid-template-columns:30px 1fr 50px;gap:12px;padding:19px 0;border-top:1px solid #1f20231a;align-items:start}
+.ranking-row .place{font:600 .8125rem var(--sans);color:#707174;padding-top:3px;font-variant-numeric:tabular-nums}
 .ranking-row h4{font-size:.9375rem;line-height:1.4;margin:0 0 6px;font-weight:600}
-.ranking-row .members{font-size:.75rem;color:#786d60;line-height:1.65}
+.ranking-row .members{font-size:.75rem;color:#6d6e71;line-height:1.65}
 .ranking-row .final-score{font-size:.875rem;text-align:right;padding-top:3px;font-variant-numeric:tabular-nums}
-.project-note{font-size:.75rem;color:#74685b;margin-top:25px;line-height:1.6}
+.project-note{font-size:.75rem;color:#696a6d;margin-top:25px;line-height:1.6}
 /* Thanks to sponsors and co-hosts */
 .thanks{background:#f6f6f3;color:var(--ink)}
-.thanks .section-label{border-color:#241f1a33}
-.thanks .section-label span:last-child{color:#746a5f}
+.thanks .section-label{border-color:#1f202333}
+.thanks .section-label span:last-child{color:#6a6b6e}
 .thanks-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:7vw;align-items:start}
 .thanks-copy p{max-width:440px;margin-top:24px;color:var(--ink-soft)}
-.thanks-names{list-style:none;margin:64px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:0 var(--sp-5);border-top:1px solid #241f1a33}
+.thanks-names{list-style:none;margin:64px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:0 var(--sp-5);border-top:1px solid #1f202333}
 .thanks-names li{padding:22px 0 0;font-family:var(--display);font-size:clamp(1.25rem,2.1vw,1.9rem);font-weight:500;letter-spacing:-.03em;line-height:1.2}
 .thanks-photos{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
 .thanks .shot{aspect-ratio:3/4}
-.thanks .caption{flex-direction:column;gap:2px;color:#7b6d5d}
-.thanks .caption b{color:#4e453a;font-weight:600}
+.thanks .caption{flex-direction:column;gap:2px;color:#6e6f72}
+.thanks .caption b{color:#454649;font-weight:600}
 @media(max-width:760px){.thanks-grid{grid-template-columns:1fr;gap:40px}
 .thanks-names{margin-top:44px;grid-template-columns:1fr 1fr;gap:0 var(--sp-4)}
 .thanks-names li{padding:18px 0 4px}
 .thanks-photos{gap:12px}
 }
 .partner-heading{display:grid;grid-template-columns:1.3fr .7fr;gap:7vw;align-items:end;margin-bottom:55px}
-.partner-heading p{color:#c2bab1;max-width:350px}
+.partner-heading p{color:#babbbe;max-width:350px}
 .partner-gallery{display:grid;grid-template-columns:1fr 1.15fr 1.25fr;gap:25px;align-items:start}
 .partner-gallery .shot{aspect-ratio:3/4}
 .partner-gallery figure:nth-child(2) .shot{aspect-ratio:1/1}
 .partner-gallery figure:nth-child(3) .shot{aspect-ratio:16/9}
 .partner-gallery h3{font-size:1.32rem;line-height:1.2;letter-spacing:-.03em;margin-top:20px}
-.partner-gallery p{font-size:.9375rem;color:#c0b8ae;margin-top:10px;line-height:1.6}
+.partner-gallery p{font-size:.9375rem;color:#b8b9bc;margin-top:10px;line-height:1.6}
 .quote-section{position:relative;background:var(--ink);color:var(--paper)}
 /* The photo's faces sit at roughly 30-49% of its height, so the frame is tall enough to keep them
    well above the headline, which is held to two lines along the bottom edge. */
@@ -257,34 +258,34 @@ h1,h2,h3{font-weight:500;letter-spacing:-.03em;font-family:var(--display)}
 @media(prefers-reduced-motion:reduce){.quote-dots button[aria-current="true"]::after{animation:none;width:100%}}
 /* the watermark in some photos sits in the bottom-right corner, so this button lives top-right here */
 .quote-photo .background-photo-view{bottom:auto;top:20px;right:24px}
-.quote-photo:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,#241f1af2 0%,#241f1a99 18%,#241f1a00 44%)}
+.quote-photo:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,#1f2023f2 0%,#1f202399 18%,#1f202300 44%)}
 /* .wrap centres itself with margin:auto, which in a flex column also centres it vertically; pin it to the bottom */
 .quote-content{width:100%;margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:clamp(64px,5.8vw,86px)}
 .quote-content h2{font-size:clamp(2.1rem,4.6vw,4.3rem);line-height:1.04;max-width:1100px;margin:0;text-wrap:balance}
 .events-band{padding-top:clamp(40px,5vw,72px);padding-bottom:clamp(56px,7vw,96px)}
-.events-intro{max-width:520px;color:#e1dcd7;font-size:1.0625rem}
+.events-intro{max-width:520px;color:#dcdde0;font-size:1.0625rem}
 .events-label{display:block;margin:clamp(40px,5vw,64px) 0 18px;color:var(--muted)}
 .event-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 @media(max-width:1000px){.event-cards{grid-template-columns:1fr}}
-.event-card{padding:28px 28px 30px;background:#2f2820;border:1px solid var(--rline);border-radius:var(--radius-md)}
+.event-card{padding:28px 28px 30px;background:#28292c;border:1px solid var(--rline);border-radius:var(--radius-md)}
 .event-card .mono{color:var(--accent-blue)}
 .event-card h3{font-size:clamp(1.3rem,2.2vw,1.9rem);line-height:1.15;margin:14px 0 10px;letter-spacing:-.03em}
 .event-card p{color:var(--muted);font-size:.9375rem}
 .event-card .event-note{margin-top:10px;padding-top:10px;border-top:1px solid var(--rline)}
 .events-more{margin-top:36px}
 .next{background:#f6f6f3;color:var(--ink)}
-.next .section-label{border-color:#241f1a33}
-.next .section-label span:last-child{color:#746a5f}
+.next .section-label{border-color:#1f202333}
+.next .section-label span:last-child{color:#6a6b6e}
 .next-intro{display:grid;grid-template-columns:1fr 1fr;gap:7vw;margin-bottom:58px}
-.next-intro p{color:#756a5d;margin-top:7px;max-width:455px}
-.proposal-label{color:#746758;margin-bottom:15px}
-.opportunity{border-top:1px solid #241f1a35}
-.opportunity:last-child{border-bottom:1px solid #241f1a35}
+.next-intro p{color:#6a6b6e;margin-top:7px;max-width:455px}
+.proposal-label{color:#68696c;margin-bottom:15px}
+.opportunity{border-top:1px solid #1f202335}
+.opportunity:last-child{border-bottom:1px solid #1f202335}
 .opportunity summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:55px 1fr 28px;column-gap:20px;row-gap:4px;align-items:center;padding:28px 0}
 .opportunity summary::-webkit-details-marker{display:none}
-.opportunity summary .num{grid-row:1/3;color:#897a68;font-family:var(--sans);font-size:.875rem;font-variant-numeric:tabular-nums}
+.opportunity summary .num{grid-row:1/3;color:#7b7c7f;font-family:var(--sans);font-size:.875rem;font-variant-numeric:tabular-nums}
 .opportunity summary h3{grid-column:2;grid-row:1;font-size:clamp(1.27rem,2.29vw,2.12rem);letter-spacing:-.03em}
-.opportunity summary .format{grid-column:2;grid-row:2;font-size:.875rem;color:#74685b}
+.opportunity summary .format{grid-column:2;grid-row:2;font-size:.875rem;color:#696a6d}
 /* drawn rather than typed: a rotated "+" glyph is not centred in its box, so it drifted when it became a cross */
 .opportunity summary .plus{grid-column:3;grid-row:1/3;justify-self:end;position:relative;width:18px;height:18px;font-size:0;color:transparent;transition:transform .2s}
 .opportunity summary .plus::before,.opportunity summary .plus::after{content:"";position:absolute;background:var(--ink);border-radius:1px}
@@ -292,35 +293,35 @@ h1,h2,h3{font-weight:500;letter-spacing:-.03em;font-family:var(--display)}
 .opportunity summary .plus::after{top:0;bottom:0;left:50%;width:2px;margin-left:-1px}
 .opportunity[open] summary .plus{transform:rotate(45deg)}
 .opportunity-content{display:grid;grid-template-columns:1fr 1fr;gap:7vw;padding:0 0 32px 75px}
-.opportunity-content p{font-size:.9375rem;color:#6c6052}
-.opportunity-content b{font-weight:600;color:#2f2923}
-.next-note{font-size:.75rem;color:#877765;margin-top:26px}
+.opportunity-content p{font-size:.9375rem;color:#616265}
+.opportunity-content b{font-weight:600;color:#292a2d}
+.next-note{font-size:.75rem;color:#78797c;margin-top:26px}
 .last-image-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;margin-top:66px;align-items:stretch}
 .last-image-grid .shot{aspect-ratio:16/10}
-.last-image-grid .caption{color:#7b6d5d}
-.last-image-grid .caption b{color:#4e453a}
+.last-image-grid .caption{color:#6e6f72}
+.last-image-grid .caption b{color:#454649}
 .filled-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .closing{background:var(--blue);color:var(--ink);position:relative;overflow:hidden}
 .closing-inner{padding-top:94px;padding-bottom:86px;position:relative}
-.closing .mono{color:#463e35}
+.closing .mono{color:#3e3f42}
 .closing h2{font-size:clamp(2.8rem,7.14vw,7.22rem);line-height:.97;max-width:1080px;margin-top:35px}
 .closing-bottom{display:flex;justify-content:space-between;align-items:end;gap:35px;margin-top:55px}
-.closing-bottom p{max-width:360px;color:#433b32}
-.contact-link{font-size:clamp(1rem,2vw,1.6rem);padding-bottom:10px;border-bottom:1px solid #241f1a70;display:flex;align-items:center;gap:35px}
+.closing-bottom p{max-width:360px;color:#3b3c3f}
+.contact-link{font-size:clamp(1rem,2vw,1.6rem);padding-bottom:10px;border-bottom:1px solid #1f202370;display:flex;align-items:center;gap:35px}
 .contact-link:hover .arrow{transform:translate(4px,-4px)}
 .contact-link .arrow{transition:transform .3s}
-.footer{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-top:30px;padding-bottom:30px;color:#bdb4a9;font-size:.75rem}
+.footer{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-top:30px;padding-bottom:30px;color:#b4b5b8;font-size:.75rem}
 .footer-actions{display:flex;gap:20px;align-items:center}
-.quiet-btn{border:0;background:none;padding:8px 0;color:#bdb4a9;font-size:.75rem;text-decoration:underline;text-underline-offset:4px}
+.quiet-btn{border:0;background:none;padding:8px 0;color:#b4b5b8;font-size:.75rem;text-decoration:underline;text-underline-offset:4px}
 .quiet-btn:hover{color:#faf9f4}
-.poster-link{display:flex;align-items:center;gap:14px;font-size:.8125rem;color:#d0c9c0}
+.poster-link{display:flex;align-items:center;gap:14px;font-size:.8125rem;color:#c9cacd}
 .poster-thumb{width:50px;height:50px;object-fit:cover}
-dialog{background:#181512;color:#faf9f4;border:1px solid #efe7d625;padding:20px;max-width:min(1150px,95vw);max-height:93svh}
-dialog::backdrop{background:#0e0c0ae8;backdrop-filter:blur(10px)}
+dialog{background:#141518;color:#faf9f4;border:1px solid #e7e8eb25;padding:20px;max-width:min(1150px,95vw);max-height:93svh}
+dialog::backdrop{background:#0b0c0fe8;backdrop-filter:blur(10px)}
 .lightbox-toolbar{display:flex;justify-content:space-between;gap:20px;margin-bottom:16px;align-items:center;font-size:.875rem}
-.lightbox-toolbar button{background:#efe7d615;border:1px solid #efe7d633;padding:8px 12px;font-size:.875rem}
+.lightbox-toolbar button{background:#e7e8eb15;border:1px solid #e7e8eb33;padding:8px 12px;font-size:.875rem}
 .lightbox-image{max-height:73svh;max-width:88vw;width:auto;height:auto;margin:auto;object-fit:contain}
-.lightbox-caption{font-size:.75rem;color:#c5bcb2;margin-top:12px}
+.lightbox-caption{font-size:.75rem;color:#bcbdc0;margin-top:12px}
 .js-motion .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .js-motion .reveal.in{opacity:1;transform:none}
 .js-motion .delay{transition-delay:.13s}
@@ -358,7 +359,7 @@ dialog::backdrop{background:#0e0c0ae8;backdrop-filter:blur(10px)}
   .hero-meta .mono,.hero-top .mono{font-size:.6875rem}
   .hero-top .location{max-width:none}
   .hero-image{inset:0;width:100%;height:100%;object-position:75% center;opacity:.55;-webkit-mask-image:none;mask-image:none}
-  .hero:after{background:linear-gradient(90deg,#241f1ace,transparent),linear-gradient(0deg,#241f1a 0%,#241f1a50 50%,#241f1a88 100%)}
+  .hero:after{background:linear-gradient(90deg,#1f2023ce,transparent),linear-gradient(0deg,#1f2023 0%,#1f202350 50%,#1f202388 100%)}
   .hero h1{font-size:clamp(3.06rem,10.9vw,5.1rem);line-height:.99}
   .hero-bottom{display:block;margin-top:36px}
   .hero-summary{max-width:600px}
@@ -367,7 +368,7 @@ dialog::backdrop{background:#0e0c0ae8;backdrop-filter:blur(10px)}
   .hero-issue{margin-top:42px}
   .hero-issue b{font-size:2.8rem;font-family:var(--display)}
   .metric-grid{padding-top:36px;padding-bottom:36px;grid-template-columns:1fr;gap:26px}
-  .metric{padding:24px 0 0;border-left:0;border-top:1px solid #241f1a24;display:grid;grid-template-columns:140px 1fr;column-gap:22px;align-items:center}
+  .metric{padding:24px 0 0;border-left:0;border-top:1px solid #1f202324;display:grid;grid-template-columns:140px 1fr;column-gap:22px;align-items:center}
   .metric:first-child{border-top:0;padding-top:0}
   .metric-num{font-size:4.08rem;grid-row:1/3;font-family:var(--display)}
   .metric-title{font-size:1rem;margin-top:5px;align-self:end}
@@ -456,37 +457,37 @@ dialog::backdrop{background:#0e0c0ae8;backdrop-filter:blur(10px)}
 @media(max-width:760px){
   .hero h1{font-size:clamp(2.55rem,9.01vw,3.91rem);line-height:1.02}
 }
-.platform-section{background:#2f2820;color:var(--paper);position:relative;overflow:hidden}
+.platform-section{background:#28292c;color:var(--paper);position:relative;overflow:hidden}
 .platform-section:before{content:'';position:absolute;width:60vw;height:60vw;right:-34vw;top:-29vw;border-radius:50%;background:radial-gradient(circle,#8e99f721,transparent 67%);pointer-events:none}
 .platform-section .wrap{position:relative}
 .platform-intro{display:grid;grid-template-columns:1.25fr .75fr;gap:8vw;align-items:end;margin-bottom:72px}
-.platform-intro p{max-width:480px;color:#d7d0c9}
+.platform-intro p{max-width:480px;color:#d0d1d4}
 .platform-intro strong{color:#faf9f4;font-weight:600}
 .platform-section .section-title em{font-style:normal;color:var(--blue)}
 .platform-phase{color:var(--blue);margin-bottom:17px}
 .platform-journey{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid #8e99f78c}
 .platform-journey li{padding:20px 22px 48px 0;min-width:0;position:relative}
-.platform-journey li:not(:last-child){border-right:1px solid #efe7d620;padding-right:20px}
+.platform-journey li:not(:last-child){border-right:1px solid #e7e8eb20;padding-right:20px}
 .platform-journey li:not(:first-child){padding-left:20px}
 .platform-journey li:before{content:'';position:absolute;width:7px;height:7px;border-radius:50%;top:-4px;left:0;background:var(--blue)}
 .platform-journey li:not(:first-child):before{left:20px}
-.platform-journey .step{color:#b2a79a;display:block;margin:0 0 38px}
+.platform-journey .step{color:#a7a8ab;display:block;margin:0 0 38px}
 .platform-journey h3{font-size:clamp(1.19rem,1.7vw,1.95rem);letter-spacing:-.03em;line-height:1.12;min-height:2.25em;margin-bottom:14px}
-.platform-journey p{font-size:.9rem;line-height:1.5;color:#c7bfb5;max-width:210px}
-.platform-after{display:grid;grid-template-columns:.9fr 1.1fr;gap:8vw;padding:50px 0 10px;border-top:1px solid #efe7d633}
+.platform-journey p{font-size:.9rem;line-height:1.5;color:#bfc0c3;max-width:210px}
+.platform-after{display:grid;grid-template-columns:.9fr 1.1fr;gap:8vw;padding:50px 0 10px;border-top:1px solid #e7e8eb33}
 .platform-after h3{font-size:clamp(2.21rem,3.82vw,4.08rem);line-height:1.02;max-width:500px}
 .platform-after h3 span{color:var(--blue)}
-.platform-after-intro{color:#d1cac2;margin-top:22px;max-width:430px}
+.platform-after-intro{color:#cacbce;margin-top:22px;max-width:430px}
 .platform-destinations{margin:0;padding:0;list-style:none;display:grid;gap:12px}
-.platform-destinations li{padding:22px 24px;display:grid;grid-template-columns:40px 1fr;gap:16px;align-items:start;background:#39322b;border:1px solid #8e99f735;border-radius:16px;transition:background .25s,transform .25s,border-color .25s}
-.platform-destinations li:hover{background:#484036;border-color:#8e99f788;transform:translateY(-3px)}
+.platform-destinations li{padding:22px 24px;display:grid;grid-template-columns:40px 1fr;gap:16px;align-items:start;background:#323336;border:1px solid #8e99f735;border-radius:16px;transition:background .25s,transform .25s,border-color .25s}
+.platform-destinations li:hover{background:#404144;border-color:#8e99f788;transform:translateY(-3px)}
 .platform-destinations .mono{color:var(--blue);padding-top:5px}
 .platform-destinations h4{font-size:1.1rem;font-weight:500;letter-spacing:-.03em;margin:0 0 5px;font-family:var(--display)}
-.platform-destinations p{font-size:.875rem;color:#cdc5bc}
+.platform-destinations p{font-size:.875rem;color:#c5c6c9}
 .platform-compound{margin-top:84px;border-top:1px solid #8e99f770;padding:27px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:start}
 .platform-compound strong{display:block;font-size:clamp(1.44rem,2.12vw,2.25rem);line-height:1.1;font-weight:500;letter-spacing:-.03em;font-family:var(--display)}
-.platform-compound p{font-size:.9375rem;color:#d7d1ca;max-width:520px}
-.platform-status{display:block;color:#bdb3a8;margin:12px 0 0}
+.platform-compound p{font-size:.9375rem;color:#d1d2d5;max-width:520px}
+.platform-status{display:block;color:#b3b4b7;margin:12px 0 0}
 @media(max-width:1050px){
   .platform-intro{gap:5vw}
   .platform-journey h3{font-size:1.27rem}
@@ -499,12 +500,12 @@ dialog::backdrop{background:#0e0c0ae8;backdrop-filter:blur(10px)}
   .platform-intro,.platform-after,.platform-compound{grid-template-columns:1fr;gap:24px}
   .platform-intro{margin-bottom:52px}
   .platform-journey{grid-template-columns:1fr 1fr}
-  .platform-journey li{border-bottom:1px solid #efe7d624;min-height:185px;padding:17px 16px 24px 0}
+  .platform-journey li{border-bottom:1px solid #e7e8eb24;min-height:185px;padding:17px 16px 24px 0}
   .platform-journey li:not(:first-child){padding-left:0}
   .platform-journey li:not(:first-child):before{left:0}
   .platform-journey li:nth-child(2n){padding-left:18px!important;border-right:0}
   .platform-journey li:nth-child(2n):before{left:18px}
-  .platform-journey li:nth-child(2n+1){border-right:1px solid #efe7d620}
+  .platform-journey li:nth-child(2n+1){border-right:1px solid #e7e8eb20}
   .platform-journey li:last-child{grid-column:1/-1;min-height:0;padding-bottom:30px}
   .platform-journey .step{margin-bottom:25px}
   .platform-journey h3{font-size:1.15rem;min-height:0}
@@ -519,7 +520,7 @@ dialog::backdrop{background:#0e0c0ae8;backdrop-filter:blur(10px)}
 .shot:focus-visible{outline:3px solid var(--blue);outline-offset:-3px}
 .shot:focus-visible img{transform:scale(1.035)}
 .shot:after{z-index:3;color:#faf9f4;pointer-events:none}
-.background-photo-view{position:absolute;right:24px;bottom:24px;z-index:3;width:36px;height:36px;display:grid;place-items:center;padding:0;border:0;background:#241f1ab3;backdrop-filter:blur(8px);color:#faf9f4;font-size:20px;cursor:zoom-in;opacity:0;transition:opacity .25s}
+.background-photo-view{position:absolute;right:24px;bottom:24px;z-index:3;width:36px;height:36px;display:grid;place-items:center;padding:0;border:0;background:#1f2023b3;backdrop-filter:blur(8px);color:#faf9f4;font-size:20px;cursor:zoom-in;opacity:0;transition:opacity .25s}
 .hero:hover .background-photo-view,.quote-photo:hover .background-photo-view,.background-photo-view:focus-visible{opacity:1}
 @media(hover:none){
   .shot:after,.background-photo-view{opacity:1}
@@ -528,24 +529,24 @@ dialog::backdrop{background:#0e0c0ae8;backdrop-filter:blur(10px)}
 .collab .wide-shot{aspect-ratio:16/9}
 .fill-frame{aspect-ratio:16/10;overflow:hidden;background:var(--white-tint)}
 .project-image .filled-image{object-fit:contain}
-/* Scroll progress: a 2px line that opens into a section map on hover / keyboard focus */
+/* Scroll progress / section map (same style and behaviour as the Makeathon sponsorship page; it sits under the nav here) */
 .progress{position:fixed;top:calc(var(--nav-h) - 2px);left:0;width:100%;height:2px;z-index:51;transition:height .22s var(--ease)}
 .progress::after{content:"";position:absolute;left:0;right:0;top:100%;height:14px}
 .pg-layer{position:absolute;inset:0;display:flex;overflow:hidden}
-.pg-base{background:#5f5a55}
-.pg-fill{background:var(--blue);color:#241f1a;clip-path:inset(0 100% 0 0);pointer-events:none;transition:clip-path .2s var(--ease)}
+.pg-base{background:color-mix(in srgb,var(--ink) 38%,var(--white))}
+.pg-fill{background:var(--blue);color:var(--ink);clip-path:inset(0 100% 0 0);pointer-events:none;transition:clip-path .2s var(--ease)}
 .pg-base,.pg-fill{font:600 .6875rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase}
-.pg-seg{display:flex;gap:.6em;align-items:center;min-width:0;padding:0 12px;color:#faf9f4;text-decoration:none;white-space:nowrap;border-left:1px solid #241f1a;opacity:0;transition:opacity .15s}
-.pg-fill .pg-seg{color:#241f1a;border-left-color:transparent}
+.pg-seg{display:flex;gap:.6em;align-items:center;min-width:0;padding:0 12px;color:var(--white);text-decoration:none;white-space:nowrap;border-left:1px solid var(--ink);opacity:0;transition:flex-basis .2s var(--ease),opacity .15s,background .15s}
+.pg-fill .pg-seg{color:var(--ink);border-left-color:transparent}
 .pg-seg:first-child{border-left:0}
-.pg-seg{transition:flex-basis .2s var(--ease),opacity .15s,background .15s}
 .pg-seg b{flex:none;font-weight:700}
 .pg-seg span{overflow:hidden;text-overflow:ellipsis}
-.pg-base .pg-seg:hover{background:#7a746d}
+.pg-base .pg-seg:hover{background:color-mix(in srgb,var(--ink) 55%,var(--white))}
 .progress.open{height:30px}
 .progress.open .pg-seg{opacity:1}
 .progress.open .pg-base{cursor:pointer}
-.pg-seg:focus-visible{outline:2px solid #faf9f4;outline-offset:-3px}
+.progress:not(.open) .pg-seg{pointer-events:none}
+.pg-seg:focus-visible{outline:2px solid var(--white);outline-offset:-3px}
 @media(prefers-reduced-motion:reduce){.progress,.pg-seg{transition:none}}
 @media(max-width:1050px){
   .platform-journey h3{font-size:0.935rem;overflow-wrap:anywhere}
@@ -554,7 +555,7 @@ dialog::backdrop{background:#0e0c0ae8;backdrop-filter:blur(10px)}
 .btn:hover{background:var(--accent-blue-deep);border-color:var(--accent-blue-deep);color:#fff}
 /* ---------- Primary navigation (shared by every page) ---------- */
 nav{position:sticky;top:0;z-index:50;line-height:1.6;background:rgba(250,249,244,.88);border-bottom:1px solid transparent;transition:border-color .2s,box-shadow .2s}
-nav.scrolled{backdrop-filter:blur(12px) saturate(120%);-webkit-backdrop-filter:blur(12px) saturate(120%);border-bottom-color:var(--line);box-shadow:0 8px 24px rgba(36,31,26,.04)}
+nav.scrolled{backdrop-filter:blur(12px) saturate(120%);-webkit-backdrop-filter:blur(12px) saturate(120%);border-bottom-color:var(--line);box-shadow:0 8px 24px rgba(31,32,35,.04)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);max-width:var(--maxw);margin:0 auto;padding:0 var(--sp-5)}
 .wordmark{display:inline-flex;align-items:center;color:var(--ink)}
 .wordmark img{display:block;width:auto;height:42px}
@@ -582,7 +583,7 @@ nav.open .nav-toggle .bars::after{transform:translateY(-6px) rotate(-45deg)}
   .wordmark img{height:38.4px}
   .nav-right{gap:var(--sp-3)}
   .nav-toggle{display:inline-flex}
-  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:var(--sp-2) 0;background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line);box-shadow:0 16px 32px rgba(36,31,26,.08)}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:var(--sp-2) 0;background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line);box-shadow:0 16px 32px rgba(31,32,35,.08)}
   nav.open .nav-links{display:flex}
   .nav-links a{padding:var(--sp-4) 22px;font-size:var(--fs-body)}
   .nav-links a[aria-current="page"]{box-shadow:inset 3px 0 0 var(--accent-blue)}
@@ -599,6 +600,19 @@ nav{background:var(--white)}
   .hero h1{margin-top:auto}
   .hero-bottom{padding-bottom:0}
 }
+
+/* ---- Shared with the Physical AI recap ---- */
+.figure-no{white-space:nowrap}
+.event-card{display:flex;flex-direction:column}
+.event-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:18px}
+.event-pill{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:7px 12px;border:1px solid var(--rline);border-radius:999px;font-size:.8125rem;font-weight:600;color:var(--paper);transition:background .16s,border-color .16s,color .16s}
+.event-pill .arrow{width:1.1em;height:1.1em}
+.event-pill:hover{border-color:var(--blue);color:var(--blue)}
+.event-pill--open{--go:#5ccf8a;--go-deep:#3fb46e;background:var(--go);border-color:var(--go);color:var(--ink)}
+.event-pill--open:hover{background:var(--go-deep);border-color:var(--go-deep);color:var(--ink)}
+.event-dot{width:7px;height:7px;border-radius:50%;background:currentColor;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.35}}
+@media(max-width:760px){.metric{grid-template-columns:168px 1fr}.metric-num{font-size:3.4rem}.metric small br{display:none}}
 </style>
 </head>
 <body>
@@ -620,8 +634,8 @@ nav{background:var(--white)}
   </div>
 </nav><div class="progress" id="progress" role="navigation" aria-label="Jump to section"><div class="pg-layer pg-base"><a class="pg-seg" href="#top" data-target="top"><b>00</b><span>/ Overview</span></a><a class="pg-seg" href="#platform" data-target="platform"><b>01</b><span>/ One connected platform</span></a><a class="pg-seg" href="#experience" data-target="experience"><b>02</b><span>/ The experience</span></a><a class="pg-seg" href="#projects" data-target="projects"><b>03</b><span>/ What they built</span></a><a class="pg-seg" href="#partners" data-target="partners"><b>04</b><span>/ In the room</span></a><a class="pg-seg" href="#thanks" data-target="thanks"><b>05</b><span>/ With thanks</span></a><a class="pg-seg" href="#community" data-target="community"><b>—</b><span>/ Community</span></a><a class="pg-seg" href="#next" data-target="next"><b>06</b><span>/ The next partnership</span></a><a class="pg-seg" href="#contact" data-target="contact"><b>—</b><span>/ Get in touch</span></a></div><div class="pg-layer pg-fill" aria-hidden="true"><div class="pg-seg" data-target="top"><b>00</b><span>/ Overview</span></div><div class="pg-seg" data-target="platform"><b>01</b><span>/ One connected platform</span></div><div class="pg-seg" data-target="experience"><b>02</b><span>/ The experience</span></div><div class="pg-seg" data-target="projects"><b>03</b><span>/ What they built</span></div><div class="pg-seg" data-target="partners"><b>04</b><span>/ In the room</span></div><div class="pg-seg" data-target="thanks"><b>05</b><span>/ With thanks</span></div><div class="pg-seg" data-target="community"><b>—</b><span>/ Community</span></div><div class="pg-seg" data-target="next"><b>06</b><span>/ The next partnership</span></div><div class="pg-seg" data-target="contact"><b>—</b><span>/ Get in touch</span></div></div></div>
 <main>
-<section class="hero" id="top"><img class="hero-image" fetchpriority="high" decoding="async" src="executable-world-2026/img/hero.jpg" alt="Builders gathered for a presentation at The Executable World hackathon"><div class="hero-glow" aria-hidden="true"></div><div class="hero-inner wrap"><div class="hero-top"><div class="hero-meta"><span class="eyebrow mono">The Executable World<br>Full Stack AI Hackathon & Mixer</span></div><span class="mono location">September 19, 2026<br>09:00 — 20:00</span></div><h1 class="reveal">A room of builders. <span class="outline">A world of possibility.</span></h1><div class="hero-bottom"><div class="hero-summary reveal delay"><p>One day of building, technical exchange and live demos. A closer look at what FIG Studio brought together.</p><a class="text-link" href="#impact">Explore the impact <span class="arrow arrow--down" aria-hidden="true"></span></a></div></div></div><button type="button" class="background-photo-view" data-lightbox-source=".hero .hero-image" aria-label="Enlarge background event photo"><span class="arrow arrow--ne" aria-hidden="true"></span></button></section>
-<section class="metrics" id="impact" aria-label="Event impact"><div class="metric-grid wrap"><div class="metric"><div class="metric-num" data-count="408">408</div><b class="metric-title">RSVPs</b><small>People who signed up to join<br>the hackathon &amp; mixer</small></div><div class="metric"><div class="metric-num"><span class="approx">~</span><span data-count="100">100</span></div><b class="metric-title">Builders in the room</b><small>Researchers, engineers, founders<br>and product builders</small></div><div class="metric"><div class="metric-num" data-count="25">25</div><b class="metric-title">Project submissions</b><small>Ideas taken into active building<br>during the event</small></div></div></section>
+<section class="hero" id="top"><img class="hero-image" fetchpriority="high" decoding="async" src="executable-world-2026/img/hero.jpg" alt="Builders gathered for a presentation at The Executable World hackathon"><div class="hero-glow" aria-hidden="true"></div><div class="hero-inner wrap"><div class="hero-top"><div class="hero-meta"><span class="eyebrow mono">The Executable World: Full Stack AI Hackathon &amp; Mixer</span></div><span class="mono location">September 19, 2026<br>09:00 — 20:00</span></div><h1 class="reveal">A room of builders. <span class="outline">A world of possibility.</span></h1><div class="hero-bottom"><div class="hero-summary reveal delay"><p>One day of building, technical exchange and live demos. A closer look at what FIG Studio brought together.</p><a class="text-link" href="#impact">Explore the impact <span class="arrow arrow--down" aria-hidden="true"></span></a></div></div></div><button type="button" class="background-photo-view" data-lightbox-source=".hero .hero-image" aria-label="Enlarge background event photo"><span class="arrow arrow--ne" aria-hidden="true"></span></button></section>
+<section class="metrics" id="impact" aria-label="Event impact"><div class="metric-grid wrap"><div class="metric"><div class="metric-num" data-count="408">408</div><b class="metric-title">RSVPs</b><small>People who signed up to join <br>the hackathon &amp; mixer</small></div><div class="metric"><div class="metric-num"><span class="approx">~</span><span data-count="100">100</span></div><b class="metric-title">Builders in the room</b><small>Researchers, engineers, founders <br>and product builders</small></div><div class="metric"><div class="metric-num" data-count="25">25</div><b class="metric-title">Project submissions</b><small>Ideas taken into active building <br>during the event</small></div></div></section>
 <section class="platform-section pad-y" id="platform"><div class="wrap"><div class="section-label"><span class="mono">01 / One connected platform</span><span class="mono">Before · During · After</span></div><div class="platform-intro"><h2 class="section-title reveal">The event has<br>a <em>longer life</em><br>on the Fig Event Platform.</h2><p class="reveal delay">We built the <strong>Fig Event Platform</strong>, our end-to-end event platform for registration, team formation, communication, project submission and judging. After the event, builders and projects stay visible.</p></div><p class="platform-phase mono">The event journey / five connected steps</p><ol class="platform-journey"><li class="reveal"><span class="step mono">01 / Join</span><h3>Register</h3><p>Find the event and sign up in one place.</p></li><li class="reveal"><span class="step mono">02 / Find your people</span><h3>AI team matching</h3><p>Discover collaborators, send invitations and build a team.</p></li><li class="reveal"><span class="step mono">03 / Stay connected</span><h3>Communicate</h3><p>Keep conversations going through event chat and networking.</p></li><li class="reveal"><span class="step mono">04 / Make it real</span><h3>Submit a project</h3><p>Bring the work together in a project submission.</p></li><li class="reveal"><span class="step mono">05 / Get evaluated</span><h3>Judges score</h3><p>Give judges a clear place to review and score the work.</p></li></ol><div class="platform-after"><div class="reveal"><h3>Give builders<br>and projects<br><span>a longer runway.</span></h3><p class="platform-after-intro">Keep builders and their work visible between events.</p></div><ul class="platform-destinations reveal delay"><li><span class="mono">01</span><div><h4>Builders Leaderboard</h4><p>Recognize builders across programs.</p></div></li><li><span class="mono">02</span><div><h4>Project Highlights</h4><p>Keep standout work easy to discover.</p></div></li><li><span class="mono">03</span><div><h4>Community</h4><p>Keep conversations moving.</p></div></li></ul></div><div class="platform-compound reveal"><div><span class="platform-phase mono">Why it matters for partners</span><strong>Every event adds to the next.</strong></div><div><p>As FIG Studio hosts more programs, the builder network and project portfolio can keep growing in one place. Partners can support the full journey and engage around work that remains visible beyond a single event.</p><span class="platform-status mono">A long-term network and project portfolio</span></div></div></div></section>
 <section class="wrap pad-y" id="experience"><div class="section-label"><span class="mono">02 / The experience</span><span class="mono">From conversation to creation</span></div><div class="intro-grid"><h2 class="section-title reveal">The energy<br>was in<br><span style="color:var(--blue)">the making.</span></h2><div class="intro-copy reveal delay"><p>FIG Studio brought researchers, engineers, founders and product builders together around a shared challenge: build the next generation of AI products.</p><p>Across two tracks, teams worked through ideas, developed submissions and presented their work—with technical discussions and community connection alongside the build.</p><div class="inline-chips"><span>Build sessions</span><span>Technical talks</span><span>Live demos</span></div></div></div><div class="story-photos"><figure class="reveal"><div class="media-frame collab"><button class="shot wide-shot" data-lightbox aria-label="Enlarge photo of two builders collaborating"><img src="executable-world-2026/img/collaboration.jpg" alt="Two builders collaborating at the hackathon" loading="lazy"></button></div><figcaption class="caption"><b>Working through the next idea.</b><span class="figure-no">FIG. 01</span></figcaption></figure><figure class="small-photo reveal delay"><div class="media-frame"><button class="shot portrait-shot" data-lightbox aria-label="Enlarge team build-session photo"><img src="executable-world-2026/img/build-session.jpg" alt="A team working together during the build session" loading="lazy"></button></div><figcaption class="caption"><b>From shared tables to submissions.</b><span class="figure-no">FIG. 02</span></figcaption></figure></div></section>
 <section class="project-section pad-y" id="projects"><div class="wrap"><div class="section-label"><span class="mono">03 / What they built</span><span class="mono">25 project submissions</span></div><div class="project-head"><h2 class="section-title reveal">Ideas became<br>something to show.</h2><p class="reveal delay">A look at two projects from the build. Browse more submissions below.</p></div><div class="project-grid">
@@ -630,7 +644,7 @@ nav{background:var(--white)}
 </div><details class="ranking project-directory"><summary>Browse more projects from the event</summary><div class="ranking-list project-directory-list"><div class="ranking-row"><span class="place">#025</span><div><h4>SafetyLens</h4><p class="members">3 members · Sean aminov; Yug Amol More; Abhinavkrishna GS</p><a class="project-link" href="https://www.youtube.com/watch?v=8DRMEeQYebk" target="_blank" rel="noopener noreferrer" aria-label="SafetyLens: watch video (opens in a new tab)">Watch video <span class="arrow arrow--ne" aria-hidden="true"></span></a></div></div><div class="ranking-row"><span class="place">#010</span><div><h4>PaperWeb — Design your own website like painting</h4><p class="members">2 members · Eric Zhao; Mark Shen</p><a class="project-link" href="https://cks06971.com/display/" target="_blank" rel="noopener noreferrer" aria-label="PaperWeb: open project (opens in a new tab)">Open project <span class="arrow arrow--ne" aria-hidden="true"></span></a></div></div><div class="ranking-row"><span class="place">#023</span><div><h4>ArgusAI | Verify Software. With Evidence.</h4><p class="members">2 members · Jay Kurivella; Nikitha Sai Lasya</p><a class="project-link" href="https://drive.google.com/file/d/1yPSkn7TKPmFtaAbSdeMEnt4XMmECPfni/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="ArgusAI: view file (opens in a new tab)">View file <span class="arrow arrow--ne" aria-hidden="true"></span></a></div></div><div class="ranking-row"><span class="place">#016</span><div><h4>Signage</h4><p class="members">5 members · Gary Wang; Kevin Yang; Hanson Yan; Jay Jiang; Davis Jin</p><a class="project-link" href="https://drive.google.com/file/d/1VXI0X3zERIZjxSMP03FRpEmhG3jvWnE0/view" target="_blank" rel="noopener noreferrer" aria-label="Signage: view file (opens in a new tab)">View file <span class="arrow arrow--ne" aria-hidden="true"></span></a></div></div><div class="ranking-row"><span class="place">#017</span><div><h4>Faultline</h4><p class="members">3 members · Anmol Sharma; Siddharth Bhat; Aarsh Sheth</p><a class="project-link" href="https://drive.google.com/drive/folders/1HHb7By9XNnqWwf-THid0PYyk6ZkJljBZ?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Faultline: view files (opens in a new tab)">View files <span class="arrow arrow--ne" aria-hidden="true"></span></a></div></div><div class="ranking-row"><span class="place">#011</span><div><h4>SimVal.Ai</h4><p class="members">1 member · Bharat Bhavnasi</p><a class="project-link" href="https://www.youtube.com/watch?v=ZhgTWdNVi5g" target="_blank" rel="noopener noreferrer" aria-label="SimVal.Ai: watch video (opens in a new tab)">Watch video <span class="arrow arrow--ne" aria-hidden="true"></span></a></div></div><div class="ranking-row"><span class="place">#015</span><div><h4>RefundGuard</h4><p class="members">1 member · Zubair Zafar</p><a class="project-link" href="https://youtu.be/GTRdhek3FWg" target="_blank" rel="noopener noreferrer" aria-label="RefundGuard: watch video (opens in a new tab)">Watch video <span class="arrow arrow--ne" aria-hidden="true"></span></a></div></div><div class="ranking-row"><span class="place">#009</span><div><h4>Injection Canary</h4><p class="members">2 members · Ahmed Hrishit; Haroon Qahtan</p><a class="project-link" href="https://injection-canary-eqzyrd6n.edgeone.dev/" target="_blank" rel="noopener noreferrer" aria-label="Injection Canary: open project (opens in a new tab)">Open project <span class="arrow arrow--ne" aria-hidden="true"></span></a></div></div><div class="ranking-row"><span class="place">#003</span><div><h4>ShipGate</h4><p class="members">2 members · Richard Chang; Samuel Zhu</p><a class="project-link" href="https://drive.google.com/file/d/1aNtz-_V39u0REf6dA2vo8qDIDm4uGYiO/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="ShipGate: view file (opens in a new tab)">View file <span class="arrow arrow--ne" aria-hidden="true"></span></a></div></div><div class="ranking-row"><span class="place">#021</span><div><h4>OpenApps — agents you can watch working</h4><p class="members">1 member · KOH DE JIAN</p><a class="project-link" href="https://youtu.be/XT1aB8kNtNM" target="_blank" rel="noopener noreferrer" aria-label="OpenApps: watch video (opens in a new tab)">Watch video <span class="arrow arrow--ne" aria-hidden="true"></span></a></div></div></div></details><p class="project-note">The projects above are examples from the event, shown without track assignments or ranking. Attendance is approximate.</p></div></section>
 <section class="wrap pad-y" id="partners"><div class="section-label"><span class="mono">04 / In the room</span><span class="mono">Presence. Exchange. Connection.</span></div><div class="partner-heading"><h2 class="section-title reveal">Closer to the people<br>building what’s next.</h2><p class="reveal delay">Talks, panels and plenty of questions, all in the same room as the build.</p></div><div class="partner-gallery"><figure class="reveal"><div class="media-frame"><button class="shot" data-lightbox aria-label="Enlarge audience photo"><img src="executable-world-2026/img/audience-mic.jpg" alt="An attendee stands with a microphone among seated builders during a session" loading="lazy"></button></div><h3>Voices from the room.</h3><p>Builders stepped up to the mic to ask questions and join the conversation.</p></figure><figure class="reveal delay"><div class="media-frame"><button class="shot" data-lightbox aria-label="Enlarge panel discussion photo"><img src="executable-world-2026/img/panel.jpg" alt="Panelists discussing the executable AI stack" loading="lazy"></button></div><h3>Technical conversations.</h3><p>Speakers and judges brought discussion into a day centered on building.</p></figure><figure class="reveal"><div class="media-frame"><button class="shot" data-lightbox aria-label="Enlarge speaker photo"><img src="executable-world-2026/img/speaker.jpg" alt="Speaker sharing technical context with participants" loading="lazy"></button></div><h3>Context for the work.</h3><p>Talks and presentations alongside hands-on team sessions and live demos.</p></figure></div></section>
 <section class="thanks pad-y" id="thanks"><div class="wrap"><div class="section-label"><span class="mono">05 / With thanks</span><span class="mono">Sponsors &amp; co-hosts</span></div><div class="thanks-grid"><div class="thanks-copy"><h2 class="section-title reveal">Big thanks to our<br>sponsors and <span style="white-space:nowrap">co-hosts.</span></h2><p class="reveal delay">The Executable World happened because these teams stepped up to back the builders in the room. Thank you for making the day what it was.</p></div><div class="thanks-photos"><figure class="reveal"><div class="media-frame"><button class="shot" data-lightbox aria-label="Enlarge Tencent EdgeOne booth photo"><img src="executable-world-2026/img/partner-booth.jpg" alt="Tencent EdgeOne’s Makers banner beside a table of giveaways in the sponsor lounge" loading="lazy"></button></div><figcaption class="caption"><b>Tencent EdgeOne</b><span>EdgeOne Makers</span></figcaption></figure><figure class="reveal delay"><div class="media-frame"><button class="shot" data-lightbox aria-label="Enlarge VeloDB table photo"><img src="executable-world-2026/img/partner-velodb.jpg" alt="VeloDB’s table with an Apache Doris banner at the event" loading="lazy"></button></div><figcaption class="caption"><b>VeloDB</b><span>Apache Doris</span></figcaption></figure></div></div><ul class="thanks-names reveal" aria-label="Sponsors and co-hosts"><li>Tencent EdgeOne</li><li>VeloDB</li><li>AgentX</li><li>WorkBuddy</li></ul></div></section>
-<section class="quote-section" id="community"><div class="quote-photo" role="group" aria-roledescription="carousel" aria-label="Community photos"><div class="quote-track"><div class="quote-slide is-current" style="--pos:50% 6%"><img src="executable-world-2026/img/community-trio.jpg" alt="Three community members smiling together in front of the Judges screen" loading="lazy"></div><div class="quote-slide" style="--pos:50% 30%"><img src="executable-world-2026/img/community-judges.jpg" alt="Attendees and judges smiling and giving thumbs up in front of the Judges screen" loading="lazy"></div><div class="quote-slide" style="--pos:45% 30%"><img src="executable-world-2026/img/community-banner.jpg" alt="Builders and community members posing together at the event" loading="lazy"></div><div class="quote-slide" style="--pos:50% 6%" aria-hidden="true"><img src="executable-world-2026/img/community-trio.jpg" alt="" loading="lazy"></div></div><div class="quote-content wrap"><h2 class="reveal">The build ends.<br>The connections keep going.</h2></div><div class="quote-dots" role="group" aria-label="Choose a photo"><button type="button" aria-label="Show photo 1 of 3" aria-current="true"></button><button type="button" aria-label="Show photo 2 of 3"></button><button type="button" aria-label="Show photo 3 of 3"></button></div><button type="button" class="background-photo-view" data-lightbox-source=".quote-slide.is-current img" aria-label="Enlarge this photo"><span class="arrow arrow--ne" aria-hidden="true"></span></button></div><div class="events-band"><div class="wrap"><p class="events-intro reveal">FIG Studio connects builders through hackathons, demo days, mixers and smaller conversations.</p><span class="mono events-label">Upcoming events</span><div class="event-cards reveal"><article class="event-card"><span class="mono"><time datetime="2026-10-10">Sat, Oct 10</time></span><h3>Frontier in Action: Physical Intelligence</h3><p>1:00 – 5:00 PM · San Francisco</p></article><article class="event-card"><span class="mono"><time datetime="2026-10-18">Sun, Oct 18</time></span><h3>OUT OF LAB: Wine &amp; Chat</h3><p>1:00 – 5:00 PM · Foster City, CA</p></article><article class="event-card"><span class="mono"><time datetime="2026-11">Mid Nov</time></span><h3>Fig AI Design Makeathon 2026</h3><p>3 days · Online</p><p class="event-note">Onsite winner demo, awards &amp; mixer at AWS Builder Loft, San Francisco</p></article></div><a class="text-link events-more" href="https://luma.com/Fig-studio" target="_blank" rel="noopener noreferrer">View more on Luma <span class="arrow arrow--ne" aria-hidden="true"></span></a></div></div></section>
+<section class="quote-section" id="community"><div class="quote-photo" role="group" aria-roledescription="carousel" aria-label="Community photos"><div class="quote-track"><div class="quote-slide is-current" style="--pos:50% 6%"><img src="executable-world-2026/img/community-trio.jpg" alt="Three community members smiling together in front of the Judges screen" loading="lazy"></div><div class="quote-slide" style="--pos:50% 30%"><img src="executable-world-2026/img/community-judges.jpg" alt="Attendees and judges smiling and giving thumbs up in front of the Judges screen" loading="lazy"></div><div class="quote-slide" style="--pos:45% 30%"><img src="executable-world-2026/img/community-banner.jpg" alt="Builders and community members posing together at the event" loading="lazy"></div><div class="quote-slide" style="--pos:50% 6%" aria-hidden="true"><img src="executable-world-2026/img/community-trio.jpg" alt="" loading="lazy"></div></div><div class="quote-content wrap"><h2 class="reveal">The build ends.<br>The connections keep going.</h2></div><div class="quote-dots" role="group" aria-label="Choose a photo"><button type="button" aria-label="Show photo 1 of 3" aria-current="true"></button><button type="button" aria-label="Show photo 2 of 3"></button><button type="button" aria-label="Show photo 3 of 3"></button></div><button type="button" class="background-photo-view" data-lightbox-source=".quote-slide.is-current img" aria-label="Enlarge this photo"><span class="arrow arrow--ne" aria-hidden="true"></span></button></div><div class="events-band"><div class="wrap"><p class="events-intro reveal">FIG Studio connects builders through hackathons, demo days, mixers and smaller conversations.</p><span class="mono events-label">Upcoming events</span><div class="event-cards reveal"><article class="event-card"><span class="mono"><time datetime="2026-10-23T13:30">Fri, Oct 23</time></span><h3>FIG Friday Open House · Vol. 05</h3><p>1:30 PM · FIG Studio office, San Mateo</p><p class="event-note">Friday afternoons for founders, VCs, researchers and business leaders</p><div class="event-actions"><a class="event-pill event-pill--open" href="https://luma.com/Fig-studio" target="_blank" rel="noopener noreferrer" aria-label="FIG Friday Open House: open for registration (opens in a new tab)"><span class="event-dot" aria-hidden="true"></span>Open for registration <span class="arrow arrow--ne" aria-hidden="true"></span></a></div></article><article class="event-card"><span class="mono"><time datetime="2026-11-07">Nov 7 — 9</time></span><h3>FIG AI Design Makeathon 2026</h3><p>3 days · Online</p><p class="event-note">For design students and young design professionals. Register by Nov 6.</p><div class="event-actions"><a class="event-pill event-pill--open" href="https://luma.com/fig-knsb" target="_blank" rel="noopener noreferrer" aria-label="FIG AI Design Makeathon: open for registration (opens in a new tab)"><span class="event-dot" aria-hidden="true"></span>Open for registration <span class="arrow arrow--ne" aria-hidden="true"></span></a><a class="event-pill" href="mailto:contact@figstudio.vc?subject=FIG%20AI%20Design%20Makeathon%20%E2%80%94%20Judging" aria-label="Calling for judges: email contact@figstudio.vc">Calling for judges <span class="arrow arrow--ne" aria-hidden="true"></span></a></div></article><article class="event-card"><span class="mono"><time datetime="2026-11-14">Sat, Nov 14</time></span><h3>Makeathon Winner Demo &amp; Mixer</h3><p>San Francisco</p><p class="event-note">Winner demos, awards and a community mixer</p></article></div><a class="text-link events-more" href="https://luma.com/Fig-studio" target="_blank" rel="noopener noreferrer">View more on Luma <span class="arrow arrow--ne" aria-hidden="true"></span></a></div></div></section>
 <section class="next pad-y" id="next"><div class="wrap"><div class="section-label"><span class="mono">06 / The next partnership</span><span class="mono">An invitation to build with FIG</span></div><div class="next-intro"><h2 class="section-title reveal">Put your support<br>where the<br>building happens.</h2><p class="reveal delay">Help make the next room possible. We’re seeking partners across cloud, infrastructure, databases and developer tools to support future FIG Studio programs.<br><br>Start with the outcome that matters to your team. We can shape the format and scope together.</p></div><p class="proposal-label mono">Proposed partnership directions</p>
 <details class="opportunity" open><summary><span class="num">01</span><h3>Power the platform.</h3><span class="format">The full builder journey</span><span class="plus" aria-hidden="true">+</span></summary><div class="opportunity-content"><p><b>Contribute:</b> Funding, product credits or expertise for the platform that connects registration, team formation, conversations, submissions, judging and post-event discovery.</p><p><b>Shape together:</b> Relevant partner touchpoints and an agreed plan for reporting on participation and project activity.</p></div></details>
 <details class="opportunity"><summary><span class="num">02</span><h3>Support the build.</h3><span class="format">Future hackathons</span><span class="plus" aria-hidden="true">+</span></summary><div class="opportunity-content"><p><b>Contribute:</b> Event funding, product credits and technical expertise to help teams move from ideas to submissions.</p><p><b>Shape together:</b> A relevant challenge, hands-on support and a post-event summary of participation and submitted work.</p></div></details>
@@ -667,15 +681,21 @@ function pgPaint(){let before=0;for(let j=0;j<pgI;j++)before+=pgW[j];const pct=(
 function pgUpdate(){const span=Math.max(1,root.scrollHeight-innerHeight),navH=nav.offsetHeight,t=Math.max(0,Math.min(1,scrollY/span)),ref=scrollY+navH+t*(innerHeight-navH);
   let i=pgTops.length-1;while(i>0&&pgTops[i]>ref)i--;const end=pgTops[i+1]??pgDoc;pgF=Math.max(0,Math.min(1,(ref-pgTops[i])/Math.max(1,end-pgTops[i])));pgI=i;
   if(i!==pgCur){pgCur=i;pgLayout()}else pgPaint()}
-pg.addEventListener('mouseenter',()=>{pg.classList.add('open');pgLayout()});
-pg.addEventListener('mouseleave',()=>{pgHov=-1;if(!pg.contains(document.activeElement)){pg.classList.remove('open');pgLayout()}else pgLayout()});
-pg.addEventListener('mouseover',e=>{const a=e.target.closest('.pg-base .pg-seg');const k=a?pgSegs.indexOf(a):-1;if(k!==pgHov){pgHov=k;pgLayout()}});
+/* The map stays a thin line until the reader scrolls; it opens while scrolling and folds back 5 s after scrolling stops.
+   On devices with a real pointer it also opens on hover. Touch "hover" is ignored, so a tap never leaves it stuck open. */
+const pgHover=matchMedia('(hover:hover) and (pointer:fine)');let pgT=0;
+function pgOpen(){if(!pg.classList.contains('open')){pg.classList.add('open');pgLayout()}}
+function pgClose(){if((pgHover.matches&&pg.matches(':hover'))||pg.contains(document.activeElement))return;pgHov=-1;if(pg.classList.contains('open')){pg.classList.remove('open');pgLayout()}}
+function pgKick(){pgOpen();clearTimeout(pgT);pgT=setTimeout(pgClose,5000)}
+pg.addEventListener('mouseenter',()=>{if(pgHover.matches){clearTimeout(pgT);pgOpen()}});
+pg.addEventListener('mouseleave',()=>{if(!pgHover.matches)return;pgHov=-1;clearTimeout(pgT);pgClose();pgLayout()});
+pg.addEventListener('mouseover',e=>{if(!pgHover.matches)return;const a=e.target.closest('.pg-base .pg-seg');const k=a?pgSegs.indexOf(a):-1;if(k!==pgHov){pgHov=k;pgLayout()}});
 pg.addEventListener('focusin',e=>{pg.classList.add('open');const k=pgSegs.indexOf(e.target.closest('.pg-seg'));if(k>=0)pgHov=k;pgLayout()});
-pg.addEventListener('focusout',()=>{if(!pg.matches(':hover')){pgHov=-1;pg.classList.remove('open');pgLayout()}});
-pg.addEventListener('click',e=>{if(e.target.closest('a'))pg.blur()});
+pg.addEventListener('focusout',()=>{setTimeout(pgClose,0)});
+pg.addEventListener('click',e=>{const l=e.target.closest('a');if(l)l.blur()});
 addEventListener('load',()=>{pgMeasure();pgUpdate()});addEventListener('resize',()=>{pgMeasure();pgUpdate()});
 let scheduled=false;function onScroll(){scheduled=false;pgUpdate();nav.classList.toggle('scrolled',scrollY>10)}
-addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(onScroll)}},{passive:true});pgMeasure();onScroll();
+addEventListener('scroll',()=>{pgKick();if(!scheduled){scheduled=true;requestAnimationFrame(onScroll)}},{passive:true});pgMeasure();onScroll();
 const menuBtn=document.querySelector('.nav-toggle'),menuNav=document.getElementById('nav');
 function setMenu(open){menuNav.classList.toggle('open',open);menuBtn.setAttribute('aria-expanded',String(open));menuBtn.setAttribute('aria-label',open?'Close menu':'Open menu')}
 menuBtn.addEventListener('click',()=>setMenu(!menuNav.classList.contains('open')));
