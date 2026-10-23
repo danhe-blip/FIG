@@ -18,6 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/events.css">
 <style>
 :root{
   --paper:#FFFFFF;          /* white */
@@ -650,7 +651,10 @@ nav{background:var(--white)}
     <div class="nav-right">
       <div class="nav-links" id="nav-links">
         <a href="/">Home</a>
-        <a href="/events/physical-ai-2026" aria-current="page">Events</a>
+        <div class="nav-dd" id="nav-events">
+          <a class="nav-dd-btn" href="/#event-tiles" aria-haspopup="true" aria-expanded="false" aria-controls="nav-events-menu" aria-current="page">Events<span class="chev" aria-hidden="true"></span></a>
+          <div class="nav-dd-menu" id="nav-events-menu"></div>
+        </div>
       </div>
       <a class="btn" href="mailto:contact@figstudio.vc">Work With Us</a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu"><span class="bars" aria-hidden="true"></span></button>
@@ -739,5 +743,6 @@ document.querySelector('#close-lightbox').addEventListener('click',()=>dialog.cl
 dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});
 })();
 </script>
+<script src="/assets/events.js" defer></script>
 </body>
 </html>

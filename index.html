@@ -28,6 +28,7 @@ if(window.__figReload){
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/events.css">
 <style>
 :root{
   --paper:#FFFFFF;          /* white */
@@ -429,7 +430,10 @@ footer .fine{margin-top:var(--sp-6);font-size:var(--fs-micro);color:#94907F;text
     <div class="nav-right">
       <div class="nav-links" id="nav-links">
         <a href="#top" aria-current="page">Home</a>
-        <a href="/events/executable-world-2026">Events</a>
+        <div class="nav-dd" id="nav-events">
+          <a class="nav-dd-btn" href="/#event-tiles" aria-haspopup="true" aria-expanded="false" aria-controls="nav-events-menu">Events<span class="chev" aria-hidden="true"></span></a>
+          <div class="nav-dd-menu" id="nav-events-menu"></div>
+        </div>
       </div>
       <a class="btn" href="mailto:contact@figstudio.vc">Work With Us</a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu"><span class="bars" aria-hidden="true"></span></button>
@@ -710,6 +714,11 @@ footer .fine{margin-top:var(--sp-6);font-size:var(--fs-micro);color:#94907F;text
         <a class="card" href="https://www.complir.io" target="_blank" rel="noopener"><span class="badge">Member Investment</span><div class="name">Complir</div><div class="link">complir.io <span class="arrow" aria-hidden="true"></span></div></a>
       </div>
     </div>
+    <div class="subblock rv" id="event-tiles">
+      <h3>Recent and upcoming events</h3>
+      <div class="ev-tiles" data-event-tiles></div>
+      <a class="ev-tiles-all" href="https://events.figstudio.vc">All events on the FIG platform <span class="arrow" aria-hidden="true"></span></a>
+    </div>
   <div class="subblock rv">
       <h3>Where the FIG network convenes</h3>
       <div class="ev-grid">
@@ -822,5 +831,6 @@ lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLightbox()});
 addEventListener('keydown',e=>{if(e.key==='Escape'&&lightbox.classList.contains('open'))closeLightbox()});
 
 </script>
+<script src="/assets/events.js" defer></script>
 </body>
 </html>
